@@ -1,11 +1,10 @@
-import "./globals.css";
+import React from "react";
 
-export const metadata = {
-  title: "ViraWeaves – Designer Sarees & Ethnic Wear",
-  description: "Premium handloom sarees and designer ethnic wear collection."
+type RootLayoutProps = {
+  children: React.ReactNode;
 };
 
-export default function RootLayout({ children }) {
+export default function RootLayout({ children }: RootLayoutProps) {
   return (
     <html lang="en">
       <body className="bg-black text-white">{children}</body>

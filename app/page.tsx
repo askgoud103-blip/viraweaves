@@ -19,7 +19,7 @@ export default function Home() {
       <section className="w-full min-h-screen bg-[url('/vira-bg.jpg')] bg-cover bg-center flex items-center justify-center px-10">
         <div className="text-center mt-20">
           <h2 className="text-5xl font-bold mb-6 text-yellow-400 drop-shadow-lg">
-            Elegance Woven Into Every Saree
+            Elegance Woven Into Every Saree - Update Now
           </h2>
           <p className="text-xl mb-8">Handcrafted • Premium • Luxury Collections</p>
           <a

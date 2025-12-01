@@ -1,107 +1,173 @@
 "use client";
 
-export default function SecondPage() {
-  // Sample thumbnails and their names (replace with your actual images/names)
-  const thumbnails = [
-  { src: "/thumb1.jpg", name: "Jamdhani" },  // Product 1
-  { src: "/thumb2.jpg", name: "Kanchi Pattu" },
-  { src: "/thumb3.jpg", name: "Narayanpet" },
-  { src: "/thumb4.jpg", name: "Pochampally" },
-  { src: "/thumb5.jpg", name: "Gadwal" },
-  { src: "/thumb6.jpg", name: "Venkatagiri" },
-  { src: "/thumb7.jpg", name: "Kotha" },
-  { src: "/thumb8.jpg", name: "Fancy" },
-  { src: "/thumb9.jpg", name: "Viscos" },
-  { src: "/thumb11.jpg", name: "Pure Georjet10" },
-  { src: "/thumb12.jpg", name: "JimmiChoo" },
-  { src: "/thumb13.jpg", name: "Designer Sarees" },
-];
+import Navbar from "../components/Navbar";
 
+export default function SecondPage() {
+  const thumbnails = [
+    "Jamdhani",
+    "Kanchi Pattu",
+    "Narayanpet",
+    "Pochampally",
+    "Gadwal",
+    "Venkatagiri",
+    "Kotha",
+    "Fancy",
+    "Viscos",
+    "Pure Georgette10",
+    "JimmiChoo",
+    "Designer Sarees",
+  ];
+
+  // Sample saree images (can replace with actual images)
+  const sareeImages = [
+    "/saree1.jpg",
+    "/saree2.jpg",
+    "/saree3.jpg",
+    "/saree4.jpg",
+    "/saree5.jpg",
+    "/saree6.jpg",
+  ];
 
   return (
-    <div
-      style={{
-        position: "relative",
-        width: "100vw",
-        height: "100vh",
-        backgroundColor: "#ffc0cb", // baby pink
-        display: "flex",
-        justifyContent: "center",
-        alignItems: "center",
-        flexDirection: "column",
-        boxSizing: "border-box",
-        overflowX: "hidden",
-      }}
-    >
-      {/* Thumbnails at the top with names */}
+    <div style={{ width: "100vw", minHeight: "100vh", backgroundColor: "#ffc0cb" }}>
+      {/* Navbar */}
+      <Navbar />
+
+      {/* Main Content */}
       <div
         style={{
-          position: "absolute",
-          top: "1rem",
-          left: "50%",
-          transform: "translateX(-50%)",
+          marginTop: "80px", // spacing below fixed Navbar
           display: "flex",
-          gap: "1rem",
-          flexWrap: "nowrap",
-          overflowX: "auto",
-          padding: "0 1rem",
-          maxWidth: "95vw",
-          borderBottom: "2px solid black",
-          paddingBottom: "0.5rem",
+          flexDirection: "column",
+          alignItems: "center",
+          padding: "20px",
+          boxSizing: "border-box",
         }}
       >
-        {thumbnails.map((thumb, index) => (
-          <div
-            key={index}
-            style={{
-              display: "flex",
-              flexDirection: "column",
-              alignItems: "center",
-              flexShrink: 0,
-            }}
-          >
-            <img
-              src={thumb.src}
-              alt={thumb.name}
-              style={{
-                width: "auto",
-                height: "auto",
-                borderRadius: "8px",
-                objectFit: "cover",
-              }}
-            />
-            <span style={{ marginTop: "0.3rem", fontSize: "0.9rem", color: "black", textAlign: "center" }}>
-              {thumb.name}
-            </span>
-          </div>
-        ))}
-      </div>
-
-      {/* Centered Title with wave (~) */}
-      <h1 style={{ fontSize: "4rem", color: "black", textAlign: "center" }}>
-        Vira{" "}
-        <span
+        {/* Page Title */}
+        <h1
           style={{
-            display: "inline-block",
-            transform: "rotate(-10deg)",
-            // animation: "wave 1s infinite alternate", // optional
+            fontSize: "3rem",
+            color: "black",
+            textAlign: "center",
+            margin: 0,
+            padding: 0,
+            textShadow: "2px 2px 6px rgba(0,0,0,0.3)",
           }}
         >
-          ~
-        </span>{" "}
-        Weaves
-      </h1>
+          Vira <span style={{ display: "inline-block", transform: "rotate(-10deg)", textShadow: "2px 2px 6px rgba(0,0,0,0.3)" }}>~</span>{" "}
+          Weaves
+        </h1>
 
-      {/* Optional: Animated wave */}
-      <style>
-        {`
-          @keyframes wave {
-            0% { transform: rotate(-15deg); }
-            50% { transform: rotate(15deg); }
-            100% { transform: rotate(-15deg); }
-          }
-        `}
-      </style>
+        {/* Subtitle */}
+        <h2
+          style={{
+            fontSize: "1.5rem",
+            color: "black",
+            textAlign: "center",
+            marginTop: "8px",
+            marginBottom: "40px",
+            fontWeight: 400,
+            textShadow: "1px 1px 4px rgba(0,0,0,0.2)",
+          }}
+        >
+          Drape Yourself in Perfection
+        </h2>
+
+        {/* Top Thumbnails Grid */}
+        <div
+          style={{
+            display: "grid",
+            gridTemplateColumns: "repeat(auto-fit, minmax(150px, 1fr))",
+            gap: "20px",
+            width: "100%",
+            maxWidth: "1000px",
+            marginBottom: "40px",
+          }}
+        >
+          {thumbnails.map((name, index) => (
+            <div
+              key={index}
+              style={{
+                display: "flex",
+                flexDirection: "column",
+                alignItems: "center",
+                backgroundColor: "white",
+                borderRadius: "10px",
+                padding: "10px",
+                boxShadow: "0 4px 10px rgba(0,0,0,0.2)",
+                cursor: "pointer",
+                transition: "transform 0.3s, box-shadow 0.3s",
+              }}
+              onMouseEnter={(e) => {
+                e.currentTarget.style.transform = "scale(1.05)";
+                e.currentTarget.style.boxShadow = "0 8px 20px rgba(0,0,0,0.3)";
+              }}
+              onMouseLeave={(e) => {
+                e.currentTarget.style.transform = "scale(1)";
+                e.currentTarget.style.boxShadow = "0 4px 10px rgba(0,0,0,0.2)";
+              }}
+            >
+              <img
+                src={`/thumb${index + 1}.jpg`}
+                alt={name}
+                style={{ width: "100%", borderRadius: "8px", objectFit: "cover" }}
+              />
+              <span
+                style={{
+                  marginTop: "0.5rem",
+                  fontSize: "0.9rem",
+                  color: "black",
+                  textAlign: "center",
+                }}
+              >
+                {name}
+              </span>
+            </div>
+          ))}
+        </div>
+
+        {/* Horizontal Scrollable Saree Row */}
+        <div
+          style={{
+            display: "flex",
+            gap: "20px",
+            overflowX: "auto",
+            paddingBottom: "10px",
+            width: "100%",
+            maxWidth: "1000px",
+          }}
+        >
+          {sareeImages.map((src, index) => (
+            <div
+              key={index}
+              style={{
+                minWidth: "200px",
+                flexShrink: 0,
+                borderRadius: "10px",
+                overflow: "hidden",
+                boxShadow: "0 4px 10px rgba(0,0,0,0.2)",
+                cursor: "pointer",
+                transition: "transform 0.3s, box-shadow 0.3s",
+              }}
+              onMouseEnter={(e) => {
+                e.currentTarget.style.transform = "scale(1.05)";
+                e.currentTarget.style.boxShadow = "0 8px 20px rgba(0,0,0,0.3)";
+              }}
+              onMouseLeave={(e) => {
+                e.currentTarget.style.transform = "scale(1)";
+                e.currentTarget.style.boxShadow = "0 4px 10px rgba(0,0,0,0.2)";
+              }}
+            >
+              <img
+                src={src}
+                alt={`Saree ${index + 1}`}
+                style={{ width: "100%", objectFit: "cover" }}
+              />
+            </div>
+          ))}
+        </div>
+      </div>
     </div>
   );
 }

@@ -1,37 +1,175 @@
+"use client";
 
-export default function Home() {
+import Navbar from "./components/Navbar";
+
+
+export default function SecondPage() {
+  const thumbnails = [
+    "Jamdhani",
+    "Kanchi Pattu",
+    "Narayanpet",
+    "Pochampally",
+    "Gadwal",
+    "Venkatagiri",
+    "Kotha",
+    "Fancy",
+    "Viscos",
+    "Pure Georgette10",
+    "JimmiChoo",
+    "Designer Sarees",
+  ];
+
+  // Sample saree images (can replace with actual images)
+  const sareeImages = [
+    "/saree1.jpg",
+    "/saree2.jpg",
+    "/saree3.jpg",
+    "/saree4.jpg",
+    "/saree5.jpg",
+    "/saree6.jpg",
+  ];
+
   return (
-    <main className="w-full min-h-screen">
+    <div style={{ width: "100vw", minHeight: "100vh", backgroundColor: "#ffc0cb" }}>
       {/* Navbar */}
-      <nav className="w-full py-6 flex justify-between px-10 fixed top-0 left-0 bg-black/60 backdrop-blur z-50">
-        <h1 className="text-3xl font-bold text-yellow-400 tracking-wider">
-          ViraWeaves
+      <Navbar />
+
+      {/* Main Content */}
+      <div
+        style={{
+          marginTop: "80px", // spacing below fixed Navbar
+          display: "flex",
+          flexDirection: "column",
+          alignItems: "center",
+          padding: "20px",
+          boxSizing: "border-box",
+        }}
+      >
+        {/* Page Title */}
+        <h1
+          style={{
+            fontSize: "3rem",
+            color: "black",
+            textAlign: "center",
+            margin: 0,
+            padding: 0,
+            textShadow: "2px 2px 6px rgba(0,0,0,0.3)",
+          }}
+        >
+          Vira <span style={{ display: "inline-block", transform: "rotate(-10deg)", textShadow: "2px 2px 6px rgba(0,0,0,0.3)" }}>~</span>{" "}
+          Weaves
         </h1>
 
-        <div className="space-x-8 text-lg">
-          <a href="/" className="hover:text-yellow-400">Home</a>
-          <a href="/collections" className="hover:text-yellow-400">Collections</a>
-          <a href="/about" className="hover:text-yellow-400">About</a>
-          <a href="/contact" className="hover:text-yellow-400">Contact</a>
-        </div>
-      </nav>
+        {/* Subtitle */}
+        <h2
+          style={{
+            fontSize: "1.5rem",
+            color: "black",
+            textAlign: "center",
+            marginTop: "8px",
+            marginBottom: "40px",
+            fontWeight: 400,
+            textShadow: "1px 1px 4px rgba(0,0,0,0.2)",
+          }}
+        >
+          Drape Yourself in Perfection
+        </h2>
 
-      {/* Hero Section */}
-      <section className="w-full min-h-screen bg-[url('/vira-bg.jpg')] bg-cover bg-center flex items-center justify-center px-10">
-        <div className="text-center mt-20">
-          <h2 className="text-5xl font-bold mb-6 text-yellow-400 drop-shadow-lg">
-            Elegance Woven Into Every Saree - Update Now
-          </h2>
-          <p className="text-xl mb-8">Handcrafted • Premium • Luxury Collections</p>
-          <a
-            href="/collections"
-            className="px-8 py-3 text-lg bg-yellow-400 text-black font-semibold rounded-full hover:bg-yellow-300 transition"
-          >
-            Explore Sarees
-          </a>
+        {/* Top Thumbnails Grid */}
+        <div
+          style={{
+            display: "grid",
+            gridTemplateColumns: "repeat(auto-fit, minmax(150px, 1fr))",
+            gap: "20px",
+            width: "100%",
+            maxWidth: "1000px",
+            marginBottom: "40px",
+          }}
+        >
+          {thumbnails.map((name, index) => (
+            <div
+              key={index}
+              style={{
+                display: "flex",
+                flexDirection: "column",
+                alignItems: "center",
+                backgroundColor: "white",
+                borderRadius: "10px",
+                padding: "10px",
+                boxShadow: "0 4px 10px rgba(0,0,0,0.2)",
+                cursor: "pointer",
+                transition: "transform 0.3s, box-shadow 0.3s",
+              }}
+              onMouseEnter={(e) => {
+                e.currentTarget.style.transform = "scale(1.05)";
+                e.currentTarget.style.boxShadow = "0 8px 20px rgba(0,0,0,0.3)";
+              }}
+              onMouseLeave={(e) => {
+                e.currentTarget.style.transform = "scale(1)";
+                e.currentTarget.style.boxShadow = "0 4px 10px rgba(0,0,0,0.2)";
+              }}
+            >
+              <img
+                src={`/thumb${index + 1}.jpg`}
+                alt={name}
+                style={{ width: "100%", borderRadius: "8px", objectFit: "cover" }}
+              />
+              <span
+                style={{
+                  marginTop: "0.5rem",
+                  fontSize: "0.9rem",
+                  color: "black",
+                  textAlign: "center",
+                }}
+              >
+                {name}
+              </span>
+            </div>
+          ))}
         </div>
-      </section>
-    </main>
+
+        {/* Horizontal Scrollable Saree Row */}
+        <div
+          style={{
+            display: "flex",
+            gap: "20px",
+            overflowX: "auto",
+            paddingBottom: "10px",
+            width: "100%",
+            maxWidth: "1000px",
+          }}
+        >
+          {sareeImages.map((src, index) => (
+            <div
+              key={index}
+              style={{
+                minWidth: "200px",
+                flexShrink: 0,
+                borderRadius: "10px",
+                overflow: "hidden",
+                boxShadow: "0 4px 10px rgba(0,0,0,0.2)",
+                cursor: "pointer",
+                transition: "transform 0.3s, box-shadow 0.3s",
+              }}
+              onMouseEnter={(e) => {
+                e.currentTarget.style.transform = "scale(1.05)";
+                e.currentTarget.style.boxShadow = "0 8px 20px rgba(0,0,0,0.3)";
+              }}
+              onMouseLeave={(e) => {
+                e.currentTarget.style.transform = "scale(1)";
+                e.currentTarget.style.boxShadow = "0 4px 10px rgba(0,0,0,0.2)";
+              }}
+            >
+              <img
+                src={src}
+                alt={`Saree ${index + 1}`}
+                style={{ width: "100%", objectFit: "cover" }}
+              />
+            </div>
+          ))}
+        </div>
+      </div>
+    </div>
   );
 }
 

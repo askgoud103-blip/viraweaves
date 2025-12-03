@@ -177,10 +177,11 @@ export default function SecondPage() {
               style={{
                 width: "200px",
                 height: "120px",
-                objectFit: "cover",
+                objectFit: "contain",
                 borderRadius: "10px",
                 display: "inline-block",
-                marginRight: "20px",
+                marginRight: "4px",
+                
               }}
             />
           ))}

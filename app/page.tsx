@@ -124,13 +124,70 @@ export default function SecondPage() {
             color: "black",
             textAlign: "center",
             marginTop: "8px",
-            marginBottom: "40px",
+            marginBottom: "10px",
             fontWeight: 400,
             textShadow: "1px 1px 4px rgba(0,0,0,0.2)",
           }}
         >
           Drape Yourself in Perfection
         </h2>
+        
+        {/* Latest Arrivals Title */}
+<h2
+  style={{
+    fontFamily: "'Playfair Display', serif",
+    fontSize: "2rem",
+    fontWeight: "600",
+    color: "black",
+    textAlign: "center",
+    marginBottom: "20px",
+    textShadow: "2px 2px 8px rgba(0,0,0,0.25)",
+    position: "relative",
+  }}
+>
+  Latest Arrivals
+  <span
+    style={{
+      display: "block",
+      width: "80px",
+      height: "3px",
+      backgroundColor: "black",
+      margin: "10px auto 0",
+      borderRadius: "3px",
+    }}
+  ></span>
+</h2>
+
+        {/* ✔ Auto-scroll Saree Row (fixed) */}
+        <div
+          ref={scrollRef}
+          style={{
+            width: "100%",
+            overflow: "hidden", // IMPORTANT for mobile
+            whiteSpace: "nowrap",
+            maxWidth: "1000px",
+            marginBottom: "10px",
+          }}
+        >
+          {[...sareeImages, ...sareeImages].map((src, index) => (
+            <img
+              key={index}
+              src={src}
+              alt={`Saree ${index + 1}`}
+              style={{
+                width: "200px",
+                height: "120px",
+                objectFit: "cover",
+                borderRadius: "10px",
+                display: "inline-block",
+                marginRight: "20px",
+              }}
+            />
+          ))}
+        </div>
+        
+        
+        
 
         {/* Thumbnails Grid */}
         <div
@@ -188,59 +245,7 @@ export default function SecondPage() {
             </div>
           ))}
         </div>
-{/* Latest Arrivals Title */}
-<h2
-  style={{
-    fontFamily: "'Playfair Display', serif",
-    fontSize: "2rem",
-    fontWeight: "600",
-    color: "black",
-    textAlign: "center",
-    marginBottom: "20px",
-    textShadow: "2px 2px 8px rgba(0,0,0,0.25)",
-    position: "relative",
-  }}
->
-  Latest Arrivals
-  <span
-    style={{
-      display: "block",
-      width: "80px",
-      height: "3px",
-      backgroundColor: "black",
-      margin: "10px auto 0",
-      borderRadius: "3px",
-    }}
-  ></span>
-</h2>
 
-        {/* ✔ Auto-scroll Saree Row (fixed) */}
-        <div
-          ref={scrollRef}
-          style={{
-            width: "100%",
-            overflow: "hidden", // IMPORTANT for mobile
-            whiteSpace: "nowrap",
-            maxWidth: "1000px",
-            marginBottom: "10px",
-          }}
-        >
-          {[...sareeImages, ...sareeImages].map((src, index) => (
-            <img
-              key={index}
-              src={src}
-              alt={`Saree ${index + 1}`}
-              style={{
-                width: "200px",
-                height: "120px",
-                objectFit: "cover",
-                borderRadius: "10px",
-                display: "inline-block",
-                marginRight: "20px",
-              }}
-            />
-          ))}
-        </div>
       </div>
     </div>
   );

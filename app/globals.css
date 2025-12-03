@@ -32,5 +32,41 @@ body {
     transform: translateX(-50%);
   }
 }
+/* Make all menu items same background */
+.menu-items a {
+  background-color: black; 
+  color: white;
+}
+
+/* Desktop & Mobile Menu Styling */
+.menuItem {
+  background-color: black;
+  color: white;
+  border: none;
+  padding: 10px 0;
+  font-size: 1rem;
+  font-weight: 600;
+  width: 100%;
+  text-align: left;
+}
+
+.menuItem:hover {
+  color: #ff79b0;
+}
+
+/* Mobile menu specific */
+.mobileMenuItem {
+  font-size: 1.2rem;
+  margin-bottom: 20px;
+}
+.page-title {
+  margin-top: 120px;
+}
+
+
+
+
+
+
 
 

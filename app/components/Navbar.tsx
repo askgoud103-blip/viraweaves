@@ -4,6 +4,8 @@ import { useState } from "react";
 import { useRouter } from "next/navigation";
 import { FaInstagram, FaWhatsapp } from "react-icons/fa";
 
+
+
 export default function Navbar() {
   const [isOpen, setIsOpen] = useState(false);
   const router = useRouter();
@@ -84,22 +86,13 @@ export default function Navbar() {
           >
             {menuItems.map((item) => (
               <button
-                key={item}
-                onClick={() => handleNavigate(item)}
-                style={{
-                  background: "none",
-                  border: "none",
-                  color: "white",
-                  fontWeight: 600,
-                  cursor: "pointer",
-                  fontSize: "1rem",
-                  padding: "4px 0",
-                }}
-                onMouseEnter={(e) => (e.currentTarget.style.color = "#ff79b0")}
-                onMouseLeave={(e) => (e.currentTarget.style.color = "white")}
-              >
-                {item}
-              </button>
+  key={item}
+  className="menuItem"
+  onClick={() => handleNavigate(item)}
+>
+  {item}
+</button>
+
             ))}
 
             {/* Social Icons */}
@@ -172,22 +165,13 @@ export default function Navbar() {
 
             {menuItems.map((item) => (
               <button
-                key={item}
-                onClick={() => handleNavigate(item)}
-                style={{
-                  fontSize: "1.2rem",
-                  fontWeight: 600,
-                  color: "white",
-                  background: "none",
-                  border: "none",
-                  marginBottom: "20px",
-                  cursor: "pointer",
-                }}
-                onMouseEnter={(e) => (e.currentTarget.style.color = "#ff79b0")}
-                onMouseLeave={(e) => (e.currentTarget.style.color = "white")}
-              >
-                {item}
-              </button>
+  key={item}
+  className="menuItem mobileMenuItem"
+  onClick={() => handleNavigate(item)}
+>
+  {item}
+</button>
+
             ))}
 
             {/* Social Icons Mobile */}

@@ -1,5 +1,6 @@
 "use client";
 
+
 import { useEffect, useRef } from "react";
 import Navbar from "./components/Navbar";
 
@@ -21,8 +22,28 @@ export default function SecondPage() {
 
   const sareeImages = [
     "/dir.jpg",
-    "/sari.jpg",
-    "/mani.jpg",
+    "/dir9.jpg",
+    "/dir20.jpg",
+    "/dir10.jpg",
+    "/dir21.jpg",
+    "/dir11.jpg",
+    "/dir22.jpg",
+    "/dir12.jpg",
+    "/dir23.jpg",
+    "/dir13.jpg",
+    "/dir.jpg",
+    "/dir9.jpg",
+    "/dir20.jpg",
+    "/dir10.jpg",
+    "/dir21.jpg",
+    "/dir11.jpg",
+    "/dir22.jpg",
+    "/dir12.jpg",
+    "/dir23.jpg",
+    "/dir13.jpg",
+    
+      
+    
     // add more if you want
   ];
 
@@ -34,8 +55,8 @@ export default function SecondPage() {
     if (!el) return;
 
     const interval = setInterval(() => {
-      el.scrollLeft += 1; // change speed here
-    }, 20);
+      el.scrollLeft += 3; // change speed here
+    }, 12);
 
     return () => clearInterval(interval);
   }, []);
@@ -65,27 +86,29 @@ export default function SecondPage() {
       >
         {/* Page Title */}
         <h1
-          style={{
-            fontSize: "3rem",
-            color: "black",
-            textAlign: "center",
-            margin: 0,
-            padding: 0,
-            textShadow: "2px 2px 6px rgba(0,0,0,0.3)",
-          }}
-        >
-          Vira{" "}
-          <span
-            style={{
-              display: "inline-block",
-              transform: "rotate(-10deg)",
-              textShadow: "2px 2px 6px rgba(0,0,0,0.3)",
-            }}
-          >
-            ~
-          </span>{" "}
-          Weaves
-        </h1>
+  style={{
+    fontSize: "3rem",
+    color: "black",
+    textAlign: "center",
+    margin: 0,
+    padding: 0,
+    marginTop: "35px",   // ← Add this
+    textShadow: "2px 2px 6px rgba(0,0,0,0.3)",
+  }}
+>
+  Vira{" "}
+  <span
+    style={{
+      display: "inline-block",
+      transform: "rotate(-10deg)",
+      textShadow: "2px 2px 6px rgba(0,0,0,0.3)",
+    }}
+  >
+    ~
+  </span>{" "}
+  Weaves
+</h1>
+
 
         {/* Subtitle */}
         <h2
@@ -161,37 +184,33 @@ export default function SecondPage() {
 
         {/* Horizontal Auto-scroll Saree Row */}
         <div
-          style={{
-            width: "100%",
-            overflow: "hidden",
-            marginBottom: "40px",
-            maxWidth: "1000px",
-          }}
-        >
-          <div
-            ref={scrollRef}
-            style={{
-              display: "flex",
-              gap: "20px",
-              whiteSpace: "nowrap",
-            }}
-          >
-            {[...sareeImages, ...sareeImages].map((src, index) => (
-              <img
-                key={index}
-                src={src}
-                alt={`Saree ${index + 1}`}
-                style={{
-                  width: "200px",
-                  height: "120px", // reduced height
-                  objectFit: "cover",
-                  borderRadius: "10px",
-                  boxShadow: "0 4px 10px rgba(0,0,0,0.2)",
-                }}
-              />
-            ))}
-          </div>
-        </div>
+  style={{
+    width: "100%",
+    overflowX: "auto", // ← important
+    overflowY: "hidden",
+    whiteSpace: "nowrap",
+    maxWidth: "1000px",
+    marginBottom: "40px",
+    scrollBehavior: "smooth", // optional for smoothness
+  }}
+  ref={scrollRef}
+>
+  {[...sareeImages, ...sareeImages].map((src, index) => (
+    <img
+      key={index}
+      src={src}
+      alt={`Saree ${index + 1}`}
+      style={{
+        width: "200px",
+        height: "120px",
+        objectFit: "cover",
+        borderRadius: "10px",
+        display: "inline-block", // ← ensures horizontal layout
+        marginRight: "20px",
+      }}
+    />
+  ))}
+</div>
       </div>
     </div>
   );

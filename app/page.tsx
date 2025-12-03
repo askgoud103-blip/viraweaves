@@ -1,6 +1,5 @@
 "use client";
 
-
 import { useEffect, useRef } from "react";
 import Navbar from "./components/Navbar";
 
@@ -15,7 +14,7 @@ export default function SecondPage() {
     "Kotha",
     "Fancy",
     "Viscos",
-    "Pure Georgette10",
+    "Pure Georgette",
     "JimmiChoo",
     "Designer Sarees",
   ];
@@ -41,24 +40,33 @@ export default function SecondPage() {
     "/dir12.jpg",
     "/dir23.jpg",
     "/dir13.jpg",
-    
-      
-    
-    // add more if you want
   ];
 
   // Ref for auto-scroll
   const scrollRef = useRef<HTMLDivElement>(null);
 
+  // ✅ Mobile-friendly auto-scroll using requestAnimationFrame
   useEffect(() => {
     const el = scrollRef.current;
     if (!el) return;
 
-    const interval = setInterval(() => {
-      el.scrollLeft += 3; // change speed here
-    }, 12);
+    let animationFrame: number;
+    const speed = 1.5; // adjust speed here
 
-    return () => clearInterval(interval);
+    const scroll = () => {
+      el.scrollLeft += speed;
+
+      // infinite scroll wrap
+      if (el.scrollLeft >= el.scrollWidth - el.clientWidth) {
+        el.scrollLeft = 0;
+      }
+
+      animationFrame = requestAnimationFrame(scroll);
+    };
+
+    scroll();
+
+    return () => cancelAnimationFrame(animationFrame);
   }, []);
 
   return (
@@ -75,7 +83,7 @@ export default function SecondPage() {
       {/* Main Content */}
       <div
         style={{
-          paddingTop: "100px", // space below fixed navbar
+          paddingTop: "100px",
           display: "flex",
           flexDirection: "column",
           alignItems: "center",
@@ -86,29 +94,28 @@ export default function SecondPage() {
       >
         {/* Page Title */}
         <h1
-  style={{
-    fontSize: "3rem",
-    color: "black",
-    textAlign: "center",
-    margin: 0,
-    padding: 0,
-    marginTop: "35px",   // ← Add this
-    textShadow: "2px 2px 6px rgba(0,0,0,0.3)",
-  }}
->
-  Vira{" "}
-  <span
-    style={{
-      display: "inline-block",
-      transform: "rotate(-10deg)",
-      textShadow: "2px 2px 6px rgba(0,0,0,0.3)",
-    }}
-  >
-    ~
-  </span>{" "}
-  Weaves
-</h1>
-
+          style={{
+            fontSize: "3rem",
+            color: "black",
+            textAlign: "center",
+            margin: 0,
+            padding: 0,
+            marginTop: "35px",
+            textShadow: "2px 2px 6px rgba(0,0,0,0.3)",
+          }}
+        >
+          Vira{" "}
+          <span
+            style={{
+              display: "inline-block",
+              transform: "rotate(-10deg)",
+              textShadow: "2px 2px 6px rgba(0,0,0,0.3)",
+            }}
+          >
+            ~
+          </span>{" "}
+          Weaves
+        </h1>
 
         {/* Subtitle */}
         <h2
@@ -125,17 +132,17 @@ export default function SecondPage() {
           Drape Yourself in Perfection
         </h2>
 
-        {/* Top Thumbnails Grid */}
+        {/* Thumbnails Grid */}
         <div
-          style={{
-            display: "grid",
-            gridTemplateColumns: "repeat(auto-fit, minmax(150px, 1fr))",
-            gap: "20px",
-            width: "100%",
-            maxWidth: "1000px",
-            marginBottom: "40px",
-          }}
-        >
+  style={{
+    display: "grid",
+    gridTemplateColumns: "repeat(auto-fit, minmax(150px, 1fr))",
+    gap: "10px",      // reduced from 20px → 10px
+    width: "100%",
+    maxWidth: "1000px",
+    marginBottom: "10px", // reduced from 40px → 10px
+  }}
+>
           {thumbnails.map((name, index) => (
             <div
               key={index}
@@ -145,7 +152,7 @@ export default function SecondPage() {
                 alignItems: "center",
                 backgroundColor: "white",
                 borderRadius: "10px",
-                padding: "10px",
+                padding: "5px",
                 boxShadow: "0 4px 10px rgba(0,0,0,0.2)",
                 cursor: "pointer",
                 transition: "transform 0.3s, box-shadow 0.3s",
@@ -170,7 +177,7 @@ export default function SecondPage() {
               />
               <span
                 style={{
-                  marginTop: "0.5rem",
+                  marginTop: "2px",
                   fontSize: "0.9rem",
                   color: "black",
                   textAlign: "center",
@@ -181,36 +188,59 @@ export default function SecondPage() {
             </div>
           ))}
         </div>
-
-        {/* Horizontal Auto-scroll Saree Row */}
-        <div
+{/* Latest Arrivals Title */}
+<h2
   style={{
-    width: "100%",
-    overflowX: "auto", // ← important
-    overflowY: "hidden",
-    whiteSpace: "nowrap",
-    maxWidth: "1000px",
-    marginBottom: "40px",
-    scrollBehavior: "smooth", // optional for smoothness
+    fontFamily: "'Playfair Display', serif",
+    fontSize: "2rem",
+    fontWeight: "600",
+    color: "black",
+    textAlign: "center",
+    marginBottom: "20px",
+    textShadow: "2px 2px 8px rgba(0,0,0,0.25)",
+    position: "relative",
   }}
-  ref={scrollRef}
 >
-  {[...sareeImages, ...sareeImages].map((src, index) => (
-    <img
-      key={index}
-      src={src}
-      alt={`Saree ${index + 1}`}
-      style={{
-        width: "200px",
-        height: "120px",
-        objectFit: "cover",
-        borderRadius: "10px",
-        display: "inline-block", // ← ensures horizontal layout
-        marginRight: "20px",
-      }}
-    />
-  ))}
-</div>
+  Latest Arrivals
+  <span
+    style={{
+      display: "block",
+      width: "80px",
+      height: "3px",
+      backgroundColor: "black",
+      margin: "10px auto 0",
+      borderRadius: "3px",
+    }}
+  ></span>
+</h2>
+
+        {/* ✔ Auto-scroll Saree Row (fixed) */}
+        <div
+          ref={scrollRef}
+          style={{
+            width: "100%",
+            overflow: "hidden", // IMPORTANT for mobile
+            whiteSpace: "nowrap",
+            maxWidth: "1000px",
+            marginBottom: "10px",
+          }}
+        >
+          {[...sareeImages, ...sareeImages].map((src, index) => (
+            <img
+              key={index}
+              src={src}
+              alt={`Saree ${index + 1}`}
+              style={{
+                width: "200px",
+                height: "120px",
+                objectFit: "cover",
+                borderRadius: "10px",
+                display: "inline-block",
+                marginRight: "20px",
+              }}
+            />
+          ))}
+        </div>
       </div>
     </div>
   );

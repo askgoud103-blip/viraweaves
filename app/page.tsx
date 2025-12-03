@@ -160,32 +160,40 @@ export default function SecondPage() {
 
         {/* ✔ Auto-scroll Saree Row (fixed) */}
         <div
-          ref={scrollRef}
-          style={{
-            width: "100%",
-            overflow: "hidden", // IMPORTANT for mobile
-            whiteSpace: "nowrap",
-            maxWidth: "1000px",
-            marginBottom: "10px",
-          }}
-        >
-          {[...sareeImages, ...sareeImages].map((src, index) => (
-            <img
-              key={index}
-              src={src}
-              alt={`Saree ${index + 1}`}
-              style={{
-                width: "200px",
-                height: "120px",
-                objectFit: "contain",
-                borderRadius: "10px",
-                display: "inline-block",
-                marginRight: "4px",
-                
-              }}
-            />
-          ))}
-        </div>
+  ref={scrollRef}
+  style={{
+    display: "flex",
+    flexDirection: "row",
+    alignItems: "center",  // center images vertically
+    overflowX: "hidden",
+    overflowY: "hidden",
+    maxWidth: "1000px",
+    margin: "0",
+    padding: "0",
+    gap: "4px",            // small horizontal gap
+    height: "140px",       // row height fixed
+  }}
+>
+  {[...sareeImages, ...sareeImages].map((src, index) => (
+    <img
+      key={index}
+      src={src}
+      alt={`Saree ${index + 1}`}
+      style={{
+        height: "130px",       // consistent height for all images
+        width: "auto",         // width adjusts to preserve aspect ratio
+        objectFit: "contain",  // keeps full image visible
+        borderRadius: "10px",
+        flexShrink: 0,
+        backgroundColor: "white",
+      }}
+    />
+  ))}
+</div>
+
+
+
+
         
         
         

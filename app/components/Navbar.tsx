@@ -4,8 +4,6 @@ import { useState } from "react";
 import { useRouter } from "next/navigation";
 import { FaInstagram, FaWhatsapp } from "react-icons/fa";
 
-
-
 export default function Navbar() {
   const [isOpen, setIsOpen] = useState(false);
   const router = useRouter();
@@ -55,7 +53,7 @@ export default function Navbar() {
             }}
             onClick={() => router.push("/")}
           >
-            Vira
+            Vira{" "}
             <span
               style={{
                 display: "inline-block",
@@ -64,20 +62,21 @@ export default function Navbar() {
               }}
             >
               ~
-            </span>
+            </span>{" "}
             Weaves
           </h2>
-          <img 
-  src="/dir.jpg"
-  alt="Logo Image"
-  style={{
-    height: "100px",     // you can change height
-    width: "80px",
-    borderRadius: "8px",
-    margin: "0 15px",   // spacing left & right
-  }}
-/>
 
+          {/* Logo Image */}
+          <img
+            src="/dir.jpg"
+            alt="Logo"
+            style={{
+              height: "100px",
+              width: "80px",
+              borderRadius: "8px",
+              margin: "0 15px",
+            }}
+          />
 
           {/* Desktop Menu */}
           <div
@@ -86,13 +85,12 @@ export default function Navbar() {
           >
             {menuItems.map((item) => (
               <button
-  key={item}
-  className="menuItem"
-  onClick={() => handleNavigate(item)}
->
-  {item}
-</button>
-
+                key={item}
+                className="menuItem"
+                onClick={() => handleNavigate(item)}
+              >
+                {item}
+              </button>
             ))}
 
             {/* Social Icons */}
@@ -101,15 +99,11 @@ export default function Navbar() {
                 size={20}
                 color="white"
                 style={{ cursor: "pointer" }}
-                onMouseEnter={(e) => (e.currentTarget.style.color = "#ff79b0")}
-                onMouseLeave={(e) => (e.currentTarget.style.color = "white")}
               />
               <FaWhatsapp
                 size={20}
                 color="white"
                 style={{ cursor: "pointer" }}
-                onMouseEnter={(e) => (e.currentTarget.style.color = "#ff79b0")}
-                onMouseLeave={(e) => (e.currentTarget.style.color = "white")}
               />
             </div>
           </div>
@@ -117,6 +111,7 @@ export default function Navbar() {
           {/* Mobile Hamburger */}
           <button
             onClick={() => setIsOpen(!isOpen)}
+            className="mobileHamburger"
             style={{
               display: "none",
               fontSize: "1.8rem",
@@ -125,81 +120,76 @@ export default function Navbar() {
               border: "none",
               cursor: "pointer",
             }}
-            className="mobileHamburger"
           >
             ☰
           </button>
         </div>
 
         {/* Mobile Menu */}
-        {isOpen && (
-          <div
+        <div
+          style={{
+            position: "fixed",
+            top: 0,
+            right: isOpen ? "0" : "-300px",
+            height: "100vh",
+            width: "230px",
+            backgroundColor: "rgba(0,0,0,0.95)",
+            display: "flex",
+            flexDirection: "column",
+            padding: "40px 20px",
+            transition: "right 0.3s ease",
+            zIndex: 2000,
+          }}
+        >
+          {/* Close */}
+          <button
+            onClick={() => setIsOpen(false)}
             style={{
-              position: "fixed",
-              top: 0,
-              left: 0,
-              height: "100%",
-              width: "220px",
-              backgroundColor: "rgba(0,0,0,0.95)",
-              display: "flex",
-              flexDirection: "column",
-              padding: "40px 20px",
-              zIndex: 999,
-              transition: "transform 0.3s ease",
+              fontSize: "1.8rem",
+              color: "white",
+              alignSelf: "flex-end",
+              background: "none",
+              border: "none",
+              marginBottom: "30px",
+              cursor: "pointer",
             }}
           >
+            ×
+          </button>
+
+          {/* Mobile Links */}
+          {menuItems.map((item) => (
             <button
+              key={item}
+              className="mobileMenuItem"
+              onClick={() => handleNavigate(item)}
               style={{
-                fontSize: "1.8rem",
+                marginBottom: "20px",
                 color: "white",
                 background: "none",
                 border: "none",
-                alignSelf: "flex-end",
+                fontSize: "1.2rem",
+                textAlign: "left",
                 cursor: "pointer",
-                marginBottom: "30px",
               }}
-              onClick={() => setIsOpen(false)}
             >
-              ×
+              {item}
             </button>
+          ))}
 
-            {menuItems.map((item) => (
-              <button
-  key={item}
-  className="menuItem mobileMenuItem"
-  onClick={() => handleNavigate(item)}
->
-  {item}
-</button>
-
-            ))}
-
-            {/* Social Icons Mobile */}
-            <div style={{ display: "flex", gap: "12px", marginTop: "20px" }}>
-              <FaInstagram
-                size={22}
-                color="white"
-                style={{ cursor: "pointer" }}
-                onMouseEnter={(e) => (e.currentTarget.style.color = "#ff79b0")}
-                onMouseLeave={(e) => (e.currentTarget.style.color = "white")}
-              />
-              <FaWhatsapp
-                size={22}
-                color="white"
-                style={{ cursor: "pointer" }}
-                onMouseEnter={(e) => (e.currentTarget.style.color = "#ff79b0")}
-                onMouseLeave={(e) => (e.currentTarget.style.color = "white")}
-              />
-            </div>
+          {/* Social Icons */}
+          <div style={{ display: "flex", gap: "15px", marginTop: "20px" }}>
+            <FaInstagram size={22} color="white" />
+            <FaWhatsapp size={22} color="white" />
           </div>
-        )}
+        </div>
       </nav>
 
       <style>{`
         @keyframes wave {
-          0% { transform: rotate(-15deg) translateY(0); }
-          50% { transform: rotate(15deg) translateY(-5px); }
-          100% { transform: rotate(-15deg) translateY(0); }
+          0% { transform: rotate(-15deg); }
+          50% { transform: rotate(15deg); }
+          100% { transform: rotate(-15deg); }
         }
 
         @media (max-width: 768px) {

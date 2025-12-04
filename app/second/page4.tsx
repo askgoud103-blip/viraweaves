@@ -78,30 +78,14 @@ export default function HomePage() {
       <Navbar />
 
       {/* Section 1 - Hero */}
-<section style={{ paddingTop: "120px", textAlign: "center" }}>
-  <h1
-    style={{
-      fontSize: "3rem",
-      color: "black",
-      textShadow: "2px 2px 6px rgba(0,0,0,0.3)",
-      margin: 0,   // remove margin
-      padding: 0,  // remove padding
-    }}
-  >
-    Vira <span style={{ display: "inline-block", transform: "rotate(-10deg)" }}>~</span> Weaves
-  </h1>
-  <h3
-    style={{
-      fontSize: "1.5rem",
-      textShadow: "1px 1px 4px rgba(0,0,0,0.2)",
-      margin: 0,  // remove margin
-      padding: 0, // remove padding
-    }}
-  >
-    Drape Yourself in Perfection
-  </h3>
-</section>
-
+      <section style={{ paddingTop: "90px", textAlign: "center" }}>
+        <h1 style={{ fontSize: "3rem", color: "black", textShadow: "2px 2px 6px rgba(0,0,0,0.3)" }}>
+          Vira <span style={{ display: "inline-block", transform: "rotate(-10deg)" }}>~</span> Weaves
+        </h1>
+        <h3 style={{ fontSize: "1.5rem", textShadow: "1px 1px 4px rgba(0,0,0,0.2)" }}>
+          Drape Yourself in Perfection
+        </h3>
+      </section>
 
       {/* Middle Sections: 2-3-4 */}
 <div style={{ display: "flex", justifyContent: "center", alignItems: "flex-start", gap: "20px", marginTop: "20px" }}>

@@ -111,9 +111,9 @@ export default function HomePage() {
               alignItems: "center",
             }}
           >
-            <button style={buttonStyle}>Left 1</button>
-            <button style={buttonStyle}>Left 2</button>
-            <button style={buttonStyle}>Left 3</button>
+            <button style={buttonStyle}>Below 2k</button>
+            <button style={buttonStyle}>Below 5k</button>
+            <button style={buttonStyle}>Below10k</button>
           </div>
 
           {/* Latest Arrivals */}
@@ -179,9 +179,9 @@ export default function HomePage() {
               alignItems: "center",
             }}
           >
-            <button style={buttonStyle}>Right 1</button>
-            <button style={buttonStyle}>Right 2</button>
-            <button style={buttonStyle}>Right 3</button>
+            <button style={buttonStyle}>Below 15k</button>
+            <button style={buttonStyle}>Below 20k</button>
+            <button style={buttonStyle}>Above 25k</button>
           </div>
         </div>
       </div>

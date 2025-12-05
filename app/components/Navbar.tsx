@@ -67,17 +67,7 @@ export default function Navbar() {
             Weaves
           </h2>
 
-          {/* Logo Image */}
-          <img
-  src="/dir.jpg"
-  alt="Logo"
-  style={{
-    height: "80px",
-    width: "65px",
-    borderRadius: "8px",
-    margin: "0 5px 0 -10px", // moved left
-  }}
-/>
+          
 
 
          {/* Desktop Menu */}

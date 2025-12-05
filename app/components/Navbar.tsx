@@ -69,15 +69,16 @@ export default function Navbar() {
 
           {/* Logo Image */}
           <img
-            src="/dir.jpg"
-            alt="Logo"
-            style={{
-              height: "100px",
-              width: "80px",
-              borderRadius: "8px",
-              margin: "0 15px",
-            }}
-          />
+  src="/dir.jpg"
+  alt="Logo"
+  style={{
+    height: "80px",
+    width: "65px",
+    borderRadius: "8px",
+    margin: "0 5px 0 -10px", // moved left
+  }}
+/>
+
 
          {/* Desktop Menu */}
 <div

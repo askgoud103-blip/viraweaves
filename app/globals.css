@@ -63,6 +63,33 @@ body {
   margin-top: 120px;
 }
 
+/* FIX NAVBAR OVERFLOW ON MOBILE */
+@media (max-width: 768px) {
+  nav img {
+    height: 60px !important;
+    width: 50px !important;
+    margin: 0 8px !important;
+  }
+
+  nav h2 {
+    font-size: 1.4rem !important;
+  }
+
+  .mobileHamburger {
+    display: block !important;
+    font-size: 2rem !important;
+  }
+
+  .desktopMenu {
+    display: none !important;
+  }
+
+  /* Fix Main Navbar Container */
+  nav > div {
+    padding: 10px !important;
+    gap: 10px !important;
+  }
+}
 
 
 

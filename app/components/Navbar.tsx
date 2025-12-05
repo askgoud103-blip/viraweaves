@@ -4,6 +4,7 @@ import { useState } from "react";
 import { useRouter } from "next/navigation";
 import { FaInstagram, FaWhatsapp } from "react-icons/fa";
 
+
 export default function Navbar() {
   const [isOpen, setIsOpen] = useState(false);
   const router = useRouter();
@@ -78,35 +79,38 @@ export default function Navbar() {
             }}
           />
 
-          {/* Desktop Menu */}
-          <div
-            className="desktopMenu"
-            style={{ display: "flex", gap: "20px", alignItems: "center" }}
-          >
-            {menuItems.map((item) => (
-              <button
-                key={item}
-                className="menuItem"
-                onClick={() => handleNavigate(item)}
-              >
-                {item}
-              </button>
-            ))}
+         {/* Desktop Menu */}
+<div
+  className="desktopMenu"
+  style={{
+    display: "flex",
+    gap: "25px",
+    alignItems: "center",
+    color: "white",
+    fontSize: "1.1rem",
+    fontWeight: "500",
+  }}
+>
+  <button onClick={() => handleNavigate("Home")} className="menuItem">
+    Home
+  </button>
+  <button onClick={() => handleNavigate("Collections")} className="menuItem">
+    Collections
+  </button>
+  <button onClick={() => handleNavigate("About")} className="menuItem">
+    About
+  </button>
+  <button onClick={() => handleNavigate("Contact")} className="menuItem">
+    Contact
+  </button>
 
-            {/* Social Icons */}
-            <div style={{ display: "flex", gap: "12px", marginLeft: "20px" }}>
-              <FaInstagram
-                size={20}
-                color="white"
-                style={{ cursor: "pointer" }}
-              />
-              <FaWhatsapp
-                size={20}
-                color="white"
-                style={{ cursor: "pointer" }}
-              />
-            </div>
-          </div>
+  {/* Social Icons */}
+  <div style={{ display: "flex", gap: "12px", marginLeft: "20px" }}>
+    <FaInstagram size={20} color="white" style={{ cursor: "pointer" }} />
+    <FaWhatsapp size={20} color="white" style={{ cursor: "pointer" }} />
+  </div>
+</div>
+
 
           {/* Mobile Hamburger */}
           <button

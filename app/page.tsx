@@ -2,6 +2,8 @@
 
 import { useEffect, useRef } from "react";
 import Navbar from "./components/Navbar";
+import { useRouter } from "next/navigation";
+
 
 export default function HomePage() {
   const thumbnails = [
@@ -104,13 +106,45 @@ export default function HomePage() {
 
 
       {/* Middle Sections: 2-3-4 */}
-<div style={{ display: "flex", justifyContent: "center", alignItems: "flex-start", gap: "20px", marginTop: "20px" }}>
+      
+<div
+  style={{
+    display: "flex",
+    justifyContent: "space-between",   // ⭐ FIXES SECTION-4 ALIGNMENT
+    alignItems: "flex-start",
+    gap: "20px",
+    marginTop: "20px",
+    width: "100%",
+  }}
+>
+
   {/* Section 2 - Left Buttons */}
-  <div style={{ display: "flex", flexDirection: "column", gap: "10px", width: "100px", alignItems: "center" }}>
-    <button style={buttonStyle}>Left 1</button>
-    <button style={buttonStyle}>Left 2</button>
-    <button style={buttonStyle}>Left 3</button>
-  </div>
+<div
+  style={{
+    display: "flex",
+    flexDirection: "column", // keep vertical
+    gap: "10px",
+    width: "100px",
+    alignItems: "center",
+    marginTop: "-10px",       // pull buttons closer to Section 3
+  }}
+>
+  <button style={buttonStyle} onClick={() => router.push("/collections")}>
+    Below Rs.2k
+  </button>
+
+  <button style={buttonStyle} onClick={() => router.push("/about")}>
+    Below Rs.5k
+  </button>
+
+  <button style={buttonStyle} onClick={() => router.push("/contact")}>
+    Below Rs.10k
+  </button>
+  <button style={buttonStyle} onClick={() => router.push("/contact")}>
+    Below Rs.15k
+  </button>
+</div>
+
 
   {/* Section 3 - Middle Latest Arrivals + Auto-Scroll */}
   <div style={{ flex: "1", display: "flex", flexDirection: "column", alignItems: "center", overflow: "hidden" }}>
@@ -126,7 +160,7 @@ export default function HomePage() {
         gap: "2px",
         paddingBottom: "5px",
         height: "120px",
-        width: "100%",
+        width: "90%",
       }}
     >
       {[...sareeImages, ...sareeImages].map((src, index) => (

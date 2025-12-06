@@ -57,66 +57,7 @@ export default function HomePage() {
       <Navbar />
 
       {/* Section 1 - Hero */}
-      <section style={{ padding: "120px 10px 20px 10px", textAlign: "center" }}>
-        <h1
-          style={{
-            fontSize: "3rem",
-            color: "black",
-            textShadow: "2px 2px 6px rgba(0,0,0,0.3)",
-            margin: 0,
-            padding: 0,
-          }}
-        >
-          Vira <span style={{ display: "inline-block", transform: "rotate(-10deg)" }}>~</span> Weaves
-        </h1>
-        <h3
-          style={{
-            fontSize: "1.5rem",
-            textShadow: "1px 1px 4px rgba(0,0,0,0.2)",
-            margin: 0,
-            padding: 0,
-          }}
-        >
-          Drape Yourself in Perfection
-        </h3>
-      </section>
-
-      {/* Middle Sections: Buttons + Latest Arrivals */}
-      <div
-        style={{
-          display: "flex",
-          flexDirection: "column", // stack on mobile
-          alignItems: "center",
-          gap: "20px",
-          marginTop: "20px",
-          padding: "0 10px",
-        }}
-      >
-        <div
-          style={{
-            display: "flex",
-            flexWrap: "wrap", // wrap on small screens
-            justifyContent: "center",
-            gap: "20px",
-            width: "100%",
-          }}
-        >
-          {/* Left Buttons */}
-          <div
-            style={{
-              display: "flex",
-              flexDirection: "column",
-              gap: "10px",
-              minWidth: "80px",
-              alignItems: "center",
-            }}
-          >
-            <button style={buttonStyle}>Below 2k</button>
-            <button style={buttonStyle}>Below 5k</button>
-            <button style={buttonStyle}>Below10k</button>
-          </div>
-
-          {/* Latest Arrivals */}
+       {/* Latest Arrivals */}
           <div
             style={{
               flex: 1,
@@ -169,22 +110,9 @@ export default function HomePage() {
             </div>
           </div>
 
-          {/* Right Buttons */}
-          <div
-            style={{
-              display: "flex",
-              flexDirection: "column",
-              gap: "10px",
-              minWidth: "80px",
-              alignItems: "center",
-            }}
-          >
-            <button style={buttonStyle}>Below 15k</button>
-            <button style={buttonStyle}>Below 20k</button>
-            <button style={buttonStyle}>Above 25k</button>
-          </div>
-        </div>
-      </div>
+      {/* Middle Sections: Buttons + Latest Arrivals */}
+     
+         
 
       {/* Section 5 - Thumbnails */}
       <section style={{ maxWidth: "1000px", margin: "40px auto", padding: "0 10px" }}>

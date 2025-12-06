@@ -42,30 +42,53 @@ export default function Navbar() {
           }}
         >
           {/* Logo */}
-          <h2
-            style={{
-              fontSize: "1.8rem",
-              fontWeight: "bold",
-              color: "white",
-              cursor: "pointer",
-              display: "flex",
-              alignItems: "center",
-              gap: "4px",
-            }}
-            onClick={() => router.push("/")}
-          >
-            Vira{" "}
-            <span
-              style={{
-                display: "inline-block",
-                color: "#ff79b0",
-                animation: "wave 1.2s infinite ease-in-out",
-              }}
-            >
-              ~
-            </span>{" "}
-            Weaves
-          </h2>
+          <div
+  style={{
+    display: "flex",
+    flexDirection: "column",
+    alignItems: "flex-start",
+    lineHeight: "1.2",
+    cursor: "pointer",
+  }}
+  onClick={() => router.push("/")}
+>
+  <h2
+    style={{
+      fontSize: "1.8rem",
+      fontWeight: "bold",
+      color: "white",
+      display: "flex",
+      alignItems: "center",
+      gap: "4px",
+      margin: 0,
+      padding: 0,
+    }}
+  >
+    Vira{" "}
+    <span
+      style={{
+        display: "inline-block",
+        color: "#ff79b0",
+        animation: "wave 1.2s infinite ease-in-out",
+      }}
+    >
+      ~
+    </span>{" "}
+    Weaves
+  </h2>
+
+  <h4
+    style={{
+      color: "white",
+      fontSize: "0.9rem",
+      opacity: 0.9,
+      marginTop: "-2px",
+    }}
+  >
+    Drape Yourself in Perfection
+  </h4>
+</div>
+
 
           
 

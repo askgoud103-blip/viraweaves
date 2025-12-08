@@ -1,6 +1,6 @@
 "use client";
 
-import { useEffect, useRef } from "react";
+import { useRef, useEffect, useState } from "react";
 import Navbar from "./components/Navbar";
 
 export default function HomePage() {
@@ -16,94 +16,121 @@ export default function HomePage() {
     "/dir23.jpg", "/dir13.jpg", "/dir24.jpg", "/dir14.jpg",
   ];
 
-  const scrollRef = useRef<HTMLDivElement>(null);
-  const stopScrollRef = useRef(false);
+  const containerRef = useRef<HTMLDivElement>(null);
+  const [translateX, setTranslateX] = useState(0);
+  const [isDragging, setIsDragging] = useState(false);
+  const dragStartX = useRef(0);
+  const prevTranslate = useRef(0);
+  const animationRef = useRef<number>(0);
 
-  // Continuous circular auto-scroll
+  // Continuous auto scroll
   useEffect(() => {
-    const el = scrollRef.current;
-    if (!el) return;
+    const speed = 0.5; // base speed per frame
+    const container = containerRef.current;
+    if (!container) return;
 
-    const speed = 1.5;
-
-    const scroll = () => {
-      if (!el) return;
-      if (!stopScrollRef.current) {
-        el.scrollLeft += speed;
-
-        // Reset scrollLeft seamlessly when it reaches half the total scroll width
-        if (el.scrollLeft >= el.scrollWidth / 2) {
-          el.scrollLeft -= el.scrollWidth / 2;
-        }
+    const animate = () => {
+      if (!isDragging) {
+        setTranslateX(prev => {
+          let newTranslate = prev - speed;
+          const totalWidth = container.scrollWidth / 2; // since images are duplicated
+          if (Math.abs(newTranslate) >= totalWidth) {
+            newTranslate += totalWidth;
+          }
+          return newTranslate;
+        });
       }
-
-      requestAnimationFrame(scroll);
+      animationRef.current = requestAnimationFrame(animate);
     };
+    animate();
 
-    scroll();
-  }, []);
+    return () => cancelAnimationFrame(animationRef.current);
+  }, [isDragging]);
+
+  // Handle drag
+  const handleMouseDown = (e: React.MouseEvent | React.TouchEvent) => {
+    setIsDragging(true);
+    if ("touches" in e) {
+      dragStartX.current = e.touches[0].clientX;
+    } else {
+      dragStartX.current = e.clientX;
+    }
+  };
+
+  const handleMouseMove = (e: React.MouseEvent | React.TouchEvent) => {
+    if (!isDragging) return;
+    let currentX = "touches" in e ? e.touches[0].clientX : e.clientX;
+    const delta = currentX - dragStartX.current;
+    setTranslateX(prevTranslate.current + delta);
+  };
+
+  const handleMouseUp = () => {
+    setIsDragging(false);
+    prevTranslate.current = translateX;
+  };
 
   return (
     <div style={{ width: "100vw", minHeight: "100vh", backgroundColor: "#ffc0cb" }}>
       <Navbar />
 
-    {/* Section 1 - Latest Arrivals */}
-{/* Section 1 - Latest Arrivals */}
-<section style={{ paddingTop: "140px", paddingBottom: "20px", textAlign: "center" }}>
-  <h2
-    style={{
-      fontFamily: "'Playfair Display', serif",
-      fontSize: "2rem",
-      fontWeight: 600,
-      color: "black",
-      margin: "0 0 8px 0",
-      textShadow: "2px 2px 8px rgba(0,0,0,0.25)",
-    }}
-  >
-    Latest Arrivals
-  </h2>
-
-  <div style={{ overflow: "hidden", width: "100%" }}>
-    <div
-      ref={scrollRef}
-      style={{
-        display: "flex",
-        gap: "2px",
-        animation: "scroll 20s linear infinite",
-      }}
-      onMouseEnter={(e) => { e.currentTarget.style.animationPlayState = "paused"; }}
-      onMouseLeave={(e) => { e.currentTarget.style.animationPlayState = "running"; }}
-    >
-      {[...sareeImages, ...sareeImages].map((src, idx) => (
-        <img
-          key={idx}
-          src={src}
-          alt={`Saree ${idx + 1}`}
+      {/* Section 1 - Latest Arrivals */}
+      <section style={{ paddingTop: "140px", paddingBottom: "20px", textAlign: "center" }}>
+        <h2
           style={{
-            height: "110px",
-            width: "auto",
-            flexShrink: 0,
-            borderRadius: "10px",
-            objectFit: "contain",
-            backgroundColor: "white",
-            cursor: "pointer",  // shows it's clickable
+            fontFamily: "'Playfair Display', serif",
+            fontSize: "2rem",
+            fontWeight: 600,
+            color: "black",
+            margin: "0 0 8px 0",
+            textShadow: "2px 2px 8px rgba(0,0,0,0.25)",
           }}
-          onClick={() => window.open(src, "_blank")} // opens image in new tab
-        />
-      ))}
-    </div>
-  </div>
+        >
+          Latest Arrivals
+        </h2>
 
-  <style jsx>{`
-    @keyframes scroll {
-      0% { transform: translateX(0); }
-      100% { transform: translateX(-50%); }
-    }
-  `}</style>
-</section>
-
-
-
+        <div
+          ref={containerRef}
+          style={{
+            overflow: "hidden",
+            cursor: isDragging ? "grabbing" : "grab",
+          }}
+          onMouseDown={handleMouseDown}
+          onMouseMove={handleMouseMove}
+          onMouseUp={handleMouseUp}
+          onMouseLeave={handleMouseUp}
+          onTouchStart={handleMouseDown}
+          onTouchMove={handleMouseMove}
+          onTouchEnd={handleMouseUp}
+        >
+          <div
+            style={{
+              display: "flex",
+              flexWrap: "nowrap",
+              transform: `translateX(${translateX}px)`,
+              transition: isDragging ? "none" : "transform 0.1s linear",
+            }}
+          >
+            {[...sareeImages, ...sareeImages].map((src, idx) => (
+              <img
+                key={idx}
+                src={src}
+                alt={`Saree ${idx + 1}`}
+                style={{
+                  height: "110px",
+                  width: "auto",
+                  flexShrink: 0,
+                  borderRadius: "10px",
+                  objectFit: "contain",
+                  backgroundColor: "white",
+                  marginRight: "2px",
+                  cursor: "pointer",
+                }}
+                onClick={() => window.open(src, "_blank")}
+              />
+            ))}
+          </div>
+        </div>
+      </section>
 
       {/* Section 2 - Thumbnails */}
       <section style={{ maxWidth: "1000px", margin: "40px auto 20px auto", padding: "0 10px" }}>

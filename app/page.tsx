@@ -19,76 +19,90 @@ export default function HomePage() {
   const scrollRef = useRef<HTMLDivElement>(null);
   const stopScrollRef = useRef(false);
 
-  // Continuous auto-scroll for Section 1
+  // Continuous circular auto-scroll
   useEffect(() => {
     const el = scrollRef.current;
     if (!el) return;
 
     const speed = 1.5;
 
-    const scrollLoop = () => {
+    const scroll = () => {
       if (!el) return;
       if (!stopScrollRef.current) {
         el.scrollLeft += speed;
+
+        // Reset scrollLeft seamlessly when it reaches half the total scroll width
         if (el.scrollLeft >= el.scrollWidth / 2) {
           el.scrollLeft -= el.scrollWidth / 2;
         }
       }
-      requestAnimationFrame(scrollLoop);
+
+      requestAnimationFrame(scroll);
     };
 
-    const frameId = requestAnimationFrame(scrollLoop);
-    return () => cancelAnimationFrame(frameId);
+    scroll();
   }, []);
 
   return (
     <div style={{ width: "100vw", minHeight: "100vh", backgroundColor: "#ffc0cb" }}>
       <Navbar />
 
-      {/* Section 1 - Latest Arrivals */}
-      <section style={{ paddingTop: "140px", paddingBottom: "5px", textAlign: "center" }}>
-        <h2
-          style={{
-            fontFamily: "'Playfair Display', serif",
-            fontSize: "2rem",
-            fontWeight: 600,
-            color: "black",
-            margin: "0 0 8px 0",
-            textShadow: "2px 2px 8px rgba(0,0,0,0.25)",
-          }}
-        >
-          Latest Arrivals
-        </h2>
+     {/* Section 1 - Latest Arrivals */}
+<section style={{ paddingTop: "140px", paddingBottom: "20px", textAlign: "center" }}>
+  <h2
+    style={{
+      fontFamily: "'Playfair Display', serif",
+      fontSize: "2rem",
+      fontWeight: 600,
+      color: "black",
+      margin: "0 0 8px 0",
+      textShadow: "2px 2px 8px rgba(0,0,0,0.25)",
+    }}
+  >
+    Latest Arrivals
+  </h2>
 
-        <div
-          ref={scrollRef}
+  <div style={{ overflow: "hidden", width: "100%" }}>
+    <div
+      style={{
+        display: "flex",
+        gap: "2px",
+        animation: "scroll 20s linear infinite",
+      }}
+      onMouseEnter={(e) => {
+        e.currentTarget.style.animationPlayState = "paused";
+      }}
+      onMouseLeave={(e) => {
+        e.currentTarget.style.animationPlayState = "running";
+      }}
+    >
+      {[...sareeImages, ...sareeImages].map((src, idx) => (
+        <img
+          key={idx}
+          src={src}
+          alt={`Saree ${idx + 1}`}
           style={{
-            display: "flex",
-            overflowX: "hidden",
-            gap: "2px",
-            height: "120px",
-            width: "100%",
+            height: "110px",
+            width: "auto",
+            flexShrink: 0,
+            borderRadius: "10px",
+            objectFit: "contain",
+            backgroundColor: "white",
           }}
-          onMouseEnter={() => { stopScrollRef.current = true; }}
-          onMouseLeave={() => { stopScrollRef.current = false; }}
-        >
-          {[...sareeImages, ...sareeImages].map((src, index) => (
-            <img
-              key={index}
-              src={src}
-              alt={`Saree ${index + 1}`}
-              style={{
-                height: "110px",
-                width: "auto",
-                objectFit: "contain",
-                borderRadius: "10px",
-                flexShrink: 0,
-                backgroundColor: "white",
-              }}
-            />
-          ))}
-        </div>
-      </section>
+        />
+      ))}
+    </div>
+  </div>
+
+  {/* CSS for animation */}
+  <style jsx>{`
+    @keyframes scroll {
+      0% { transform: translateX(0); }
+      100% { transform: translateX(-50%); }
+    }
+  `}</style>
+</section>
+
 
       {/* Section 2 - Thumbnails */}
       <section style={{ maxWidth: "1000px", margin: "40px auto 20px auto", padding: "0 10px" }}>

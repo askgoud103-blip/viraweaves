@@ -4,15 +4,13 @@ import { useState } from "react";
 import { useRouter } from "next/navigation";
 import { FaInstagram, FaWhatsapp } from "react-icons/fa";
 
-
 export default function Navbar() {
   const [isOpen, setIsOpen] = useState(false);
   const router = useRouter();
   const menuItems = ["Home", "Collections", "About", "Contact"];
 
   const handleNavigate = (item: string) => {
-    if (item === "Home") router.push("/");
-    else router.push(`/${item.toLowerCase()}`);
+    router.push(item === "Home" ? "/" : `/${item.toLowerCase()}`);
     setIsOpen(false);
   };
 
@@ -29,13 +27,16 @@ export default function Navbar() {
           backdropFilter: "blur(10px)",
           boxShadow: "0 4px 10px rgba(0,0,0,0.3)",
           borderBottom: "1px solid rgba(255,255,255,0.2)",
+          display: "flex",
+          justifyContent: "center",
+          padding: "12px 20px",
+          height: "80px",
         }}
       >
         <div
           style={{
             maxWidth: "1200px",
-            margin: "0 auto",
-            padding: "12px 20px",
+            width: "100%",
             display: "flex",
             justifyContent: "space-between",
             alignItems: "center",
@@ -43,88 +44,76 @@ export default function Navbar() {
         >
           {/* Logo */}
           <div
-  style={{
-    display: "flex",
-    flexDirection: "column",
-    alignItems: "flex-start",
-    lineHeight: "1.2",
-    cursor: "pointer",
-  }}
-  onClick={() => router.push("/")}
->
-  <h2
-    style={{
-      fontSize: "1.8rem",
-      fontWeight: "bold",
-      color: "white",
-      display: "flex",
-      alignItems: "center",
-      gap: "4px",
-      margin: 0,
-      padding: 0,
-    }}
-  >
-    Vira{" "}
-    <span
-      style={{
-        display: "inline-block",
-        color: "#ff79b0",
-        animation: "wave 1.2s infinite ease-in-out",
-      }}
-    >
-      ~
-    </span>{" "}
-    Weaves
-  </h2>
+            style={{ cursor: "pointer", lineHeight: 1.2 }}
+            onClick={() => router.push("/")}
+          >
+            <h2
+              style={{
+                fontSize: "1.8rem",
+                fontWeight: "bold",
+                color: "white",
+                display: "flex",
+                alignItems: "center",
+                gap: "4px",
+                margin: 0,
+              }}
+            >
+              Vira{" "}
+              <span
+                style={{
+                  color: "#ff79b0",
+                  animation: "wave 1.2s infinite ease-in-out",
+                }}
+              >
+                ~
+              </span>{" "}
+              Weaves
+            </h2>
+            <h4
+              style={{
+                color: "white",
+                fontSize: "0.9rem",
+                opacity: 0.9,
+                marginTop: "-2px",
+              }}
+            >
+              Drape Yourself in Perfection
+            </h4>
+          </div>
 
-  <h4
-    style={{
-      color: "white",
-      fontSize: "0.9rem",
-      opacity: 0.9,
-      marginTop: "-2px",
-    }}
-  >
-    Drape Yourself in Perfection
-  </h4>
-</div>
+          {/* Desktop Menu */}
+          <div
+            className="desktopMenu"
+            style={{
+              display: "flex",
+              gap: "25px",
+              alignItems: "center",
+              color: "white",
+              fontSize: "1.1rem",
+              fontWeight: "500",
+            }}
+          >
+            {menuItems.map((item) => (
+              <button
+                key={item}
+                onClick={() => handleNavigate(item)}
+                style={{
+                  background: "none",
+                  border: "none",
+                  color: "white",
+                  cursor: "pointer",
+                }}
+              >
+                {item}
+              </button>
+            ))}
 
-
-          
-
-
-         {/* Desktop Menu */}
-<div
-  className="desktopMenu"
-  style={{
-    display: "flex",
-    gap: "25px",
-    alignItems: "center",
-    color: "white",
-    fontSize: "1.1rem",
-    fontWeight: "500",
-  }}
->
-  <button onClick={() => handleNavigate("Home")} className="menuItem">
-    Home
-  </button>
-  <button onClick={() => handleNavigate("Collections")} className="menuItem">
-    Collections
-  </button>
-  <button onClick={() => handleNavigate("About")} className="menuItem">
-    About
-  </button>
-  <button onClick={() => handleNavigate("Contact")} className="menuItem">
-    Contact
-  </button>
-
-  {/* Social Icons */}
-  <div style={{ display: "flex", gap: "12px", marginLeft: "20px" }}>
-    <FaInstagram size={20} color="white" style={{ cursor: "pointer" }} />
-    <FaWhatsapp size={20} color="white" style={{ cursor: "pointer" }} />
-  </div>
-</div>
-
+            {/* Social Icons */}
+            <div style={{ display: "flex", gap: "12px", marginLeft: "20px" }}>
+              <FaInstagram size={20} color="white" />
+              <FaWhatsapp size={20} color="white" />
+            </div>
+          </div>
 
           {/* Mobile Hamburger */}
           <button
@@ -159,7 +148,7 @@ export default function Navbar() {
             zIndex: 2000,
           }}
         >
-          {/* Close */}
+          {/* Close button */}
           <button
             onClick={() => setIsOpen(false)}
             style={{
@@ -179,7 +168,6 @@ export default function Navbar() {
           {menuItems.map((item) => (
             <button
               key={item}
-              className="mobileMenuItem"
               onClick={() => handleNavigate(item)}
               style={{
                 marginBottom: "20px",
@@ -203,6 +191,7 @@ export default function Navbar() {
         </div>
       </nav>
 
+      {/* Keyframes for logo wave */}
       <style>{`
         @keyframes wave {
           0% { transform: rotate(-15deg); }

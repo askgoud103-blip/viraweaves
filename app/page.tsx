@@ -5,189 +5,192 @@ import Navbar from "./components/Navbar";
 
 export default function HomePage() {
   const thumbnails = [
-    "Jamdhani",
-    "Kanchi Pattu",
-    "Narayanpet",
-    "Pochampally",
-    "Gadwal",
-    "Venkatagiri",
-    "Kotha",
-    "Fancy",
-    "Viscos",
-    "Pure Georgette",
-    "JimmiChoo",
-    "Designer Sarees",
+    "Jamdhani", "Kanchi Pattu", "Narayanpet", "Pochampally",
+    "Gadwal", "Venkatagiri", "Kotha", "Fancy",
+    "Viscos", "Pure Georgette", "JimmiChoo", "Designer Sarees",
   ];
 
   const sareeImages = [
-    "/dir.jpg",
-    "/dir9.jpg",
-    "/dir20.jpg",
-    "/dir10.jpg",
-    "/dir21.jpg",
-    "/dir11.jpg",
-    "/dir22.jpg",
-    "/dir12.jpg",
-    "/dir23.jpg",
-    "/dir13.jpg",
-    "/dir24.jpg",
-    "/dir14.jpg",
+    "/dir.jpg", "/dir9.jpg", "/dir20.jpg", "/dir10.jpg",
+    "/dir21.jpg", "/dir11.jpg", "/dir22.jpg", "/dir12.jpg",
+    "/dir23.jpg", "/dir13.jpg", "/dir24.jpg", "/dir14.jpg",
   ];
 
   const scrollRef = useRef<HTMLDivElement>(null);
+  const stopScrollRef = useRef(false);
 
-  // Smooth infinite auto-scroll
+  // Continuous auto-scroll for Section 1
   useEffect(() => {
     const el = scrollRef.current;
     if (!el) return;
-    let animationFrame: number;
+
     const speed = 1.5;
-    const scroll = () => {
-      el.scrollLeft = (el.scrollLeft + speed) % el.scrollWidth;
-      animationFrame = requestAnimationFrame(scroll);
+
+    const scrollLoop = () => {
+      if (!el) return;
+      if (!stopScrollRef.current) {
+        el.scrollLeft += speed;
+        if (el.scrollLeft >= el.scrollWidth / 2) {
+          el.scrollLeft -= el.scrollWidth / 2;
+        }
+      }
+      requestAnimationFrame(scrollLoop);
     };
-    scroll();
-    return () => cancelAnimationFrame(animationFrame);
+
+    const frameId = requestAnimationFrame(scrollLoop);
+    return () => cancelAnimationFrame(frameId);
   }, []);
 
   return (
-    <div style={{ width: "100vw", minHeight: "100vh", backgroundColor: "#ffe4ea" }}>
+    <div style={{ width: "100vw", minHeight: "100vh", backgroundColor: "#ffc0cb" }}>
       <Navbar />
 
-      {/* Wrapper with top padding to avoid navbar overlap */}
-      <div style={{ paddingTop: "120px" }}>
-        {/* Section 1 - Latest Arrivals */}
-        <section
+      {/* Section 1 - Latest Arrivals */}
+      <section style={{ paddingTop: "140px", paddingBottom: "5px", textAlign: "center" }}>
+        <h2
+          style={{
+            fontFamily: "'Playfair Display', serif",
+            fontSize: "2rem",
+            fontWeight: 600,
+            color: "black",
+            margin: "0 0 8px 0",
+            textShadow: "2px 2px 8px rgba(0,0,0,0.25)",
+          }}
+        >
+          Latest Arrivals
+        </h2>
+
+        <div
+          ref={scrollRef}
           style={{
             display: "flex",
-            flexDirection: "column",
-            alignItems: "center",
-            overflow: "hidden",
-            marginBottom: "40px",
+            overflowX: "hidden",
+            gap: "2px",
+            height: "120px",
             width: "100%",
           }}
+          onMouseEnter={() => { stopScrollRef.current = true; }}
+          onMouseLeave={() => { stopScrollRef.current = false; }}
         >
-          <h2
-            style={{
-              fontFamily: "'Playfair Display', serif",
-              fontSize: "2rem",
-              fontWeight: 600,
-              color: "black",
-              marginBottom: "16px",
-              textShadow: "2px 2px 8px rgba(0,0,0,0.25)",
-              textAlign: "center",
-            }}
-          >
-            Latest Arrivals
-          </h2>
+          {[...sareeImages, ...sareeImages].map((src, index) => (
+            <img
+              key={index}
+              src={src}
+              alt={`Saree ${index + 1}`}
+              style={{
+                height: "110px",
+                width: "auto",
+                objectFit: "contain",
+                borderRadius: "10px",
+                flexShrink: 0,
+                backgroundColor: "white",
+              }}
+            />
+          ))}
+        </div>
+      </section>
 
-          <div
-            ref={scrollRef}
-            style={{
-              display: "flex",
-              overflowX: "hidden",
-              gap: "10px",
-              paddingBottom: "10px",
-              height: "130px",
-              width: "95%",
-              margin: "0 auto",
-            }}
-          >
-            {[...sareeImages, ...sareeImages].map((src, index) => (
-              <img
-                key={index}
-                src={src.startsWith("/") ? src : `/${src}`}
-                alt={`Saree ${index + 1}`}
-                style={{
-                  height: "120px",
-                  width: "auto",
-                  objectFit: "contain",
-                  borderRadius: "10px",
-                  flexShrink: 0,
-                  backgroundColor: "white",
-                  boxShadow: "0 2px 6px rgba(0,0,0,0.2)",
-                }}
-              />
-            ))}
-          </div>
-        </section>
-
-        {/* Section 5 - Explore Thumbnails */}
-        <section
+      {/* Section 2 - Thumbnails */}
+      <section style={{ maxWidth: "1000px", margin: "40px auto 20px auto", padding: "0 10px" }}>
+        <h2
           style={{
-            maxWidth: "1000px",
-            margin: "40px auto",
-            padding: "0 10px",
+            fontFamily: "'Playfair Display', serif",
+            fontSize: "2rem",
+            fontWeight: 600,
+            color: "black",
+            textAlign: "center",
+            margin: "20px 0 10px 0",
+            textShadow: "2px 2px 8px rgba(0,0,0,0.25)",
           }}
         >
-          <h2
-            style={{
-              fontFamily: "'Playfair Display', serif",
-              fontSize: "2rem",
-              fontWeight: 600,
-              color: "black",
-              textAlign: "center",
-              marginBottom: "20px",
-              textShadow: "2px 2px 8px rgba(0,0,0,0.25)",
-            }}
-          >
-            Explore Your Choice
-          </h2>
+          Explore Your Choice
+        </h2>
+        <div style={{ display: "grid", gridTemplateColumns: "repeat(auto-fit, minmax(120px, 1fr))", gap: "10px" }}>
+          {thumbnails.map((name, index) => (
+            <div
+              key={index}
+              style={{
+                display: "flex",
+                flexDirection: "column",
+                alignItems: "center",
+                backgroundColor: "white",
+                borderRadius: "10px",
+                padding: "5px",
+                boxShadow: "0 4px 10px rgba(0,0,0,0.2)",
+                cursor: "pointer",
+                transition: "transform 0.3s, box-shadow 0.3s",
+              }}
+              onMouseEnter={(e) => {
+                e.currentTarget.style.transform = "scale(1.05)";
+                e.currentTarget.style.boxShadow = "0 8px 20px rgba(0,0,0,0.3)";
+              }}
+              onMouseLeave={(e) => {
+                e.currentTarget.style.transform = "scale(1)";
+                e.currentTarget.style.boxShadow = "0 4px 10px rgba(0,0,0,0.2)";
+              }}
+            >
+              <img src={`/thumb${index + 1}.jpg`} alt={name} style={{ width: "100%", borderRadius: "8px", objectFit: "cover" }} />
+              <span style={{ marginTop: "2px", fontSize: "0.9rem", color: "black", textAlign: "center" }}>{name}</span>
+            </div>
+          ))}
+        </div>
+      </section>
 
-          <div
-            style={{
-              display: "grid",
-              gridTemplateColumns: "repeat(auto-fit, minmax(120px, 1fr))",
-              gap: "10px",
-            }}
-          >
-            {thumbnails.map((name, index) => (
-              <div
-                key={index}
-                style={{
-                  display: "flex",
-                  flexDirection: "column",
-                  alignItems: "center",
-                  backgroundColor: "white",
-                  borderRadius: "10px",
-                  padding: "5px",
-                  boxShadow: "0 4px 10px rgba(0,0,0,0.2)",
-                  cursor: "pointer",
-                  transition: "transform 0.3s, box-shadow 0.3s",
-                }}
-                onMouseEnter={(e) => {
-                  e.currentTarget.style.transform = "scale(1.05)";
-                  e.currentTarget.style.boxShadow = "0 8px 20px rgba(0,0,0,0.3)";
-                }}
-                onMouseLeave={(e) => {
-                  e.currentTarget.style.transform = "scale(1)";
-                  e.currentTarget.style.boxShadow = "0 4px 10px rgba(0,0,0,0.2)";
-                }}
-              >
-                <img
-                  src={`/thumb${index + 1}.jpg`}
-                  alt={name}
-                  style={{
-                    width: "100%",
-                    borderRadius: "8px",
-                    objectFit: "cover",
-                  }}
-                />
-                <span
-                  style={{
-                    marginTop: "4px",
-                    fontSize: "0.9rem",
-                    color: "black",
-                    textAlign: "center",
-                  }}
-                >
-                  {name}
-                </span>
-              </div>
-            ))}
-          </div>
-        </section>
-      </div>
+      {/* Section 3 - Horizontal Buttons */}
+      <section style={{ maxWidth: "1000px", margin: "20px auto 40px auto", padding: "0 10px", textAlign: "center" }}>
+        <h2
+          style={{
+            fontFamily: "'Playfair Display', serif",
+            fontSize: "2rem",
+            fontWeight: 600,
+            color: "black",
+            marginBottom: "20px",
+            textShadow: "2px 2px 8px rgba(0,0,0,0.25)",
+          }}
+        >
+          Quick Links
+        </h2>
+
+        <div
+          style={{
+            display: "flex",
+            flexWrap: "wrap",
+            justifyContent: "space-between",
+            gap: "10px",
+          }}
+        >
+          {[
+            "Below 2k", "Below 5k", "10-15k", "15-30k", "30-45k",
+            "Above45k", "New Arrivals", "Trending", "Popular", "Designer",
+          ].map((label, index) => (
+            <button
+              key={index}
+              style={{
+                flex: "1 1 calc(10% - 10px)",
+                minWidth: "80px",
+                padding: "10px 5px",
+                fontSize: "14px",
+                borderRadius: "8px",
+                border: "none",
+                backgroundColor: "#f0f0f0",
+                cursor: "pointer",
+                boxShadow: "0 3px 6px rgba(0,0,0,0.2)",
+                transition: "transform 0.2s, box-shadow 0.2s",
+              }}
+              onMouseEnter={(e) => {
+                e.currentTarget.style.transform = "scale(1.05)";
+                e.currentTarget.style.boxShadow = "0 6px 12px rgba(0,0,0,0.25)";
+              }}
+              onMouseLeave={(e) => {
+                e.currentTarget.style.transform = "scale(1)";
+                e.currentTarget.style.boxShadow = "0 3px 6px rgba(0,0,0,0.2)";
+              }}
+            >
+              {label}
+            </button>
+          ))}
+        </div>
+      </section>
     </div>
   );
 }

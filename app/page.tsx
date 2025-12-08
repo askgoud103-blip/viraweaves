@@ -47,7 +47,8 @@ export default function HomePage() {
     <div style={{ width: "100vw", minHeight: "100vh", backgroundColor: "#ffc0cb" }}>
       <Navbar />
 
-     {/* Section 1 - Latest Arrivals */}
+    {/* Section 1 - Latest Arrivals */}
+{/* Section 1 - Latest Arrivals */}
 <section style={{ paddingTop: "140px", paddingBottom: "20px", textAlign: "center" }}>
   <h2
     style={{
@@ -64,17 +65,14 @@ export default function HomePage() {
 
   <div style={{ overflow: "hidden", width: "100%" }}>
     <div
+      ref={scrollRef}
       style={{
         display: "flex",
         gap: "2px",
         animation: "scroll 20s linear infinite",
       }}
-      onMouseEnter={(e) => {
-        e.currentTarget.style.animationPlayState = "paused";
-      }}
-      onMouseLeave={(e) => {
-        e.currentTarget.style.animationPlayState = "running";
-      }}
+      onMouseEnter={(e) => { e.currentTarget.style.animationPlayState = "paused"; }}
+      onMouseLeave={(e) => { e.currentTarget.style.animationPlayState = "running"; }}
     >
       {[...sareeImages, ...sareeImages].map((src, idx) => (
         <img
@@ -88,13 +86,14 @@ export default function HomePage() {
             borderRadius: "10px",
             objectFit: "contain",
             backgroundColor: "white",
+            cursor: "pointer",  // shows it's clickable
           }}
+          onClick={() => window.open(src, "_blank")} // opens image in new tab
         />
       ))}
     </div>
   </div>
 
-  {/* CSS for animation */}
   <style jsx>{`
     @keyframes scroll {
       0% { transform: translateX(0); }
@@ -102,6 +101,8 @@ export default function HomePage() {
     }
   `}</style>
 </section>
+
+
 
 
       {/* Section 2 - Thumbnails */}

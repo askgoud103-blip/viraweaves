@@ -117,6 +117,10 @@ export default function HomePage() {
     onTouchStart={handleMouseDown}
     onTouchMove={handleMouseMove}
     onTouchEnd={handleMouseUp}
+
+    // ★ Hover pause (new)
+    onMouseEnter={() => setIsHovering(true)}
+    onMouseLeave={() => setIsHovering(false)}
   >
     <div
       style={{
@@ -131,9 +135,9 @@ export default function HomePage() {
           key={idx}
           src={src}
           alt={`Saree ${idx + 1}`}
-          loading="lazy" // lazy loading
+          loading="lazy"
           style={{
-            height: "110px", // reduced size for smooth scrolling
+            height: "110px",
             width: "auto",
             flexShrink: 0,
             borderRadius: "10px",
@@ -148,6 +152,8 @@ export default function HomePage() {
     </div>
   </div>
 </section>
+
+
 
 
      {/* Section 2 - Thumbnails */}
@@ -240,7 +246,7 @@ export default function HomePage() {
 
 
       {/* Section 3 - Horizontal Buttons */}
-      <section style={{ maxWidth: "1000px", margin: "20px auto 40px auto", padding: "0 10px", textAlign: "center" }}>
+      <section style={{ maxWidth: "1000px", margin: "20px auto 0 auto", padding: "0 10px", textAlign: "center" }}>
         <h2
           style={{
             fontFamily: "'Playfair Display', serif",
@@ -290,19 +296,7 @@ export default function HomePage() {
               }}
             >
             
-            <div className="flex gap-4 justify-center mt-6 flex-wrap">
-  <button className="px-6 py-3 bg-pink-400 text-white rounded-xl hover:bg-pink-500 transition">
-    Shop Now
-  </button>
-
-  <button className="px-6 py-3 bg-pink-400 text-white rounded-xl hover:bg-pink-500 transition">
-    Explore Collection
-  </button>
-
-  <button className="px-6 py-3 bg-pink-400 text-white rounded-xl hover:bg-pink-500 transition">
-    New Arrivals
-  </button>
-</div>
+            
 
               {label}
             </button>
@@ -310,14 +304,71 @@ export default function HomePage() {
           ))}
         </div>
       </section>
-     {/* SECTION 4 – Placeholder */}
-<section className="w-full py-10 bg-white">
-  <div className="max-w-6xl mx-auto px-4">
-    {/* Empty section — will add content later */}
     
-    This is really good
+    
+   
+{/* SECTION 4 – Centered Placeholder */}
+
+<section
+  style={{
+    width: "100%",
+    backgroundColor: "#ffc0cb", // ★ SAME as your page background
+    padding: "0 0",
+    display: "flex",
+    justifyContent: "center",
+  }}
+>
+  <div
+    style={{
+      width: "100%",
+      maxWidth: "800px",
+      textAlign: "center",
+      padding: "0 20px",
+    }}
+  >
+    <h2
+      style={{
+        fontFamily: "'Playfair Display', serif",
+        fontSize: "2rem",
+        fontWeight: 600,
+        marginBottom: "10px",
+        color: "black",
+      }}
+    >
+      Coming Soon
+    </h2>
+
+    <p
+      style={{
+        fontSize: "1.1rem",
+        color: "black",
+        marginBottom: "30px",
+      }}
+    >
+      Something beautiful is being crafted just for you…
+    </p>
+
+    <div
+      style={{
+        border: "2px solid white",
+        background: "rgba(255,255,255,0.6)",
+        padding: "40px 20px",
+        borderRadius: "18px",
+        fontSize: "1.2rem",
+        fontWeight: 500,
+        color: "#c2185b",
+        boxShadow: "0 4px 12px rgba(0,0,0,0.1)",
+      }}
+    >
+      New Features & Collections Will Appear Here
+    </div>
   </div>
 </section>
+
+
+
+
+
 
 
       

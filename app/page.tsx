@@ -2,6 +2,8 @@
 
 import { useRef, useEffect, useState } from "react";
 import Navbar from "./components/Navbar";
+import Link from "next/link";
+
 
 export default function HomePage() {
   const [isHovering, setIsHovering] = useState(false);
@@ -159,42 +161,52 @@ export default function HomePage() {
         </div>
       </section>
 
-      {/* SECTION 3: Quick Links */}
-      <section style={{ maxWidth: "1000px", margin: "20px auto", padding: "0 10px" }}>
-        <h2
-          style={{
-            fontFamily: "'Playfair Display', serif",
-            fontSize: "2rem",
-            fontWeight: 600,
-            textAlign: "center",
-          }}
-        >
-          Quick Links
-        </h2>
 
-        <div style={{ display: "flex", flexWrap: "wrap", gap: "10px" }}>
-          {[
-            "Below 2k", "Below 5k", "10-15k", "15-30k", "30-45k",
-            "Above45k", "New Arrivals", "Trending", "Popular", "Designer",
-          ].map((label, i) => (
-            <button
-              key={i}
-              style={{
-                flex: "1 1 calc(20% - 10px)",
-                minWidth: "80px",
-                padding: "10px",
-                borderRadius: "8px",
-                border: "none",
-                background: "#f0f0f0",
-                cursor: "pointer",
-                boxShadow: "0 3px 6px rgba(0,0,0,0.2)",
-              }}
-            >
-              {label}
-            </button>
-          ))}
-        </div>
-      </section>
+     
+
+{/* SECTION 3 */}
+<div
+  style={{
+    display: "flex",
+    flexWrap: "wrap",
+    gap: "10px",
+    justifyContent: "center",
+  }}
+>
+  {[
+    { label: "Below ₹2K", slug: "below-2k" },
+    { label: "Below ₹5K", slug: "below-5k" },
+    { label: "₹10K – ₹15K", slug: "10-to-15k" },
+    { label: "₹15K – ₹30K", slug: "15-to-30k" },
+    { label: "₹30K – ₹45K", slug: "30-to-45k" },
+    { label: "Above ₹45K", slug: "above-45k" },
+    { label: "New Arrivals", slug: "new-arrivals" },
+    { label: "Trending", slug: "trending" },
+    { label: "Popular", slug: "popular" },
+    { label: "Designer", slug: "designer" },
+  ].map((item, i) => (
+    <Link
+      key={i}
+      href={`/category/${item.slug}`}
+      style={{
+        flex: "1 1 calc(20% - 10px)",
+        minWidth: "110px",
+        padding: "10px",
+        borderRadius: "10px",
+        background: "#ffe4ec",
+        boxShadow: "0 3px 6px rgba(0,0,0,0.2)",
+        textAlign: "center",
+        fontWeight: 600,
+        textDecoration: "none",
+        color: "#000",
+      }}
+    >
+      {item.label.toUpperCase()}
+    </Link>
+  ))}
+</div>
+
+
 
       {/* SECTION 4: Coming Soon */}
       <section style={{ width: "100%", textAlign: "center", padding: "20px 0" }}>

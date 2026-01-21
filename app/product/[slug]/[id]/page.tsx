@@ -1,26 +1,18 @@
-// app/product/[slug]/[id]/page.tsx
-import Image from "next/image";
 import Link from "next/link";
 
 interface PageProps {
-  params: {
+  params: Promise<{
     slug: string;
     id: string;
-  };
+  }>;
 }
 
-export default function ProductPage({ params }: PageProps) {
-  const { slug, id } = params;
+export default async function ProductPage({ params }: PageProps) {
+  const { slug, id } = await params;
 
-  // Safety: ensure slug/id exist
-  const safeSlug = slug || "unknown";
-  const safeId = id || "0";
+  const imageSrc = `/categories/${slug}/${id}.jpg`;
+  const title = slug.replace(/-/g, " ").toUpperCase();
 
-  // Generate image path; if file missing, fallback to placeholder
-  const imageSrc = `/categories/${safeSlug}/${safeId}.jpg`;
-  const placeholderSrc = "/placeholder.jpg";
-
-  // Mock product info (replace with DB later)
   const productInfo: Record<
     string,
     { price: string; fabric: string; design: string }
@@ -32,13 +24,12 @@ export default function ProductPage({ params }: PageProps) {
     "30-to-45k": { price: "₹35,000", fabric: "Silk Blend", design: "Venkatagiri" },
   };
 
-  const info = productInfo[safeSlug] || {
-    price: "Price on request",
-    fabric: "Premium Fabric",
-    design: "Traditional",
-  };
-
-  const title = safeSlug.replace(/-/g, " ").toUpperCase();
+  const info =
+    productInfo[slug] ?? {
+      price: "Price on request",
+      fabric: "Premium Fabric",
+      design: "Traditional",
+    };
 
   return (
     <div
@@ -58,7 +49,6 @@ export default function ProductPage({ params }: PageProps) {
           boxShadow: "0 6px 20px rgba(0,0,0,0.15)",
         }}
       >
-        {/* Title */}
         <h1
           style={{
             textAlign: "center",
@@ -67,10 +57,9 @@ export default function ProductPage({ params }: PageProps) {
             marginBottom: "20px",
           }}
         >
-          {title} — Saree #{safeId}
+          {title} — Saree #{id}
         </h1>
 
-        {/* Product Layout */}
         <div
           style={{
             display: "grid",
@@ -78,21 +67,17 @@ export default function ProductPage({ params }: PageProps) {
             gap: "20px",
           }}
         >
-          {/* Image */}
-          <Image
-            src={imageSrc || placeholderSrc}
-            width={600}
-            height={600}
-            alt={`Saree ${safeId}`}
+          {/* ✅ Server-safe image */}
+          <img
+            src={imageSrc}
+            alt={`Saree ${id}`}
             style={{
               width: "100%",
-              height: "auto",
               borderRadius: "12px",
               objectFit: "cover",
             }}
           />
 
-          {/* Details */}
           <div style={{ fontSize: "1.1rem" }}>
             <p>
               <strong>Price:</strong> {info.price}
@@ -109,10 +94,9 @@ export default function ProductPage({ params }: PageProps) {
               special occasions.
             </p>
 
-            {/* Action Buttons */}
             <div style={{ marginTop: "25px", display: "flex", gap: "10px" }}>
               <Link
-                href={`/category/${safeSlug}`}
+                href={`/category/${slug}`}
                 style={{
                   flex: 1,
                   textAlign: "center",
@@ -128,7 +112,7 @@ export default function ProductPage({ params }: PageProps) {
               </Link>
 
               <a
-                href={`https://wa.me/91XXXXXXXXXX?text=I am interested in ${title} Saree ${safeId}`}
+                href={`https://wa.me/91XXXXXXXXXX?text=I am interested in ${title} Saree ${id}`}
                 target="_blank"
                 style={{
                   flex: 1,

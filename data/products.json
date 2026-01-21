@@ -1,44 +1,31 @@
-{
-  "below-2k": [
-    {
-      "id": 1,
-      "price": "₹1,999",
-      "fabric": "Cotton",
-      "design": "Jamdhani",
-      "image": "/categories/below-2k/1.jpg"
-    },
-    {
-      "id": 2,
-      "price": "₹1,899",
-      "fabric": "Cotton",
-      "design": "Kanchi Pattu",
-      "image": "/categories/below-2k/2.jpg"
-    }
-  ],
-  "below-5k": [
-    {
-      "id": 1,
-      "price": "₹4,999",
-      "fabric": "Silk",
-      "design": "Kanchi Pattu",
-      "image": "/categories/below-5k/1.jpg"
-    },
-    {
-      "id": 2,
-      "price": "₹4,799",
-      "fabric": "Silk",
-      "design": "Narayanpet",
-      "image": "/categories/below-5k/2.jpg"
-    }
-  ],
-  "10-to-15k": [
-    {
-      "id": 1,
-      "price": "₹12,000",
-      "fabric": "Silk Blend",
-      "design": "Narayanpet",
-      "image": "/categories/10-to-15k/1.jpg"
-    }
-  ]
-}
+[
+  {
+    "id": "vw-001",
+    "category": "jamdhani",
+    "slug": "blue-jamdhani-cotton-saree",
+    "title": "Blue Jamdhani Cotton Saree",
+    "price": 1899,
+    "originalPrice": 2499,
+    "currency": "INR",
+    "fabric": "Pure Cotton",
+    "weave": "Jamdhani",
+    "color": "Blue",
+    "length": "5.5 meters",
+    "blousePiece": "Yes",
+    "occasion": ["Casual", "Office Wear"],
+    "description": "Handwoven Jamdhani cotton saree with traditional motifs and soft texture.",
+    "care": [
+      "Dry clean recommended",
+      "Do not bleach",
+      "Dry in shade"
+    ],
+    "images": [
+      "/products/jamdhani/blue-1.jpg",
+      "/products/jamdhani/blue-2.jpg",
+      "/products/jamdhani/blue-3.jpg"
+    ],
+    "inStock": true,
+    "rating": 4.6
+  }
+]
 

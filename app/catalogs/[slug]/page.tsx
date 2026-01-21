@@ -5,14 +5,20 @@ import Image from "next/image";
 import Link from "next/link";
 
 interface Props {
-  params: { slug: string };
+  params: {
+    slug: string;
+  };
 }
 
 export default function CatalogPage({ params }: Props) {
   const slug = params?.slug;
 
   if (!slug) {
-    return <p style={{ textAlign: "center", padding: "50px" }}>Invalid catalog</p>;
+    return (
+      <p style={{ textAlign: "center", padding: "50px" }}>
+        Invalid catalog
+      </p>
+    );
   }
 
   // Path to the catalog folder in /public/catalogs/{slug}
@@ -21,17 +27,27 @@ export default function CatalogPage({ params }: Props) {
   let images: string[] = [];
 
   try {
-    // Read all images (jpg, png, webp) from the folder
     images = fs
       .readdirSync(catalogDir)
       .filter((file) => /\.(jpe?g|png|webp)$/i.test(file))
       .map((file) => `/catalogs/${slug}/${file}`);
-  } catch (err) {
-    return <p style={{ textAlign: "center", padding: "50px" }}>Catalog not found</p>;
+  } catch (error) {
+    return (
+      <p style={{ textAlign: "center", padding: "50px" }}>
+        Catalog not found
+      </p>
+    );
   }
 
   return (
-    <div style={{ padding: "140px 20px", minHeight: "100vh", backgroundColor: "#fff0f5" }}>
+    <div
+      style={{
+        padding: "140px 20px",
+        minHeight: "100vh",
+        backgroundColor: "#fff0f5",
+      }}
+    >
+      {/* Title */}
       <h1
         style={{
           textAlign: "center",
@@ -44,8 +60,11 @@ export default function CatalogPage({ params }: Props) {
         {slug.replace(/-/g, " ")} Catalog
       </h1>
 
+      {/* Images */}
       {images.length === 0 ? (
-        <p style={{ textAlign: "center", fontSize: "1.2rem" }}>No images available</p>
+        <p style={{ textAlign: "center", fontSize: "1.2rem" }}>
+          No images available
+        </p>
       ) : (
         <div
           style={{
@@ -56,4 +75,33 @@ export default function CatalogPage({ params }: Props) {
             margin: "0 auto",
           }}
         >
+          {images.map((imgSrc) => {
+            const id = path.basename(imgSrc, path.extname(imgSrc));
+
+            return (
+              <Link
+                key={imgSrc}
+                href={`/product/${slug}/${id}`}
+                style={{ textDecoration: "none" }}
+              >
+                <Image
+                  src={imgSrc}
+                  alt={`Saree ${id}`}
+                  width={800}
+                  height={1000}
+                  style={{
+                    width: "100%",
+                    height: "auto",
+                    borderRadius: "12px",
+                    boxShadow: "0 4px 12px rgba(0,0,0,0.15)",
+                  }}
+                />
+              </Link>
+            );
+          })}
+        </div>
+      )}
+    </div>
+  );
+}
 

@@ -5,8 +5,32 @@ import Navbar from "../components/Navbar";
 export default function ContactPage() {
   const contactInfo = [
     { title: "Mobile & Whatsapp", value: "7093430194" },
-    { title: "Email", value: "info@example.com" },
-    { title: "Address", value: "# 11-13-940, E Rd No.2\nGreen Hills Colony\nKothapet, Saroornagar\nHyderabad, Telangana\n500102" },
+
+    {
+      title: "Email",
+      value: (
+        <>
+          viraweaves@gmail.com
+          <br />
+          <strong>Website</strong>
+          <br />
+          https://viraweaves.vercel.app
+        </>
+      ),
+    },
+
+    {
+      title: "Address",
+      value: (
+        <>
+          # 11-13-940, E Rd No.2 <br />
+          Green Hills Colony <br />
+          Kothapet, Saroornagar <br />
+          Hyderabad, Telangana <br />
+          500102
+        </>
+      ),
+    },
   ];
 
   return (
@@ -82,8 +106,26 @@ export default function ContactPage() {
                 e.currentTarget.style.boxShadow = "0 8px 20px rgba(0,0,0,0.3)";
               }}
             >
-              <h2 style={{ fontSize: "1.3rem", fontWeight: "600", marginBottom: "10px" }}>{info.title}</h2>
-              <p style={{ whiteSpace: "pre-line", fontSize: "1.1rem", color: "black", margin: 0 }}>{info.value}</p>
+              <h2
+                style={{
+                  fontSize: "1.3rem",
+                  fontWeight: "600",
+                  marginBottom: "10px",
+                }}
+              >
+                {info.title}
+              </h2>
+
+              <p
+                style={{
+                  whiteSpace: "pre-line",
+                  fontSize: "1.1rem",
+                  color: "black",
+                  margin: 0,
+                }}
+              >
+                {info.value}
+              </p>
             </div>
           ))}
         </div>

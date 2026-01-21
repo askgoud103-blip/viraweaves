@@ -1,0 +1,44 @@
+{
+  "below-2k": [
+    {
+      "id": 1,
+      "price": "₹1,999",
+      "fabric": "Cotton",
+      "design": "Jamdhani",
+      "image": "/categories/below-2k/1.jpg"
+    },
+    {
+      "id": 2,
+      "price": "₹1,899",
+      "fabric": "Cotton",
+      "design": "Kanchi Pattu",
+      "image": "/categories/below-2k/2.jpg"
+    }
+  ],
+  "below-5k": [
+    {
+      "id": 1,
+      "price": "₹4,999",
+      "fabric": "Silk",
+      "design": "Kanchi Pattu",
+      "image": "/categories/below-5k/1.jpg"
+    },
+    {
+      "id": 2,
+      "price": "₹4,799",
+      "fabric": "Silk",
+      "design": "Narayanpet",
+      "image": "/categories/below-5k/2.jpg"
+    }
+  ],
+  "10-to-15k": [
+    {
+      "id": 1,
+      "price": "₹12,000",
+      "fabric": "Silk Blend",
+      "design": "Narayanpet",
+      "image": "/categories/10-to-15k/1.jpg"
+    }
+  ]
+}
+

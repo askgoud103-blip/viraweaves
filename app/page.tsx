@@ -164,47 +164,60 @@ export default function HomePage() {
 
      
 
-{/* SECTION 3 */}
-<div
-  style={{
-    display: "flex",
-    flexWrap: "wrap",
-    gap: "10px",
-    justifyContent: "center",
-  }}
->
-  {[
-    { label: "Below ₹2K", slug: "below-2k" },
-    { label: "Below ₹5K", slug: "below-5k" },
-    { label: "₹10K – ₹15K", slug: "10-to-15k" },
-    { label: "₹15K – ₹30K", slug: "15-to-30k" },
-    { label: "₹30K – ₹45K", slug: "30-to-45k" },
-    { label: "Above ₹45K", slug: "above-45k" },
-    { label: "New Arrivals", slug: "new-arrivals" },
-    { label: "Trending", slug: "trending" },
-    { label: "Popular", slug: "popular" },
-    { label: "Designer", slug: "designer" },
-  ].map((item, i) => (
-    <Link
-      key={i}
-      href={`/category/${item.slug}`}
-      style={{
-        flex: "1 1 calc(20% - 10px)",
-        minWidth: "110px",
-        padding: "10px",
-        borderRadius: "10px",
-        background: "#ffe4ec",
-        boxShadow: "0 3px 6px rgba(0,0,0,0.2)",
-        textAlign: "center",
-        fontWeight: 600,
-        textDecoration: "none",
-        color: "#000",
-      }}
-    >
-      {item.label.toUpperCase()}
-    </Link>
-  ))}
-</div>
+{/* SECTION 3: Quick Links */}
+<section style={{ margin: "40px auto", maxWidth: "1100px" }}>
+  <h2
+    style={{
+      textAlign: "center",
+      fontSize: "2rem",
+      fontWeight: 600,
+      marginBottom: "20px",
+    }}
+  >
+    Quick Links
+  </h2>
+
+  <div
+    style={{
+      display: "flex",
+      flexWrap: "wrap",
+      gap: "10px",
+      justifyContent: "center",
+    }}
+  >
+    {[
+      { label: "Below ₹2K", slug: "below-2k" },
+      { label: "Below ₹5K", slug: "below-5k" },
+      { label: "₹10K – ₹15K", slug: "10-to-15k" },
+      { label: "₹15K – ₹30K", slug: "15-to-30k" },
+      { label: "₹30K – ₹45K", slug: "30-to-45k" },
+      { label: "Above ₹45K", slug: "above-45k" },
+      { label: "New Arrivals", slug: "new-arrivals" },
+      { label: "Trending", slug: "trending" },
+      { label: "Popular", slug: "popular" },
+      { label: "Designer", slug: "designer" },
+    ].map((item, i) => (
+      <Link
+        key={i}
+        href={`/product/${item.slug}/1`}
+        style={{
+          flex: "1 1 calc(20% - 10px)",
+          minWidth: "110px",
+          padding: "10px",
+          borderRadius: "10px",
+          background: "#ffe4ec",
+          boxShadow: "0 3px 6px rgba(0,0,0,0.2)",
+          textAlign: "center",
+          fontWeight: 600,
+          textDecoration: "none",
+          color: "#000",
+        }}
+      >
+        {item.label.toUpperCase()}
+      </Link>
+    ))}
+  </div>
+</section>
 
 
 

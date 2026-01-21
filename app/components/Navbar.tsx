@@ -6,6 +6,9 @@ import { FaInstagram, FaWhatsapp } from "react-icons/fa";
 
 export default function Navbar() {
   const [isOpen, setIsOpen] = useState(false);
+  const [isHovering, setIsHovering] = useState(false);
+
+
   const router = useRouter();
   const menuItems = ["Home", "Collections", "About", "Contact"];
 

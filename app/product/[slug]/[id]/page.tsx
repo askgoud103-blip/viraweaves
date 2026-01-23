@@ -1,14 +1,14 @@
 import Link from "next/link";
 
 interface PageProps {
-  params: Promise<{
+  params: {
     slug: string;
     id: string;
-  }>;
+  };
 }
 
-export default async function ProductPage({ params }: PageProps) {
-  const { slug, id } = await params;
+export default function ProductPage({ params }: PageProps) {
+  const { slug, id } = params;
 
   const imageSrc = `/categories/${slug}/${id}.jpg`;
   const title = slug.replace(/-/g, " ").toUpperCase();
@@ -49,14 +49,7 @@ export default async function ProductPage({ params }: PageProps) {
           boxShadow: "0 6px 20px rgba(0,0,0,0.15)",
         }}
       >
-        <h1
-          style={{
-            textAlign: "center",
-            fontSize: "2rem",
-            fontWeight: 700,
-            marginBottom: "20px",
-          }}
-        >
+        <h1 style={{ textAlign: "center", fontSize: "2rem", fontWeight: 700 }}>
           {title} — Saree #{id}
         </h1>
 
@@ -65,33 +58,22 @@ export default async function ProductPage({ params }: PageProps) {
             display: "grid",
             gridTemplateColumns: "1fr 1fr",
             gap: "20px",
+            marginTop: "20px",
           }}
         >
-          {/* ✅ Server-safe image */}
           <img
             src={imageSrc}
             alt={`Saree ${id}`}
-            style={{
-              width: "100%",
-              borderRadius: "12px",
-              objectFit: "cover",
-            }}
+            style={{ width: "100%", borderRadius: "12px" }}
           />
 
           <div style={{ fontSize: "1.1rem" }}>
-            <p>
-              <strong>Price:</strong> {info.price}
-            </p>
-            <p>
-              <strong>Fabric:</strong> {info.fabric}
-            </p>
-            <p>
-              <strong>Design:</strong> {info.design}
-            </p>
+            <p><strong>Price:</strong> {info.price}</p>
+            <p><strong>Fabric:</strong> {info.fabric}</p>
+            <p><strong>Design:</strong> {info.design}</p>
 
             <p style={{ marginTop: "12px", color: "#555" }}>
-              Elegant hand-crafted saree, perfect for weddings, festivals, and
-              special occasions.
+              Elegant hand-crafted saree, perfect for weddings, festivals, and special occasions.
             </p>
 
             <div style={{ marginTop: "25px", display: "flex", gap: "10px" }}>

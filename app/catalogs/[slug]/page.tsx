@@ -1,8 +1,19 @@
-// app/catalogs/[slug]/page.tsx
-import fs from "fs";
-import path from "path";
-import Image from "next/image";
 import Link from "next/link";
+import Image from "next/image";
+import productsData from "../../../data/products.json";
+
+interface Product {
+  id: string;
+  category: string;
+  slug: string;
+  title: string;
+  price: number;
+  originalPrice?: number;
+  fabric: string;
+  weave: string;
+  description: string;
+  images: string[];
+}
 
 interface Props {
   params: {
@@ -21,20 +32,16 @@ export default function CatalogPage({ params }: Props) {
     );
   }
 
-  // Path to the catalog folder in /public/catalogs/{slug}
-  const catalogDir = path.join(process.cwd(), "public", "catalogs", slug);
+  const typedProductsData: Product[] = productsData as Product[];
 
-  let images: string[] = [];
+  const categoryProducts = typedProductsData.filter(
+    (p) => p.category === slug
+  );
 
-  try {
-    images = fs
-      .readdirSync(catalogDir)
-      .filter((file) => /\.(jpe?g|png|webp)$/i.test(file))
-      .map((file) => `/catalogs/${slug}/${file}`);
-  } catch (error) {
+  if (categoryProducts.length === 0) {
     return (
       <p style={{ textAlign: "center", padding: "50px" }}>
-        Catalog not found
+        No products found in this category
       </p>
     );
   }
@@ -47,7 +54,6 @@ export default function CatalogPage({ params }: Props) {
         backgroundColor: "#fff0f5",
       }}
     >
-      {/* Title */}
       <h1
         style={{
           textAlign: "center",
@@ -60,47 +66,46 @@ export default function CatalogPage({ params }: Props) {
         {slug.replace(/-/g, " ")} Catalog
       </h1>
 
-      {/* Images */}
-      {images.length === 0 ? (
-        <p style={{ textAlign: "center", fontSize: "1.2rem" }}>
-          No images available
-        </p>
-      ) : (
-        <div
-          style={{
-            display: "flex",
-            flexDirection: "column",
-            gap: "20px",
-            maxWidth: "800px",
-            margin: "0 auto",
-          }}
-        >
-          {images.map((imgSrc) => {
-            const id = path.basename(imgSrc, path.extname(imgSrc));
-
-            return (
-              <Link
-                key={imgSrc}
-                href={`/product/${slug}/${id}`}
-                style={{ textDecoration: "none" }}
-              >
-                <Image
-                  src={imgSrc}
-                  alt={`Saree ${id}`}
-                  width={800}
-                  height={1000}
-                  style={{
-                    width: "100%",
-                    height: "auto",
-                    borderRadius: "12px",
-                    boxShadow: "0 4px 12px rgba(0,0,0,0.15)",
-                  }}
-                />
-              </Link>
-            );
-          })}
-        </div>
-      )}
+      <div
+        style={{
+          display: "flex",
+          flexDirection: "column",
+          gap: "20px",
+          maxWidth: "800px",
+          margin: "0 auto",
+        }}
+      >
+        {categoryProducts.map((product) => (
+          <Link
+            key={product.id}
+            href={`/product/${product.category}/${product.id}`}
+            style={{ textDecoration: "none" }}
+          >
+            <Image
+              src={product.images[0]}
+              alt={product.title}
+              width={800}
+              height={1000}
+              style={{
+                width: "100%",
+                height: "auto",
+                borderRadius: "12px",
+                boxShadow: "0 4px 12px rgba(0,0,0,0.15)",
+              }}
+            />
+            <h2
+              style={{
+                textAlign: "center",
+                marginTop: "8px",
+                fontWeight: 600,
+                textTransform: "capitalize",
+              }}
+            >
+              {product.title}
+            </h2>
+          </Link>
+        ))}
+      </div>
     </div>
   );
 }

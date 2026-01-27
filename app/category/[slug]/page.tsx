@@ -1,6 +1,8 @@
-import productsData from "@/data/products.json";
 import Link from "next/link";
 import Image from "next/image";
+import { notFound } from "next/navigation";
+import productsData from "@/data/products.json";
+
 
 interface Product {
   id: string;
@@ -9,67 +11,93 @@ interface Product {
   title: string;
   price: number;
   originalPrice?: number;
-  currency: string;
-  fabric?: string;
-  image?: string;
+  fabric: string;
+  weave: string;
+  description: string;
+  images: string[];
 }
 
-interface CategoryPageProps {
-  params: {
+interface Props {
+  params: Promise<{
     slug: string;
-  };
+    id: string;
+  }>;
 }
 
-export default function CategoryPage({ params }: CategoryPageProps) {
-  const safeSlug = params.slug.toLowerCase();
+export default async function ProductPage({ params }: Props) {
+  // Await params for Next.js 15+ compatibility
+  const { id } = await params;
 
-  // ✅ Filter products by category (FIXED)
-  const products: Product[] = (productsData as Product[]).filter(
-    (product) => product.category === safeSlug
-  );
+  // Find the product by ID
+  const product = (productsData as Product[]).find((p) => p.id === id);
 
-  const title = safeSlug.replace(/-/g, " ").toUpperCase();
+  if (!product) {
+    return notFound();
+  }
 
   return (
-    <div className="px-4 py-8 max-w-7xl mx-auto">
-      <h1 className="text-3xl font-bold mb-6">{title}</h1>
-
-      {products.length === 0 ? (
-        <p className="text-gray-500">No products found in this category.</p>
-      ) : (
-        <div className="grid grid-cols-2 md:grid-cols-4 gap-6">
-          {products.map((product) => (
-            <Link
-              key={product.id}
-              href={`/product/${product.slug}/${product.id}`}
-              className="border rounded-lg p-3 hover:shadow-lg transition"
-            >
-              <div className="relative w-full h-56 mb-3">
-                <Image
-                  src={product.image || "/placeholder.jpg"}
-                  alt={product.title}
-                  fill
-                  className="object-cover rounded"
-                />
-              </div>
-
-              <h2 className="text-sm font-semibold">{product.title}</h2>
-
-              <div className="mt-1">
-                <span className="font-bold">
-                  {product.currency} {product.price}
-                </span>
-                {product.originalPrice && (
-                  <span className="text-gray-400 line-through ml-2 text-sm">
-                    {product.currency} {product.originalPrice}
-                  </span>
-                )}
-              </div>
-            </Link>
+    <div style={{ minHeight: "100vh", backgroundColor: "#fff0f5", padding: "120px 20px" }}>
+      <div style={{ maxWidth: "1000px", margin: "0 auto", display: "grid", gridTemplateColumns: "1fr 1fr", gap: "40px" }}>
+        
+        {/* Left: Product Images */}
+        <div style={{ display: "flex", flexDirection: "column", gap: "20px" }}>
+          {product.images.map((img, idx) => (
+            <Image
+              key={idx}
+              src={img}
+              alt={product.title}
+              width={500}
+              height={700}
+              priority={idx === 0}
+              style={{ width: "100%", height: "auto", borderRadius: "16px", boxShadow: "0 4px 15px rgba(0,0,0,0.1)" }}
+            />
           ))}
         </div>
-      )}
+
+        {/* Right: Product Details */}
+        <div style={{ position: "sticky", top: "140px", height: "fit-content" }}>
+          <Link href={`/category/${product.category.toLowerCase().replace(/\s+/g, "-")}`} 
+                style={{ color: "#ff69b4", textDecoration: "none", fontSize: "0.9rem", fontWeight: 600 }}>
+            ← {product.category.toUpperCase()}
+          </Link>
+          
+          <h1 style={{ fontSize: "2.5rem", fontFamily: "serif", margin: "10px 0", color: "#333" }}>
+            {product.title}
+          </h1>
+
+          <div style={{ margin: "20px 0" }}>
+            <span style={{ fontSize: "2rem", fontWeight: 700, color: "#ff1493" }}>
+              ₹{product.price.toLocaleString("en-IN")}
+            </span>
+            {product.originalPrice && (
+              <span style={{ marginLeft: "15px", textDecoration: "line-through", color: "#888" }}>
+                ₹{product.originalPrice.toLocaleString("en-IN")}
+              </span>
+            )}
+          </div>
+
+          <div style={{ borderTop: "1px solid #ffb6c1", borderBottom: "1px solid #ffb6c1", padding: "20px 0", margin: "20px 0" }}>
+            <p style={{ marginBottom: "10px" }}><strong>Fabric:</strong> {product.fabric}</p>
+            <p style={{ marginBottom: "10px" }}><strong>Weave:</strong> {product.weave}</p>
+            <p style={{ lineHeight: "1.6", color: "#555" }}>{product.description}</p>
+          </div>
+
+          <button style={{
+            width: "100%",
+            padding: "18px",
+            backgroundColor: "#ff69b4",
+            color: "white",
+            border: "none",
+            borderRadius: "30px",
+            fontSize: "1.1rem",
+            fontWeight: 700,
+            cursor: "pointer",
+            boxShadow: "0 5px 15px rgba(255,105,180,0.4)"
+          }}>
+            Add to Inquiry
+          </button>
+        </div>
+      </div>
     </div>
   );
 }
-

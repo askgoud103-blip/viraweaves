@@ -80,7 +80,7 @@ export default function HomePage() {
 
       {/* HERO SECTION - Small & Elegant */}
       <section style={{ 
-        padding: "140px 20px 40px", 
+        padding: "120px 20px 40px", 
         textAlign: "center", 
         background: "linear-gradient(to bottom, #ffc0cb, #ffe4ec)" 
       }}>
@@ -162,131 +162,91 @@ export default function HomePage() {
       </section>
       
      {/* SECTION 2: Explore Your Choice (Category Grid) */}
-      <section style={{ maxWidth: "1200px", margin: "0 auto", padding: "0 20px" }}>
-        <h2 style={{ textAlign: "center", fontSize: "2rem", fontWeight: 700, marginBottom: "30px", color: "#333" }}>
-          Explore Your Choice
-        </h2>
+     <section style={{ maxWidth: "1200px", margin: "40px auto", padding: "0 10px" }}>
+        <h2 style={{ textAlign: "center" }}>Explore Your Choice</h2>
 
-        <div
-          style={{
-            display: "grid",
-            // Increased the minimum width to 160px so text doesn't squeeze
-            gridTemplateColumns: "repeat(auto-fit, minmax(160px, 1fr))", 
-            gap: "20px",
-          }}
-        >
-          {thumbnails.map((name, idx) => (
-            <Link 
-              key={idx} 
-              href={`/category/${normalize(name)}`} 
-              style={{ textDecoration: 'none' }}
-            >
-              <div
-                style={{
-                  position: "relative",
-                  overflow: "hidden",
-                  borderRadius: "12px",
-                  boxShadow: "0 6px 15px rgba(0,0,0,0.15)",
-                  transition: "transform 0.3s",
-                  height: "150px", // Set a fixed height for the container
-                }}
-                onMouseEnter={(e) => (e.currentTarget.style.transform = "translateY(-5px)")}
-                onMouseLeave={(e) => (e.currentTarget.style.transform = "translateY(0)")}
-              >
-                <img
-                  src={`/thumb${idx + 1}.jpg`}
-                  alt={name}
-                  style={{ 
-                    width: "100%", 
-                    height: "100%", 
-                    objectFit: "cover",
-                    display: "block" 
-                  }}
-                />
-                <div
-                  style={{
-                    position: "absolute",
-                    bottom: 0,
-                    width: "100%",
-                    background: "linear-gradient(transparent, rgba(0,0,0,0.8))", // Smoother gradient
-                    color: "white",
-                    padding: "20px 5px 10px", // More padding at top of text for readability
-                    textAlign: "center",
-                    fontWeight: 600,
-                    fontSize: "0.9rem",
-                    whiteSpace: "nowrap", // Keeps text on one line
-                    textOverflow: "ellipsis", // Adds "..." if it still doesn't fit
-                    overflow: "hidden"
-                  }}
-                >
-                  {name}
-                </div>
-              </div>
-            </Link>
-          ))}
-        </div>
-      </section>
-
-      {/* SECTION 3: Quick Links (Price Ranges) */}
-      <section style={{ margin: "60px auto", maxWidth: "1100px", padding: "0 20px" }}>
-        <h2 style={{ textAlign: "center", fontSize: "2rem", fontWeight: 700, marginBottom: "30px", color: "#333" }}>
-          Quick Links
-        </h2>
-
-        <div
-          style={{
-            display: "flex",
-            flexWrap: "wrap",
-            gap: "15px",
-            justifyContent: "center",
-          }}
-        >
-          {[
-            { label: "Below ₹2K", slug: "below-2k" },
-            { label: "Below ₹5K", slug: "below-5k" },
-            { label: "₹10K – ₹15K", slug: "10-to-15k" },
-            { label: "₹15K – ₹30K", slug: "15-to-30k" },
-            { label: "₹30K – ₹45K", slug: "30-to-45k" },
-            { label: "Above ₹45K", slug: "above-45k" },
-            { label: "New Arrivals", slug: "new-arrivals" },
-            { label: "Trending", slug: "trending" },
-            { label: "Popular", slug: "popular" },
-            { label: "Designer", slug: "designer" },
-          ].map((item, i) => (
-            <Link
-              key={i}
-              href={`/category/${item.slug}`}
-              style={{
-                flex: "1 1 calc(20% - 15px)",
-                minWidth: "130px",
-                padding: "15px 10px",
-                borderRadius: "12px",
-                background: "#ffe4ec",
-                boxShadow: "0 4px 8px rgba(0,0,0,0.1)",
-                textAlign: "center",
-                fontWeight: 700,
-                textDecoration: "none",
-                color: "#333",
-                transition: "all 0.2s ease",
-                border: "1px solid #ffb6c1"
-              }}
-              onMouseEnter={(e) => {
-                e.currentTarget.style.backgroundColor = "#ffb6c1";
-                e.currentTarget.style.transform = "scale(1.05)";
-              }}
-              onMouseLeave={(e) => {
-                e.currentTarget.style.backgroundColor = "#ffe4ec";
-                e.currentTarget.style.transform = "scale(1)";
-              }}
-            >
-              {item.label.toUpperCase()}
+        <div style={{ display: "grid", gridTemplateColumns: "repeat(auto-fit,minmax(160px,1fr))", gap: "20px" }}>
+          {thumbnails.map((name, i) => (
+            <Link key={i} href={`/category/${normalize(name)}`} style={{ textDecoration: "none" }}>
+              <div style={{ height: "150px", borderRadius: "12px", overflow: "hidden", position: "relative" }}>
+                <img src={`/thumb${i + 1}.jpg`} alt={name} style={{ width: "100%", height: "100%", objectFit: "cover" }} />
+                <div style={{
+                  position: "absolute", bottom: 0, width: "100%",
+                  background: "rgba(0,0,0,0.6)", color: "#fff",
+                  textAlign: "center", padding: "6px", fontWeight: 600
+                }}>
+                  {name}
+                </div>
+              </div>
             </Link>
           ))}
         </div>
       </section>
 
+      {/* SECTION 3: Quick Links (Price & Collection Filters) */}
+<section id="quick-links" style={{ margin: "20px auto", maxWidth: "1100px", padding: "0 20px" }}>
+  <h2 style={{ textAlign: "center", fontSize: "2rem", fontWeight: 700, marginBottom: "30px", color: "#333", fontFamily: "serif" }}>
+    Quick Links
+  </h2>
+
+  <div
+    style={{
+      display: "flex",
+      flexWrap: "wrap",
+      gap: "15px",
+      justifyContent: "center",
+    }}
+  >
+    {[
+      { label: "Below Rs.2K", path: "/category/all?maxPrice=2000" },
+      { label: "Below Rs.5K", path: "/category/all?maxPrice=5000" },
+      { label: "Rs.10K – 15K", path: "/category/all?minPrice=10000&maxPrice=15000" },
+      { label: "Rs.15K – 30K", path: "/category/all?minPrice=15000&maxPrice=30000" },
+      { label: "Above Rs.45K", path: "/category/all?minPrice=45000" },
+      { label: "New Arrivals", path: "/category/new-arrivals" },
+      { label: "Trending", path: "/category/trending" },
+      { label: "Popular", path: "/category/popular" },
+      { label: "Designer", path: "/category/designer-sarees" },
+      
+    ].map((item, i) => (
+      <Link
+        key={i}
+        href={item.path}
+        style={{
+          flex: "1 1 calc(25% - 15px)", // 4 items per row on desktop
+          minWidth: "140px",
+          padding: "18px 10px",
+          borderRadius: "12px",
+          background: "#ffe4ec",
+          boxShadow: "0 4px 10px rgba(0,0,0,0.08)",
+          textAlign: "center",
+          fontWeight: 700,
+          textDecoration: "none",
+          color: "#333",
+          transition: "all 0.3s cubic-bezier(0.4, 0, 0.2, 1)",
+          border: "1px solid #ffb6c1",
+          fontSize: "0.85rem",
+          letterSpacing: "0.5px"
+        }}
+        onMouseEnter={(e) => {
+          e.currentTarget.style.backgroundColor = "#ffb6c1";
+          e.currentTarget.style.transform = "translateY(-3px)";
+          e.currentTarget.style.boxShadow = "0 6px 15px rgba(0,0,0,0.12)";
+        }}
+        onMouseLeave={(e) => {
+          e.currentTarget.style.backgroundColor = "#ffe4ec";
+          e.currentTarget.style.transform = "translateY(0)";
+          e.currentTarget.style.boxShadow = "0 4px 10px rgba(0,0,0,0.08)";
+        }}
+      >
+        {item.label.toUpperCase()}
+      </Link>
+    ))}
+  </div>
+</section>
+
       {/* SECTION 4: Coming Soon */}
-      <section style={{ width: "100%", textAlign: "center", padding: "60px 20px", background: "rgba(255,255,255,0.3)" }}>
+      <section style={{ width: "100%", textAlign: "center", padding: "30px 10px", background: "rgba(255,255,255,0.3)" }}>
         <h2 style={{ fontSize: "1.8rem", marginBottom: "10px", color: "#333" }}>Coming Soon</h2>
         <p style={{ fontStyle: "italic", color: "#555", marginBottom: "30px" }}>Something beautiful is being crafted for you…</p>
 

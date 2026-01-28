@@ -1,103 +1,162 @@
+"use client";
+
+import { useParams, useSearchParams } from "next/navigation";
 import Link from "next/link";
-import Image from "next/image";
-import { notFound } from "next/navigation";
-import productsData from "@/data/products.json";
+import Navbar from "@/app/components/Navbar";
 
+export default function CategoryPage() {
+  const params = useParams();
+  const searchParams = useSearchParams();
+  
+  const slug = (params?.slug as string) || "collection";
+  
+  // Capture price filters from the URL (e.g., ?maxPrice=2000)
+  const minPrice = searchParams.get("minPrice");
+  const maxPrice = searchParams.get("maxPrice");
 
-interface Product {
-  id: string;
-  category: string;
-  slug: string;
-  title: string;
-  price: number;
-  originalPrice?: number;
-  fabric: string;
-  weave: string;
-  description: string;
-  images: string[];
-}
-
-interface Props {
-  params: Promise<{
-    slug: string;
-    id: string;
-  }>;
-}
-
-export default async function ProductPage({ params }: Props) {
-  // Await params for Next.js 15+ compatibility
-  const { id } = await params;
-
-  // Find the product by ID
-  const product = (productsData as Product[]).find((p) => p.id === id);
-
-  if (!product) {
-    return notFound();
-  }
+  // Mock data - In a real app, you'd filter this based on the 'slug' and 'prices'
+  const sareeItems = [
+    { id: 1, src: "/sarees/s1.jpg", name: "Classic Weave", price: "₹2,500" },
+    { id: 2, src: "/sarees/s2.jpg", name: "Royal Heritage", price: "₹4,200" },
+    { id: 3, src: "/sarees/s3.jpg", name: "Modern Drape", price: "₹1,800" },
+    { id: 4, src: "/sarees/s4.jpg", name: "Temple Border", price: "₹5,500" },
+    { id: 5, src: "/sarees/s5.jpg", name: "Golden Zari", price: "₹3,100" },
+    { id: 6, src: "/sarees/s6.jpg", name: "Evening Grace", price: "₹2,900" },
+    // Doubling for grid fill
+    { id: 7, src: "/sarees/s1.jpg", name: "Traditional Silk", price: "₹6,000" },
+    { id: 8, src: "/sarees/s2.jpg", name: "Floral Print", price: "₹1,200" },
+  ];
 
   return (
-    <div style={{ minHeight: "100vh", backgroundColor: "#fff0f5", padding: "120px 20px" }}>
-      <div style={{ maxWidth: "1000px", margin: "0 auto", display: "grid", gridTemplateColumns: "1fr 1fr", gap: "40px" }}>
+    <div style={{ minHeight: "100vh", backgroundColor: "#ffe4ec", paddingBottom: "50px" }}>
+      <Navbar />
+
+      {/* HEADER SECTION */}
+      <section style={{ padding: "140px 20px 40px", textAlign: "center" }}>
+        <h1 style={{ 
+          fontFamily: "serif", 
+          fontSize: "clamp(2rem, 5vw, 3rem)", 
+          textTransform: "capitalize",
+          color: "#333",
+          marginBottom: "10px"
+        }}>
+          {slug.replace(/-/g, " ")}
+        </h1>
         
-        {/* Left: Product Images */}
-        <div style={{ display: "flex", flexDirection: "column", gap: "20px" }}>
-          {product.images.map((img, idx) => (
-            <Image
-              key={idx}
-              src={img}
-              alt={product.title}
-              width={500}
-              height={700}
-              priority={idx === 0}
-              style={{ width: "100%", height: "auto", borderRadius: "16px", boxShadow: "0 4px 15px rgba(0,0,0,0.1)" }}
-            />
+        {/* Price Tag Indicator */}
+        {(minPrice || maxPrice) && (
+          <div style={{ marginBottom: "15px" }}>
+            <span style={{ fontSize: "0.9rem", background: "#fff", padding: "5px 12px", borderRadius: "20px", color: "#d14d72", fontWeight: 600, border: "1px solid #ffb6c1" }}>
+              {minPrice && !maxPrice && `Above ₹${minPrice}`}
+              {!minPrice && maxPrice && `Under ₹${maxPrice}`}
+              {minPrice && maxPrice && `₹${minPrice} - ₹${maxPrice}`}
+            </span>
+          </div>
+        )}
+
+        <p style={{ color: "#666", maxWidth: "600px", margin: "0 auto" }}>
+          Discover the elegance of {slug.replace(/-/g, " ")}. Handpicked textures and timeless designs.
+        </p>
+
+        <Link href="/" style={{ 
+          display: "inline-block", 
+          marginTop: "20px", 
+          color: "#d14d72", 
+          textDecoration: "none",
+          fontWeight: 600,
+          fontSize: "0.9rem"
+        }}>
+          ← Back to Home
+        </Link>
+      </section>
+
+      {/* PRODUCT GRID */}
+      <section style={{ maxWidth: "1200px", margin: "0 auto", padding: "0 20px" }}>
+        <div
+          style={{
+            display: "grid",
+            gridTemplateColumns: "repeat(auto-fill, minmax(250px, 1fr))",
+            gap: "30px",
+          }}
+        >
+          {sareeItems.map((item) => (
+            <div
+              key={item.id}
+              style={{
+                borderRadius: "16px",
+                overflow: "hidden",
+                background: "#fff",
+                boxShadow: "0 10px 20px rgba(0,0,0,0.05)",
+                transition: "all 0.3s ease",
+                cursor: "pointer",
+                border: "1px solid #eee"
+              }}
+              onMouseEnter={(e) => {
+                e.currentTarget.style.transform = "translateY(-10px)";
+                e.currentTarget.style.boxShadow = "0 15px 30px rgba(0,0,0,0.1)";
+              }}
+              onMouseLeave={(e) => {
+                e.currentTarget.style.transform = "translateY(0)";
+                e.currentTarget.style.boxShadow = "0 10px 20px rgba(0,0,0,0.05)";
+              }}
+            >
+              {/* Image Container */}
+              <div style={{ position: "relative", height: "350px" }}>
+                <img
+                  src={item.src}
+                  alt={item.name}
+                  style={{
+                    width: "100%",
+                    height: "100%",
+                    objectFit: "cover",
+                  }}
+                />
+                <div style={{ 
+                  position: "absolute", 
+                  top: "15px", 
+                  left: "15px", 
+                  background: "rgba(255,255,255,0.9)", 
+                  padding: "4px 10px", 
+                  borderRadius: "6px",
+                  fontSize: "0.7rem",
+                  fontWeight: 700,
+                  color: "#d14d72",
+                  letterSpacing: "1px"
+                }}>
+                  VIRAWEAVES
+                </div>
+              </div>
+
+              {/* Text Info */}
+              <div style={{ padding: "20px", textAlign: "center" }}>
+                <h3 style={{ margin: "0 0 8px 0", fontSize: "1.1rem", color: "#333", fontFamily: "serif" }}>
+                  {item.name}
+                </h3>
+                <p style={{ margin: 0, color: "#d14d72", fontWeight: 700, fontSize: "1.2rem" }}>
+                  {item.price}
+                </p>
+                <button style={{
+                  marginTop: "15px",
+                  width: "100%",
+                  padding: "10px",
+                  borderRadius: "8px",
+                  border: "none",
+                  background: "#ffe4ec",
+                  color: "#d14d72",
+                  fontWeight: 600,
+                  cursor: "pointer",
+                  transition: "background 0.2s"
+                }}
+                onMouseEnter={(e) => e.currentTarget.style.background = "#ffb6c1"}
+                onMouseLeave={(e) => e.currentTarget.style.background = "#ffe4ec"}
+                >
+                  View Details
+                </button>
+              </div>
+            </div>
           ))}
         </div>
-
-        {/* Right: Product Details */}
-        <div style={{ position: "sticky", top: "140px", height: "fit-content" }}>
-          <Link href={`/category/${product.category.toLowerCase().replace(/\s+/g, "-")}`} 
-                style={{ color: "#ff69b4", textDecoration: "none", fontSize: "0.9rem", fontWeight: 600 }}>
-            ← {product.category.toUpperCase()}
-          </Link>
-          
-          <h1 style={{ fontSize: "2.5rem", fontFamily: "serif", margin: "10px 0", color: "#333" }}>
-            {product.title}
-          </h1>
-
-          <div style={{ margin: "20px 0" }}>
-            <span style={{ fontSize: "2rem", fontWeight: 700, color: "#ff1493" }}>
-              ₹{product.price.toLocaleString("en-IN")}
-            </span>
-            {product.originalPrice && (
-              <span style={{ marginLeft: "15px", textDecoration: "line-through", color: "#888" }}>
-                ₹{product.originalPrice.toLocaleString("en-IN")}
-              </span>
-            )}
-          </div>
-
-          <div style={{ borderTop: "1px solid #ffb6c1", borderBottom: "1px solid #ffb6c1", padding: "20px 0", margin: "20px 0" }}>
-            <p style={{ marginBottom: "10px" }}><strong>Fabric:</strong> {product.fabric}</p>
-            <p style={{ marginBottom: "10px" }}><strong>Weave:</strong> {product.weave}</p>
-            <p style={{ lineHeight: "1.6", color: "#555" }}>{product.description}</p>
-          </div>
-
-          <button style={{
-            width: "100%",
-            padding: "18px",
-            backgroundColor: "#ff69b4",
-            color: "white",
-            border: "none",
-            borderRadius: "30px",
-            fontSize: "1.1rem",
-            fontWeight: 700,
-            cursor: "pointer",
-            boxShadow: "0 5px 15px rgba(255,105,180,0.4)"
-          }}>
-            Add to Inquiry
-          </button>
-        </div>
-      </div>
+      </section>
     </div>
   );
 }

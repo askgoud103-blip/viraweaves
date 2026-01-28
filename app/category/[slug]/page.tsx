@@ -3,159 +3,125 @@
 import { useParams, useSearchParams } from "next/navigation";
 import Link from "next/link";
 import Navbar from "@/app/components/Navbar";
+import productsData from "@/data/products.json";
 
 export default function CategoryPage() {
   const params = useParams();
   const searchParams = useSearchParams();
-  
-  const slug = (params?.slug as string) || "collection";
-  
-  // Capture price filters from the URL (e.g., ?maxPrice=2000)
+
+  // --- DATA IMPORT FIX ---
+  // This line ensures that even if Turbopack wraps your JSON, we find the array.
+  const allProducts = Array.isArray(productsData) 
+    ? productsData 
+    : (productsData as any).default || (productsData as any).products || [];
+
+  const slug = params?.slug ? String(params.slug).toLowerCase() : "all";
   const minPrice = searchParams.get("minPrice");
   const maxPrice = searchParams.get("maxPrice");
 
-  // Mock data - In a real app, you'd filter this based on the 'slug' and 'prices'
-  const sareeItems = [
-    { id: 1, src: "/sarees/s1.jpg", name: "Classic Weave", price: "₹2,500" },
-    { id: 2, src: "/sarees/s2.jpg", name: "Royal Heritage", price: "₹4,200" },
-    { id: 3, src: "/sarees/s3.jpg", name: "Modern Drape", price: "₹1,800" },
-    { id: 4, src: "/sarees/s4.jpg", name: "Temple Border", price: "₹5,500" },
-    { id: 5, src: "/sarees/s5.jpg", name: "Golden Zari", price: "₹3,100" },
-    { id: 6, src: "/sarees/s6.jpg", name: "Evening Grace", price: "₹2,900" },
-    // Doubling for grid fill
-    { id: 7, src: "/sarees/s1.jpg", name: "Traditional Silk", price: "₹6,000" },
-    { id: 8, src: "/sarees/s2.jpg", name: "Floral Print", price: "₹1,200" },
-  ];
+  // WhatsApp Link Generator
+  const getWhatsAppLink = (itemTitle: string, price: number) => {
+    const phoneNumber = "7093430194"; // Your 10-digit number
+    const text = `Hi Viraweaves! I'm interested in the "${itemTitle}" (₹${price}). Is this available?`;
+    return `https://wa.me/${phoneNumber}?text=${encodeURIComponent(text)}`;
+  };
+
+  // Filter Logic
+  const filteredItems = allProducts.filter((item: any) => {
+    const isAll = slug === "all" || slug === "collection";
+    
+    // Use optional chaining to prevent crashes
+    const itemCategory = item?.category?.toLowerCase() || "";
+    const categoryMatch = isAll || itemCategory === slug;
+
+    const price = Number(item.price);
+    const matchesMin = minPrice ? price >= Number(minPrice) : true;
+    const matchesMax = maxPrice ? price <= Number(maxPrice) : true;
+
+    return categoryMatch && matchesMin && matchesMax;
+  });
 
   return (
-    <div style={{ minHeight: "100vh", backgroundColor: "#ffe4ec", paddingBottom: "50px" }}>
+    <div style={{ minHeight: "100vh", backgroundColor: "#ffe4ec", paddingBottom: "100px" }}>
       <Navbar />
 
-      {/* HEADER SECTION */}
       <section style={{ padding: "140px 20px 40px", textAlign: "center" }}>
-        <h1 style={{ 
-          fontFamily: "serif", 
-          fontSize: "clamp(2rem, 5vw, 3rem)", 
-          textTransform: "capitalize",
-          color: "#333",
-          marginBottom: "10px"
-        }}>
-          {slug.replace(/-/g, " ")}
+        <h1 style={{ fontFamily: "serif", fontSize: "3rem", color: "#333", textTransform: "capitalize" }}>
+          {slug === "all" ? "Our Full Collection" : slug}
         </h1>
         
-        {/* Price Tag Indicator */}
-        {(minPrice || maxPrice) && (
-          <div style={{ marginBottom: "15px" }}>
-            <span style={{ fontSize: "0.9rem", background: "#fff", padding: "5px 12px", borderRadius: "20px", color: "#d14d72", fontWeight: 600, border: "1px solid #ffb6c1" }}>
-              {minPrice && !maxPrice && `Above ₹${minPrice}`}
-              {!minPrice && maxPrice && `Under ₹${maxPrice}`}
-              {minPrice && maxPrice && `₹${minPrice} - ₹${maxPrice}`}
-            </span>
-          </div>
-        )}
-
-        <p style={{ color: "#666", maxWidth: "600px", margin: "0 auto" }}>
-          Discover the elegance of {slug.replace(/-/g, " ")}. Handpicked textures and timeless designs.
+        {/* Debug Info: Will help you see if data loaded at all */}
+        <p style={{ color: "#d14d72", fontWeight: 700 }}>
+          {allProducts.length === 0 
+            ? "⚠️ DATA LOAD ERROR: Check products.json path" 
+            : `${filteredItems.length} EXQUISITE WEAVES FOUND`}
         </p>
 
-        <Link href="/" style={{ 
-          display: "inline-block", 
-          marginTop: "20px", 
-          color: "#d14d72", 
-          textDecoration: "none",
-          fontWeight: 600,
-          fontSize: "0.9rem"
-        }}>
-          ← Back to Home
+        <Link href="/" style={{ color: "#666", textDecoration: "none", fontSize: "0.9rem", marginTop: "10px", display: "inline-block" }}>
+          ← BACK TO HOME
         </Link>
       </section>
 
-      {/* PRODUCT GRID */}
       <section style={{ maxWidth: "1200px", margin: "0 auto", padding: "0 20px" }}>
-        <div
-          style={{
-            display: "grid",
-            gridTemplateColumns: "repeat(auto-fill, minmax(250px, 1fr))",
-            gap: "30px",
-          }}
-        >
-          {sareeItems.map((item) => (
-            <div
-              key={item.id}
-              style={{
-                borderRadius: "16px",
-                overflow: "hidden",
-                background: "#fff",
-                boxShadow: "0 10px 20px rgba(0,0,0,0.05)",
-                transition: "all 0.3s ease",
-                cursor: "pointer",
-                border: "1px solid #eee"
-              }}
-              onMouseEnter={(e) => {
-                e.currentTarget.style.transform = "translateY(-10px)";
-                e.currentTarget.style.boxShadow = "0 15px 30px rgba(0,0,0,0.1)";
-              }}
-              onMouseLeave={(e) => {
-                e.currentTarget.style.transform = "translateY(0)";
-                e.currentTarget.style.boxShadow = "0 10px 20px rgba(0,0,0,0.05)";
-              }}
-            >
-              {/* Image Container */}
-              <div style={{ position: "relative", height: "350px" }}>
-                <img
-                  src={item.src}
-                  alt={item.name}
-                  style={{
-                    width: "100%",
-                    height: "100%",
-                    objectFit: "cover",
-                  }}
-                />
-                <div style={{ 
-                  position: "absolute", 
-                  top: "15px", 
-                  left: "15px", 
-                  background: "rgba(255,255,255,0.9)", 
-                  padding: "4px 10px", 
-                  borderRadius: "6px",
-                  fontSize: "0.7rem",
-                  fontWeight: 700,
-                  color: "#d14d72",
-                  letterSpacing: "1px"
-                }}>
-                  VIRAWEAVES
+        {filteredItems.length === 0 ? (
+          <div style={{ textAlign: "center", padding: "60px", background: "#fff", borderRadius: "24px", border: "1px dashed #d14d72" }}>
+            <p style={{ fontSize: "1.2rem", color: "#d14d72" }}>No sarees found in the "{slug}" category.</p>
+            <p style={{ fontSize: "0.9rem", color: "#666" }}>Currently loaded total products: {allProducts.length}</p>
+          </div>
+        ) : (
+          <div style={{ display: "grid", gridTemplateColumns: "repeat(auto-fill, minmax(300px, 1fr))", gap: "40px" }}>
+            {filteredItems.map((item: any) => (
+              <div key={item.id} style={{ 
+                background: "#fff", 
+                borderRadius: "24px", 
+                overflow: "hidden", 
+                boxShadow: "0 10px 30px rgba(0,0,0,0.05)",
+                transition: "transform 0.3s ease"
+              }}>
+                <Link href={`/product/${item.category}/${item.slug}`} style={{ cursor: "pointer" }}>
+                  <div style={{ height: "420px", overflow: "hidden", position: "relative" }}>
+                    <img 
+                      src={item.images?.[0] || "/placeholder.jpg"} 
+                      alt={item.title} 
+                      style={{ width: "100%", height: "100%", objectFit: "cover" }} 
+                    />
+                    <div style={{ 
+                      position: "absolute", top: "15px", right: "15px", 
+                      background: "white", padding: "5px 12px", 
+                      borderRadius: "8px", color: "#d14d72", fontWeight: 800, fontSize: "0.7rem" 
+                    }}>
+                      {item.fabric?.toUpperCase()}
+                    </div>
+                  </div>
+                </Link>
+
+                <div style={{ padding: "25px", textAlign: "center" }}>
+                  <span style={{ fontSize: "0.7rem", color: "#999", textTransform: "uppercase" }}>{item.weave}</span>
+                  <h3 style={{ margin: "5px 0 15px", fontFamily: "serif", fontSize: "1.3rem", color: "#222" }}>{item.title}</h3>
+                  
+                  <div style={{ marginBottom: "20px" }}>
+                    <span style={{ color: "#d14d72", fontWeight: 800, fontSize: "1.6rem" }}>₹{item.price.toLocaleString("en-IN")}</span>
+                  </div>
+
+                  <div style={{ display: "flex", flexDirection: "column", gap: "10px" }}>
+                    <Link href={`/product/${item.category}/${item.slug}`} style={{
+                      background: "#ffe4ec", color: "#d14d72", padding: "12px", 
+                      borderRadius: "12px", fontWeight: "700", textDecoration: "none"
+                    }}>
+                      VIEW DETAILS
+                    </Link>
+                    <a href={getWhatsAppLink(item.title, item.price)} target="_blank" rel="noopener noreferrer" style={{
+                      background: "#25D366", color: "#fff", padding: "12px", 
+                      borderRadius: "12px", fontWeight: "700", textDecoration: "none"
+                    }}>
+                      ORDER ON WHATSAPP
+                    </a>
+                  </div>
                 </div>
               </div>
-
-              {/* Text Info */}
-              <div style={{ padding: "20px", textAlign: "center" }}>
-                <h3 style={{ margin: "0 0 8px 0", fontSize: "1.1rem", color: "#333", fontFamily: "serif" }}>
-                  {item.name}
-                </h3>
-                <p style={{ margin: 0, color: "#d14d72", fontWeight: 700, fontSize: "1.2rem" }}>
-                  {item.price}
-                </p>
-                <button style={{
-                  marginTop: "15px",
-                  width: "100%",
-                  padding: "10px",
-                  borderRadius: "8px",
-                  border: "none",
-                  background: "#ffe4ec",
-                  color: "#d14d72",
-                  fontWeight: 600,
-                  cursor: "pointer",
-                  transition: "background 0.2s"
-                }}
-                onMouseEnter={(e) => e.currentTarget.style.background = "#ffb6c1"}
-                onMouseLeave={(e) => e.currentTarget.style.background = "#ffe4ec"}
-                >
-                  View Details
-                </button>
-              </div>
-            </div>
-          ))}
-        </div>
+            ))}
+          </div>
+        )}
       </section>
     </div>
   );

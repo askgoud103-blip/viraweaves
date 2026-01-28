@@ -14,11 +14,7 @@
     "blousePiece": "Yes",
     "occasion": ["Casual", "Office Wear"],
     "description": "Handwoven Jamdhani cotton saree with traditional motifs and soft texture.",
-    "care": [
-      "Dry clean recommended",
-      "Do not bleach",
-      "Dry in shade"
-    ],
+    "care": ["Dry clean recommended", "Do not bleach", "Dry in shade"],
     "images": [
       "/products/jamdhani/blue-1.jpg",
       "/products/jamdhani/blue-2.jpg",
@@ -29,19 +25,15 @@
   },
   {
     "id": "saree-001",
-    "category": "silk",
+    "category": "banarasi",
     "slug": "midnight-silk-saree",
     "title": "Midnight Silk Saree",
     "price": 4500,
-    "currency": "INR",
     "fabric": "Pure Silk",
     "weave": "Banarasi",
     "description": "A beautiful handcrafted piece.",
-    "images": [
-      "/images/saree1.jpg"
-    ],
-    "inStock": true,
-    "rating": 4.4
+    "images": ["/images/saree1.jpg"],
+    "inStock": true
   }
 ]
 

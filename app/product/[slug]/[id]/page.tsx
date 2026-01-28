@@ -1,108 +1,92 @@
+"use client";
+
+import { useParams } from "next/navigation";
 import Link from "next/link";
-import Image from "next/image";
-import { notFound } from "next/navigation";
-import productsData from "@/data/products.json";
+import Navbar from "@/app/components/Navbar";
+import products from "@/data/products.json"; // Path to your fixed JSON
 
-interface Product {
-  id: string;
-  category: string;
-  slug: string;
-  title: string;
-  price: number;
-  originalPrice?: number;
-  fabric: string;
-  weave: string;
-  description: string;
-  images: string[];
-}
+export default function ProductDetails() {
+  const params = useParams();
+  const slug = params?.id; // Assuming the URL is /product/[slug]
 
-interface Props {
-  params: Promise<{ id: string }>;
-}
-
-export default async function ProductPage({ params }: Props) {
-  // 1. Await params for Next.js 15
-  const { id } = await params;
-
-  // 2. Find the product
-  const product = (productsData as Product[]).find((p) => p.id === id);
+  // Find the specific product from your JSON
+  const product = products.find((p) => p.slug === slug || p.id === slug);
 
   if (!product) {
-    return notFound();
+    return (
+      <div style={{ textAlign: "center", padding: "100px" }}>
+        <h2>Product not found</h2>
+        <Link href="/">Return Home</Link>
+      </div>
+    );
   }
 
-  // 3. WHATSAPP LOGIC
-  const WHATSAPP_NUMBER = "91XXXXXXXXXX"; // <-- CHANGE THIS to your actual number
-  const message = encodeURIComponent(
-    `Namaste Viraweaves! 🙏\n\nI am interested in this saree:\n*Product:* ${product.title}\n*Price:* ₹${product.price.toLocaleString("en-IN")}\n*ID:* ${product.id}\n\nIs this available?`
-  );
-  const whatsappUrl = `https://wa.me/${WHATSAPP_NUMBER}?text=${message}`;
-
   return (
-    <div style={{ minHeight: "100vh", backgroundColor: "#fff0f5", padding: "120px 20px" }}>
-      <div style={{ maxWidth: "1000px", margin: "0 auto", display: "grid", gridTemplateColumns: "1fr 1fr", gap: "40px" }}>
-        
-        {/* Left: Product Images */}
-        <div style={{ display: "flex", flexDirection: "column", gap: "20px" }}>
-          {product.images.map((img, idx) => (
-            <Image
-              key={idx}
-              src={img}
-              alt={product.title}
-              width={500}
-              height={700}
-              priority={idx === 0}
-              style={{ width: "100%", height: "auto", borderRadius: "16px", boxShadow: "0 4px 15px rgba(0,0,0,0.1)" }}
-            />
-          ))}
-        </div>
+    <div style={{ minHeight: "100vh", backgroundColor: "#fff" }}>
+      <Navbar />
+      
+      <main style={{ maxWidth: "1200px", margin: "0 auto", padding: "140px 20px 60px" }}>
+        <Link href={`/category/${product.category}`} style={{ color: "#d14d72", textDecoration: "none", fontWeight: 600 }}>
+          ← Back to {product.category}
+        </Link>
 
-        {/* Right: Product Details */}
-        <div style={{ position: "sticky", top: "140px", height: "fit-content" }}>
-          <Link href={`/category/all`} 
-                style={{ color: "#ff69b4", textDecoration: "none", fontSize: "0.9rem", fontWeight: 600 }}>
-            ← BACK TO COLLECTION
-          </Link>
+        <div style={{ display: "grid", gridTemplateColumns: "repeat(auto-fit, minmax(350px, 1fr))", gap: "60px", marginTop: "40px" }}>
           
-          <h1 style={{ fontSize: "2.5rem", fontFamily: "serif", margin: "10px 0", color: "#333" }}>
-            {product.title}
-          </h1>
-
-          <div style={{ margin: "20px 0" }}>
-            <span style={{ fontSize: "2rem", fontWeight: 700, color: "#ff1493" }}>
-              ₹{product.price.toLocaleString("en-IN")}
-            </span>
+          {/* IMAGE SECTION */}
+          <div>
+            <img 
+              src={product.images[0]} 
+              alt={product.title} 
+              style={{ width: "100%", borderRadius: "24px", boxShadow: "0 20px 40px rgba(0,0,0,0.1)" }} 
+            />
           </div>
 
-          <div style={{ borderTop: "1px solid #ffb6c1", borderBottom: "1px solid #ffb6c1", padding: "20px 0", margin: "20px 0" }}>
-            <p style={{ marginBottom: "10px" }}><strong>Fabric:</strong> {product.fabric}</p>
-            <p style={{ marginBottom: "10px" }}><strong>Weave:</strong> {product.weave}</p>
-            <p style={{ lineHeight: "1.6", color: "#555" }}>{product.description}</p>
-          </div>
+          {/* CONTENT SECTION */}
+          <div>
+            <p style={{ color: "#d14d72", fontWeight: 700, letterSpacing: "2px", fontSize: "0.75rem", textTransform: "uppercase" }}>
+              {product.weave} • {product.fabric}
+            </p>
+            <h1 style={{ fontFamily: "serif", fontSize: "2.8rem", margin: "10px 0", color: "#222" }}>
+              {product.title}
+            </h1>
+            
+            <div style={{ display: "flex", alignItems: "baseline", gap: "15px", margin: "20px 0" }}>
+              <span style={{ fontSize: "2rem", color: "#d14d72", fontWeight: 700 }}>₹{product.price}</span>
+              {product.originalPrice && (
+                <span style={{ textDecoration: "line-through", color: "#999" }}>₹{product.originalPrice}</span>
+              )}
+            </div>
 
-          {/* WHATSAPP INQUIRY BUTTON */}
-          <a 
-            href={whatsappUrl}
-            target="_blank" 
-            rel="noopener noreferrer"
-            style={{
-              display: "block",
+            <p style={{ lineHeight: "1.8", color: "#444", fontSize: "1.05rem" }}>{product.description}</p>
+
+            <div style={{ marginTop: "30px", background: "#fdf2f5", padding: "25px", borderRadius: "16px", border: "1px solid #ffe4ec" }}>
+              <h4 style={{ margin: "0 0 10px 0", fontSize: "0.9rem" }}>Product Specifications:</h4>
+              <ul style={{ listStyle: "none", padding: 0, margin: 0, fontSize: "0.95rem", color: "#555" }}>
+                <li style={{ marginBottom: "8px" }}>🧵 <strong>Fabric:</strong> {product.fabric}</li>
+                <li style={{ marginBottom: "8px" }}>📏 <strong>Length:</strong> {product.length || "5.5 meters"}</li>
+                <li style={{ marginBottom: "8px" }}>🎨 <strong>Color:</strong> {product.color || "Traditional"}</li>
+                <li>✨ <strong>Blouse Piece:</strong> {product.blousePiece || "Available"}</li>
+              </ul>
+            </div>
+
+            <button style={{
+              marginTop: "40px",
               width: "100%",
-              padding: "18px",
-              backgroundColor: "#25D366", // Official WhatsApp Green
-              color: "white",
-              textAlign: "center",
-              borderRadius: "30px",
+              padding: "20px",
+              borderRadius: "14px",
+              border: "none",
+              background: "#d14d72",
+              color: "#fff",
               fontSize: "1.1rem",
-              fontWeight: 700,
-              textDecoration: "none",
-              boxShadow: "0 5px 15px rgba(37,211,102,0.4)",
-            }}
-          >
-            Inquiry on WhatsApp
-          </a>
+              fontWeight: 600,
+              cursor: "pointer",
+              boxShadow: "0 10px 25px rgba(209, 77, 114, 0.4)"
+            }}>
+              Order on WhatsApp
+            </button>
+          </div>
         </div>
-      </div>
+      </main>
     </div>
   );
 }

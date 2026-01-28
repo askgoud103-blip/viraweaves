@@ -26,19 +26,22 @@
     ],
     "inStock": true,
     "rating": 4.6
-  }
-  [
+  },
   {
     "id": "saree-001",
+    "category": "silk",
+    "slug": "midnight-silk-saree",
     "title": "Midnight Silk Saree",
     "price": 4500,
+    "currency": "INR",
     "fabric": "Pure Silk",
     "weave": "Banarasi",
     "description": "A beautiful handcrafted piece.",
-    "images": ["/images/saree1.jpg"]
+    "images": [
+      "/images/saree1.jpg"
+    ],
+    "inStock": true,
+    "rating": 4.4
   }
-]
-  
-  
 ]
 

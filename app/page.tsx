@@ -1,5 +1,6 @@
+// app/page.tsx
 "use client";
-
+import products from "@/data/products.json";
 import { useRef, useEffect, useState } from "react";
 import Navbar from "./components/Navbar";
 import Link from "next/link";
@@ -161,27 +162,59 @@ export default function HomePage() {
         </div>
       </section>
       
-     {/* SECTION 2: Explore Your Choice (Category Grid) */}
-     <section style={{ maxWidth: "1200px", margin: "40px auto", padding: "0 10px" }}>
-        <h2 style={{ textAlign: "center" }}>Explore Your Choice</h2>
+    {/* --- SECTION 2: QUICK LINK BUTTONS (5 PER ROW) --- */}
+<section style={{ padding: "40px 20px", textAlign: "center" }}>
+  <div style={{ 
+    display: "grid", 
+    // This creates 5 equal columns on large screens, 2 on mobile
+    gridTemplateColumns: "repeat(5, 1fr)", 
+    gap: "15px", 
+    maxWidth: "1200px", 
+    margin: "0 auto" 
+  }}>
+    {["Jamdhani", "Banarasi", "Kanchi Pattu", "Narayanpet", "Pochampally", "Gadwal", "Venkatagiri", "Kotha", "Fancy", "Viscos", "Pure Georgette", "JimmiChoo", "Designer Sarees", "____________", "___________"].map((catName) => (
+      <Link 
+        key={catName} 
+        href={`/category/${catName.toLowerCase().trim().replace(/\s+/g, "-")}`} 
+        style={{
+          padding: "8px 4px",
+          background: "#d14d72",
+          color: "#fff",
+          borderRadius: "10px", // Rectangular with slight round for 5-per-row fit
+          textDecoration: "none",
+          fontWeight: "bold",
+          fontSize: "0.75rem", // Slightly smaller font to ensure text fits 5-wide
+          boxShadow: "0 4px 10px rgba(0,0,0,0.1)",
+          display: "flex",
+          alignItems: "center",
+          justifyContent: "center",
+          minHeight: "25px",
+          transition: "all 0.2s ease"
+        }}
+        onMouseEnter={(e) => {
+          e.currentTarget.style.background = "#b03d5d";
+          e.currentTarget.style.transform = "translateY(-2px)";
+        }}
+        onMouseLeave={(e) => {
+          e.currentTarget.style.background = "#d14d72";
+          e.currentTarget.style.transform = "translateY(0)";
+        }}
+      >
+        {catName.toUpperCase()}
+      </Link>
+    ))}
+  </div>
 
-        <div style={{ display: "grid", gridTemplateColumns: "repeat(auto-fit,minmax(160px,1fr))", gap: "20px" }}>
-          {thumbnails.map((name, i) => (
-            <Link key={i} href={`/category/${normalize(name)}`} style={{ textDecoration: "none" }}>
-              <div style={{ height: "150px", borderRadius: "12px", overflow: "hidden", position: "relative" }}>
-                <img src={`/thumb${i + 1}.jpg`} alt={name} style={{ width: "100%", height: "100%", objectFit: "cover" }} />
-                <div style={{
-                  position: "absolute", bottom: 0, width: "100%",
-                  background: "rgba(0,0,0,0.6)", color: "#fff",
-                  textAlign: "center", padding: "6px", fontWeight: 600
-                }}>
-                  {name}
-                </div>
-              </div>
-            </Link>
-          ))}
-        </div>
-      </section>
+  {/* CSS to make it look good on Mobile (overrides the 5-column grid) */}
+  <style jsx>{`
+    @media (max-width: 900px) {
+      div { grid-template-columns: repeat(3, 1fr) !important; }
+    }
+    @media (max-width: 600px) {
+      div { grid-template-columns: repeat(2, 1fr) !important; }
+    }
+  `}</style>
+</section>
 
       {/* SECTION 3: Quick Links (Price & Collection Filters) */}
 <section id="quick-links" style={{ margin: "20px auto", maxWidth: "1100px", padding: "0 20px" }}>

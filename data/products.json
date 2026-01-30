@@ -1,39 +1,134 @@
 [
   {
-    "id": "vw-001",
-    "category": "jamdhani",
-    "slug": "blue-jamdhani-cotton-saree",
-    "title": "Blue Jamdhani Cotton Saree",
-    "price": 1899,
-    "originalPrice": 2499,
-    "currency": "INR",
-    "fabric": "Pure Cotton",
-    "weave": "Jamdhani",
-    "color": "Blue",
-    "length": "5.5 meters",
-    "blousePiece": "Yes",
-    "occasion": ["Casual", "Office Wear"],
-    "description": "Handwoven Jamdhani cotton saree with traditional motifs and soft texture.",
-    "care": ["Dry clean recommended", "Do not bleach", "Dry in shade"],
-    "images": [
-      "/products/jamdhani/blue-1.jpg",
-      "/products/jamdhani/blue-2.jpg",
-      "/products/jamdhani/blue-3.jpg"
-    ],
-    "inStock": true,
-    "rating": 4.6
+    "id": "vw-101",
+    "title": "Scarlet Red Banarasi Silk",
+    "category": "Banarasi",
+    "price": 5500,
+    "description": "A timeless classic featuring heavy gold zari work on pure silk fabric.",
+    "fabric": "Silk",
+    "weave": "Handloom",
+    "images": ["/dir.jpg", "/dir9.jpg"],
+    "occasion": "Wedding"
   },
   {
-    "id": "saree-001",
-    "category": "banarasi",
-    "slug": "midnight-silk-saree",
-    "title": "Midnight Silk Saree",
-    "price": 4500,
+    "id": "vw-102",
+    "title": "Temple Border Kanchi Pattu",
+    "category": "Kanchi Pattu",
+    "price": 12500,
+    "description": "Rich Kanchipuram silk with a traditional temple border design.",
     "fabric": "Pure Silk",
-    "weave": "Banarasi",
-    "description": "A beautiful handcrafted piece.",
-    "images": ["/images/saree1.jpg"],
-    "inStock": true
+    "weave": "Handloom",
+    "images": ["/dir20.jpg", "/dir10.jpg"],
+    "occasion": "Bridal"
+  },
+  {
+    "id": "vw-103",
+    "title": "Shimmer Emerald JimmiChoo",
+    "category": "JimmiChoo",
+    "price": 3200,
+    "description": "Trending lightweight shimmer fabric for modern cocktail parties.",
+    "fabric": "JimmiChoo Shimmer",
+    "weave": "Machine",
+    "images": ["/dir21.jpg", "/dir11.jpg"],
+    "occasion": "Party Wear"
+  },
+  {
+    "id": "vw-104",
+    "title": "Pure Georgette Floral Bliss",
+    "category": "Pure Georgette",
+    "price": 4200,
+    "description": "Soft, flowing georgette with vibrant floral digital prints.",
+    "fabric": "Pure Georgette",
+    "weave": "Digital Print",
+    "images": ["/dir22.jpg", "/dir12.jpg"],
+    "occasion": "Casual"
+  },
+  {
+    "id": "vw-105",
+    "title": "Boutique Designer Party Saree",
+    "category": "Designer Sarees",
+    "price": 8500,
+    "description": "Intricate stone work and sequins on a modern drape.",
+    "fabric": "Viscos",
+    "weave": "Designer",
+    "images": ["/dir23.jpg", "/dir13.jpg"],
+    "occasion": "Evening Wear"
+  },
+  {
+    "id": "vw-106",
+    "title": "Daily Chic Office Saree",
+    "category": "OfficeWear",
+    "price": 1850,
+    "description": "Breathable fabric with minimal patterns, perfect for professional settings.",
+    "fabric": "Cotton-Polly",
+    "weave": "Machine",
+    "images": ["/dir24.jpg", "/dir14.jpg"],
+    "occasion": "Office"
+  },
+  {
+    "id": "vw-301",
+    "title": "Classic Ikat Pochampally",
+    "category": "Pochampally",
+    "price": 5800,
+    "description": "Authentic Handloom Pochampally featuring geometric Ikat patterns and a silk finish.",
+    "fabric": "Silk Cotton",
+    "weave": "Ikat Handloom",
+    "images": ["/dir.jpg", "/dir20.jpg"],
+    "occasion": "Festive"
+  },
+  {
+    "id": "vw-302",
+    "title": "Traditional Gadwal Sico",
+    "category": "Gadwal",
+    "price": 6500,
+    "description": "The perfect blend of cotton body and silk border, typical of the Gadwal heritage.",
+    "fabric": "Sico",
+    "weave": "Handloom",
+    "images": ["/dir9.jpg", "/dir21.jpg"],
+    "occasion": "Religious"
+  },
+  {
+    "id": "vw-303",
+    "title": "Handcrafted Narayanpet Cotton",
+    "category": "Narayanpet",
+    "price": 2200,
+    "description": "Lightweight cotton saree with the signature Narayanpet temple border.",
+    "fabric": "Pure Cotton",
+    "weave": "Handloom",
+    "images": ["/dir10.jpg", "/dir22.jpg"],
+    "occasion": "OfficeWear"
+  },
+  {
+    "id": "vw-304",
+    "title": "Graceful Venkatagiri Pattu",
+    "category": "Venkatagiri",
+    "price": 8200,
+    "description": "Known for its fine weaving and soft texture, this Venkatagiri saree defines elegance.",
+    "fabric": "Silk",
+    "weave": "Handloom",
+    "images": ["/dir11.jpg", "/dir23.jpg"],
+    "occasion": "Wedding"
+  },
+  {
+    "id": "vw-305",
+    "title": "Translucent Kotha Silk",
+    "category": "Kotha",
+    "price": 3800,
+    "description": "A breezy Kotha saree with light zari work, perfect for summer celebrations.",
+    "fabric": "Kotha Silk",
+    "weave": "Handloom",
+    "images": ["/dir12.jpg", "/dir24.jpg"],
+    "occasion": "Party Wear"
+  },
+  {
+    "id": "vw-306",
+    "title": "Floral White Jamdhani",
+    "category": "Jamdhani",
+    "price": 2800,
+    "description": "Delicate muslin Jamdhani with hand-woven floral buttas.",
+    "fabric": "Muslin Cotton",
+    "weave": "Handloom",
+    "images": ["/dir13.jpg", "/dir14.jpg"],
+    "occasion": "Casual"
   }
 ]
-

@@ -4,35 +4,41 @@ import products from "@/data/products.json";
 import { useRef, useEffect, useState } from "react";
 import Navbar from "./components/Navbar";
 import Link from "next/link";
+import { normalize, formatPrice } from "@/lib/utils";
 
-// Shared normalizer to ensure slugs match your category pages
-const normalize = (value: string) => {
-  return value
-    .toLowerCase()
-    .trim()
-    .replace(/\s*to\s*/g, "-")
-    .replace(/\s+/g, "-")
-    .replace(/-+/g, "-");
-};
+
+
+// 2. Centralized Data Arrays
+const CATEGORIES = [
+  "Jamdhani", "Banarasi", "Kanchi Pattu", "Narayanpet", "Pochampally", 
+  "Gadwal", "Venkatagiri", "Kotha", "Fancy", "Viscos", 
+  "Pure Georgette", "JimmiChoo", "Designer Sarees", "OfficeWear", "CasualWear"
+];
+
+const QUICK_FILTERS = [
+  { label: "Below Rs.2K", cat: "jamdhani", params: "?maxPrice=2000" },
+  { label: "Below Rs.5K", cat: "banarasi", params: "?maxPrice=5000" },
+  { label: "Rs.10K – 15K", cat: "kanchi-pattu", params: "?minPrice=10000&maxPrice=15000" },
+  { label: "Rs.15K – 30K", cat: "jamdhani", params: "?minPrice=15000&maxPrice=30000" },
+  { label: "Above Rs.45K", cat: "kanchi-pattu", params: "?minPrice=45000" },
+  { label: "New Arrivals", cat: "pochampally", params: "" },
+  { label: "Trending", cat: "narayanpet", params: "" },
+  { label: "Popular", cat: "gadwal", params: "" },
+  { label: "Designer", cat: "designer-sarees", params: "" },
+];
+
+const SAREE_IMAGES = [
+  "/dir.jpg", "/dir9.jpg", "/dir20.jpg", "/dir10.jpg",
+  "/dir21.jpg", "/dir11.jpg", "/dir22.jpg", "/dir12.jpg",
+  "/dir23.jpg", "/dir13.jpg", "/dir24.jpg", "/dir14.jpg",
+];
 
 export default function HomePage() {
   const [isHovering, setIsHovering] = useState(false);
-
-  const thumbnails = [
-    "Jamdhani", "Kanchi Pattu", "Narayanpet", "Pochampally",
-    "Gadwal", "Venkatagiri", "Kotha", "Fancy",
-    "Viscos", "Pure Georgette", "JimmiChoo", "Designer Sarees",
-  ];
-
-  const sareeImages = [
-    "/dir.jpg", "/dir9.jpg", "/dir20.jpg", "/dir10.jpg",
-    "/dir21.jpg", "/dir11.jpg", "/dir22.jpg", "/dir12.jpg",
-    "/dir23.jpg", "/dir13.jpg", "/dir24.jpg", "/dir14.jpg",
-  ];
-
-  const containerRef = useRef<HTMLDivElement>(null);
-  const [translateX, setTranslateX] = useState(0);
   const [isDragging, setIsDragging] = useState(false);
+  const [translateX, setTranslateX] = useState(0);
+  
+  const containerRef = useRef<HTMLDivElement>(null);
   const dragStartX = useRef(0);
   const prevTranslate = useRef(0);
   const animationRef = useRef<number>(0);
@@ -79,49 +85,26 @@ export default function HomePage() {
     <div style={{ width: "100%", minHeight: "100vh", backgroundColor: "#ffc0cb", overflowX: "hidden" }}>
       <Navbar />
 
-      {/* HERO SECTION - Small & Elegant */}
-      <section style={{ 
-        padding: "120px 20px 40px", 
-        textAlign: "center", 
-        background: "linear-gradient(to bottom, #ffc0cb, #ffe4ec)" 
-      }}>
+      {/* HERO SECTION */}
+      <section style={{ padding: "120px 20px 40px", textAlign: "center", background: "linear-gradient(to bottom, #ffc0cb, #ffe4ec)" }}>
         <div style={{ maxWidth: "800px", margin: "0 auto" }}>
-          <span style={{ 
-            textTransform: "uppercase", 
-            letterSpacing: "3px", 
-            fontSize: "0.75rem", 
-            fontWeight: 600, 
-            color: "#d14d72" 
-          }}>
+          <span style={{ textTransform: "uppercase", letterSpacing: "3px", fontSize: "0.75rem", fontWeight: 600, color: "#d14d72" }}>
             Authentic Indian Heritage
           </span>
-          <h1 style={{ 
-            fontFamily: "serif", 
-            fontSize: "clamp(2.2rem, 8vw, 3.5rem)", 
-            lineHeight: "1.2", 
-            margin: "10px 0", 
-            color: "#333" 
-          }}>
+          <h1 style={{ fontFamily: "serif", fontSize: "clamp(2.2rem, 8vw, 3.5rem)", margin: "10px 0", color: "#333" }}>
             Viraweaves
           </h1>
-          <p style={{ 
-            fontSize: "1rem", 
-            color: "#555", 
-            maxWidth: "500px", 
-            margin: "0 auto", 
-            lineHeight: "1.5" 
-          }}>
+          <p style={{ fontSize: "1rem", color: "#555", maxWidth: "500px", margin: "0 auto" }}>
             Timeless hand-woven traditions, crafted for the modern woman.
           </p>
         </div>
       </section>
 
-      {/* SECTION 1: Auto Scroll Sarees (Latest Arrivals) */}
-      <section style={{ paddingTop: "0px", paddingBottom: "0px", textAlign: "center" }}>
-        <h2 style={{ fontFamily: "serif", fontSize: "2rem", fontWeight: 700, marginBottom: "5px", color: "#333" }}>
+      {/* SECTION 1: Auto Scroll */}
+      <section style={{ textAlign: "center", paddingBottom: "20px" }}>
+        <h2 style={{ fontFamily: "serif", fontSize: "2rem", fontWeight: 700, marginBottom: "20px", color: "#333" }}>
           Latest Arrivals
         </h2>
-
         <div
           ref={containerRef}
           style={{ overflow: "hidden", cursor: isDragging ? "grabbing" : "grab" }}
@@ -134,170 +117,73 @@ export default function HomePage() {
           onTouchMove={handleMouseMove}
           onTouchEnd={handleMouseUp}
         >
-          <div
-            style={{
-              display: "flex",
-              flexWrap: "nowrap",
-              transform: `translateX(${translateX}px)`,
-              transition: isDragging ? "none" : "transform 0.1s linear",
-            }}
-          >
-            {[...sareeImages, ...sareeImages].map((src, i) => (
-              <img
-                key={i}
-                src={src}
-                alt="Saree Arrival"
-                style={{
-                  height: "280px",
-                  width: "auto",
-                  flexShrink: 0,
-                  borderRadius: "15px",
-                  background: "white",
-                  marginRight: "15px",
-                  boxShadow: "0 4px 12px rgba(0,0,0,0.1)"
-                }}
-              />
+          <div style={{
+            display: "flex",
+            transform: `translateX(${translateX}px)`,
+            transition: isDragging ? "none" : "transform 0.1s linear",
+          }}>
+            {[...SAREE_IMAGES, ...SAREE_IMAGES].map((src, i) => (
+              <img key={i} src={src} alt="Saree" style={{ height: "280px", borderRadius: "15px", marginRight: "15px", boxShadow: "0 4px 12px rgba(0,0,0,0.1)", background: "white" }} />
             ))}
           </div>
         </div>
       </section>
-      
-    {/* --- SECTION 2: QUICK LINK BUTTONS (5 PER ROW) --- */}
-<section style={{ padding: "40px 20px", textAlign: "center" }}>
-  <div style={{ 
-    display: "grid", 
-    // This creates 5 equal columns on large screens, 2 on mobile
-    gridTemplateColumns: "repeat(5, 1fr)", 
-    gap: "15px", 
-    maxWidth: "1200px", 
-    margin: "0 auto" 
-  }}>
-    {["Jamdhani", "Banarasi", "Kanchi Pattu", "Narayanpet", "Pochampally", "Gadwal", "Venkatagiri", "Kotha", "Fancy", "Viscos", "Pure Georgette", "JimmiChoo", "Designer Sarees", "____________", "___________"].map((catName) => (
-      <Link 
-        key={catName} 
-        href={`/category/${catName.toLowerCase().trim().replace(/\s+/g, "-")}`} 
-        style={{
-          padding: "8px 4px",
-          background: "#d14d72",
-          color: "#fff",
-          borderRadius: "10px", // Rectangular with slight round for 5-per-row fit
-          textDecoration: "none",
-          fontWeight: "bold",
-          fontSize: "0.75rem", // Slightly smaller font to ensure text fits 5-wide
-          boxShadow: "0 4px 10px rgba(0,0,0,0.1)",
-          display: "flex",
-          alignItems: "center",
-          justifyContent: "center",
-          minHeight: "25px",
-          transition: "all 0.2s ease"
-        }}
-        onMouseEnter={(e) => {
-          e.currentTarget.style.background = "#b03d5d";
-          e.currentTarget.style.transform = "translateY(-2px)";
-        }}
-        onMouseLeave={(e) => {
-          e.currentTarget.style.background = "#d14d72";
-          e.currentTarget.style.transform = "translateY(0)";
-        }}
-      >
-        {catName.toUpperCase()}
-      </Link>
-    ))}
-  </div>
 
-  {/* CSS to make it look good on Mobile (overrides the 5-column grid) */}
-  <style jsx>{`
-    @media (max-width: 900px) {
-      div { grid-template-columns: repeat(3, 1fr) !important; }
-    }
-    @media (max-width: 600px) {
-      div { grid-template-columns: repeat(2, 1fr) !important; }
-    }
-  `}</style>
-</section>
-
-      {/* SECTION 3: Quick Links (Price & Collection Filters) */}
-<section id="quick-links" style={{ margin: "20px auto", maxWidth: "1100px", padding: "0 20px" }}>
-  <h2 style={{ textAlign: "center", fontSize: "2rem", fontWeight: 700, marginBottom: "30px", color: "#333", fontFamily: "serif" }}>
-    Quick Links
-  </h2>
-
-  <div
-    style={{
-      display: "flex",
-      flexWrap: "wrap",
-      gap: "15px",
-      justifyContent: "center",
-    }}
-  >
-    {[
-      { label: "Below Rs.2K", path: "/category/all?maxPrice=2000" },
-      { label: "Below Rs.5K", path: "/category/all?maxPrice=5000" },
-      { label: "Rs.10K – 15K", path: "/category/all?minPrice=10000&maxPrice=15000" },
-      { label: "Rs.15K – 30K", path: "/category/all?minPrice=15000&maxPrice=30000" },
-      { label: "Above Rs.45K", path: "/category/all?minPrice=45000" },
-      { label: "New Arrivals", path: "/category/new-arrivals" },
-      { label: "Trending", path: "/category/trending" },
-      { label: "Popular", path: "/category/popular" },
-      { label: "Designer", path: "/category/designer-sarees" },
-      
-    ].map((item, i) => (
-      <Link
-        key={i}
-        href={item.path}
-        style={{
-          flex: "1 1 calc(25% - 15px)", // 4 items per row on desktop
-          minWidth: "140px",
-          padding: "18px 10px",
-          borderRadius: "12px",
-          background: "#ffe4ec",
-          boxShadow: "0 4px 10px rgba(0,0,0,0.08)",
-          textAlign: "center",
-          fontWeight: 700,
-          textDecoration: "none",
-          color: "#333",
-          transition: "all 0.3s cubic-bezier(0.4, 0, 0.2, 1)",
-          border: "1px solid #ffb6c1",
-          fontSize: "0.85rem",
-          letterSpacing: "0.5px"
-        }}
-        onMouseEnter={(e) => {
-          e.currentTarget.style.backgroundColor = "#ffb6c1";
-          e.currentTarget.style.transform = "translateY(-3px)";
-          e.currentTarget.style.boxShadow = "0 6px 15px rgba(0,0,0,0.12)";
-        }}
-        onMouseLeave={(e) => {
-          e.currentTarget.style.backgroundColor = "#ffe4ec";
-          e.currentTarget.style.transform = "translateY(0)";
-          e.currentTarget.style.boxShadow = "0 4px 10px rgba(0,0,0,0.08)";
-        }}
-      >
-        {item.label.toUpperCase()}
-      </Link>
-    ))}
-  </div>
-</section>
-
-      {/* SECTION 4: Coming Soon */}
-      <section style={{ width: "100%", textAlign: "center", padding: "30px 10px", background: "rgba(255,255,255,0.3)" }}>
-        <h2 style={{ fontSize: "1.8rem", marginBottom: "10px", color: "#333" }}>Coming Soon</h2>
-        <p style={{ fontStyle: "italic", color: "#555", marginBottom: "30px" }}>Something beautiful is being crafted for you…</p>
-
-        <div
-          style={{
-            maxWidth: "600px",
-            margin: "0 auto",
-            border: "2px dashed white",
-            background: "rgba(255,255,255,0.5)",
-            padding: "40px 20px",
-            borderRadius: "18px",
-            fontSize: "1.2rem",
-            color: "#333"
-          }}
-        >
-          Special Bridal Collections & Silk Weaves Launching Soon
+      {/* SECTION 2: Categories Grid */}
+      <section style={{ padding: "40px 20px", textAlign: "center" }}>
+        <div style={{ 
+          display: "grid", 
+          gridTemplateColumns: "repeat(auto-fit, minmax(150px, 1fr))", // Responsive by default
+          gap: "15px", 
+          maxWidth: "1200px", 
+          margin: "0 auto" 
+        }}>
+          {CATEGORIES.map((cat) => (
+            <Link 
+              key={cat} 
+              href={`/category/${normalize(cat)}`} 
+              className="cat-link"
+              style={{
+                padding: "12px 8px", background: "#d14d72", color: "#fff", borderRadius: "10px",
+                textDecoration: "none", fontWeight: "bold", fontSize: "0.75rem", display: "flex",
+                alignItems: "center", justifyContent: "center", transition: "0.2s"
+              }}
+            >
+              {cat.toUpperCase()}
+            </Link>
+          ))}
         </div>
       </section>
+
+      {/* SECTION 3: Quick Links (Price Filters) */}
+      <section style={{ margin: "40px auto", maxWidth: "1100px", padding: "0 20px" }}>
+        <h2 style={{ textAlign: "center", fontSize: "2rem", fontFamily: "serif", marginBottom: "30px" }}>Quick Links</h2>
+        <div style={{ display: "flex", flexWrap: "wrap", gap: "15px", justifyContent: "center" }}>
+          {QUICK_FILTERS.map((item) => (
+            <Link
+              key={item.label}
+              href={`/category/${item.cat}${item.params}`}
+              style={{
+                flex: "1 1 calc(20% - 15px)", minWidth: "140px", padding: "18px 10px",
+                borderRadius: "12px", background: "#ffe4ec", textAlign: "center",
+                fontWeight: 700, textDecoration: "none", color: "#333", border: "1px solid #ffb6c1"
+              }}
+            >
+              {item.label.toUpperCase()}
+            </Link>
+          ))}
+        </div>
+      </section>
+
+      {/* SECTION 4: Coming Soon */}
+      <section style={{ textAlign: "center", padding: "60px 20px", background: "rgba(255,255,255,0.3)" }}>
+        <h2 style={{ fontSize: "1.8rem", color: "#333" }}>Coming Soon</h2>
+        <p style={{ fontStyle: "italic", color: "#555" }}>Special Bridal Collections & Silk Weaves Launching Soon</p>
+      </section>
+
+      <style jsx global>{`
+        .cat-link:hover { background: #b03d5d !important; transform: translateY(-2px); }
+      `}</style>
     </div>
   );
 }

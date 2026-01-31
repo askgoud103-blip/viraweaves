@@ -1,4 +1,3 @@
-// app/category/slug]
 "use client";
 
 import { useParams, useSearchParams } from "next/navigation";
@@ -11,7 +10,7 @@ export default function CategoryPage() {
   const params = useParams();
   const searchParams = useSearchParams();
 
-  // Ensuring data is handled correctly regardless of JSON structure
+  // Ensuring data is handled correctly
   const allProducts = Array.isArray(productsData)
     ? productsData
     : (productsData as any).default || (productsData as any).products || [];
@@ -28,14 +27,36 @@ export default function CategoryPage() {
 
   const filteredItems = allProducts.filter((item: any) => {
     const isAll = slug === "all";
+    
+    // Normalize data for comprehensive matching
     const itemCategory = normalize(item?.category || "");
-    const categoryMatch = isAll || itemCategory === slug;
+    const itemFabric = normalize(item?.fabric || "");
+    const itemOccasion = normalize(item?.occasion || "");
+    const itemDesc = item?.description?.toLowerCase() || "";
+    const itemTitle = item?.title?.toLowerCase() || "";
+    const searchTarget = slug.toLowerCase();
+
+    // SMART MATCHING LOGIC
+    let isMatch = isAll || 
+                 itemCategory.includes(searchTarget) || 
+                 itemFabric.includes(searchTarget) ||
+                 itemOccasion.includes(searchTarget) ||
+                 itemTitle.includes(searchTarget) ||
+                 itemDesc.includes(searchTarget);
+
+    // SPECIAL FALLBACK FOR "FANCY" BUTTON
+    // If user clicks "Fancy", show items that are Party Wear or Designer
+    if (searchTarget === "fancy") {
+      if (itemOccasion.includes("party") || itemCategory.includes("designer") || itemTitle.includes("shimmer")) {
+        isMatch = true;
+      }
+    }
 
     const price = Number(item.price);
     const minOk = minPrice ? price >= Number(minPrice) : true;
     const maxOk = maxPrice ? price <= Number(maxPrice) : true;
 
-    return categoryMatch && minOk && maxOk;
+    return isMatch && minOk && maxOk;
   });
 
   return (
@@ -79,8 +100,6 @@ export default function CategoryPage() {
                   boxShadow: "0 10px 30px rgba(0,0,0,0.05)",
                   transition: "transform 0.3s ease" 
                 }}
-                onMouseEnter={(e) => (e.currentTarget.style.transform = "translateY(-10px)")}
-                onMouseLeave={(e) => (e.currentTarget.style.transform = "translateY(0)")}
               >
                 <Link href={`/product/${normalize(item.category)}/${item.id}`}>
                   <img 
@@ -107,8 +126,7 @@ export default function CategoryPage() {
                         padding: "12px",
                         borderRadius: "12px",
                         fontWeight: "bold",
-                        textDecoration: "none",
-                        transition: "0.2s"
+                        textDecoration: "none"
                       }}
                     >
                       VIEW DETAILS

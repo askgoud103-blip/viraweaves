@@ -1,3 +1,4 @@
+// app/catalogs/[slug}/page.tsx
 import Link from "next/link";
 import Image from "next/image";
 import productsData from "../../../data/products.json";

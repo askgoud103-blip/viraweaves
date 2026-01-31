@@ -32,7 +32,7 @@ export default function CatalogPage({ params }: Props) {
     );
   }
 
-  const typedProductsData: Product[] = productsData as Product[];
+  const typedProductsData = productsData as any[];
 
   const categoryProducts = typedProductsData.filter(
     (p) => p.category === slug

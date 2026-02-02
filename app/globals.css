@@ -1,4 +1,8 @@
 @import "tailwindcss";
+.cat-link:hover {
+  background: #660000 !important;
+}
+
 
 :root {
   --background: #ffffff;

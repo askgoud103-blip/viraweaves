@@ -4,7 +4,9 @@ import products from "@/data/products.json";
 import { useRef, useEffect, useState } from "react";
 import Navbar from "./components/Navbar";
 import Link from "next/link";
-import { normalize, formatPrice } from "@/lib/utils";
+import { normalize } from "@/lib/utils";
+import { COLORS } from "@/lib/colors";
+
 
 
 
@@ -70,11 +72,13 @@ export default function HomePage() {
   };
 
   const handleMouseMove = (e: any) => {
-    if (!isDragging) return;
-    const currentX = "touches" in e ? e.touches[0].clientX : e.clientX;
-    const delta = currentX - dragStartX.current;
-    setTranslateX(prevTranslate.current + delta);
-  };
+  if (!isDragging) return;
+  const currentX = "touches" in e ? e.touches[0].clientX : e.clientX;
+  const delta = currentX - dragStartX.current;
+  setTranslateX((prev) => prev + delta);
+  dragStartX.current = currentX;
+};
+
 
   const handleMouseUp = () => {
     setIsDragging(false);
@@ -82,18 +86,31 @@ export default function HomePage() {
   };
 
   return (
-    <div style={{ width: "100%", minHeight: "100vh", backgroundColor: "#ffc0cb", overflowX: "hidden" }}>
+    <div style={{ width: "100%", minHeight: "100vh", backgroundColor: COLORS.cream, overflowX: "hidden" }}>
       <Navbar />
 
       {/* HERO SECTION */}
-      <section style={{ padding: "120px 20px 40px", textAlign: "center", background: "linear-gradient(to bottom, #ffc0cb, #ffe4ec)" }}>
+      
+      <section
+  style={{
+    padding: "60px 10px 20px",
+    textAlign: "center",
+    background: `linear-gradient(to bottom, ${COLORS.cream}, #fff)`,
+  }}
+>
+
+      
         <div style={{ maxWidth: "800px", margin: "0 auto" }}>
-          <span style={{ textTransform: "uppercase", letterSpacing: "3px", fontSize: "0.75rem", fontWeight: 600, color: "#d14d72" }}>
-            Authentic Indian Heritage
-          </span>
-          <h1 style={{ fontFamily: "serif", fontSize: "clamp(2.2rem, 8vw, 3.5rem)", margin: "10px 0", color: "#333" }}>
-            Viraweaves
-          </h1>
+          <span style={{ color: COLORS.gold }}>
+  Authentic Indian Heritage
+</span>
+
+          
+          <h1 style={{ color: COLORS.maroon }}>
+  Viraweaves
+</h1>
+
+          
           <p style={{ fontSize: "1rem", color: "#555", maxWidth: "500px", margin: "0 auto" }}>
             Timeless hand-woven traditions, crafted for the modern woman.
           </p>
@@ -144,7 +161,7 @@ export default function HomePage() {
               href={`/category/${normalize(cat)}`} 
               className="cat-link"
               style={{
-                padding: "12px 8px", background: "#d14d72", color: "#fff", borderRadius: "10px",
+                padding: "12px 8px", background: COLORS.maroon, color: "#fff", borderRadius: "10px",
                 textDecoration: "none", fontWeight: "bold", fontSize: "0.75rem", display: "flex",
                 alignItems: "center", justifyContent: "center", transition: "0.2s"
               }}
@@ -165,8 +182,9 @@ export default function HomePage() {
               href={`/category/${item.cat}${item.params}`}
               style={{
                 flex: "1 1 calc(20% - 15px)", minWidth: "140px", padding: "18px 10px",
-                borderRadius: "12px", background: "#ffe4ec", textAlign: "center",
-                fontWeight: 700, textDecoration: "none", color: "#333", border: "1px solid #ffb6c1"
+                borderRadius: "12px", background: COLORS.cream, textAlign: "center",
+                fontWeight: 700, textDecoration: "none", color: COLORS.maroon, border: `1px solid ${COLORS.gold}`
+
               }}
             >
               {item.label.toUpperCase()}

@@ -1,6 +1,8 @@
 // app/page.tsx
+
 "use client";
-import products from "@/data/products.json";
+export const dynamic = 'force-dynamic';
+// import products from "@/data/products.json";
 import { useRef, useEffect, useState } from "react";
 import Navbar from "./components/Navbar";
 import Link from "next/link";

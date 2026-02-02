@@ -1,4 +1,4 @@
-// app/components/Navbar.tsx
+// 
 
 "use client";
 
@@ -58,7 +58,7 @@ export default function Navbar() {
                 fontWeight: 500,
                 textDecoration: "none",
                 borderBottom: "2px solid transparent",
-                paddingBottom: "2px",
+                paddingBottom: "4px",
                 transition: "all 0.25s ease",
               }}
               onMouseEnter={(e) =>

@@ -1,18 +1,12 @@
-// app/page.tsx
-
 "use client";
-export const dynamic = 'force-dynamic';
-// import products from "@/data/products.json";
-import { useRef, useEffect, useState } from "react";
+
+import { useRef, useEffect, useState, MouseEvent, TouchEvent } from "react";
 import Navbar from "./components/Navbar";
 import Link from "next/link";
 import { normalize } from "@/lib/utils";
 import { COLORS } from "@/lib/colors";
 
-
-
-
-// 2. Centralized Data Arrays
+// Centralized Data Arrays
 const CATEGORIES = [
   "Jamdhani", "Banarasi", "Kanchi Pattu", "Narayanpet", "Pochampally", 
   "Gadwal", "Venkatagiri", "Kotha", "Fancy", "Viscos", 
@@ -44,7 +38,6 @@ export default function HomePage() {
   
   const containerRef = useRef<HTMLDivElement>(null);
   const dragStartX = useRef(0);
-  const prevTranslate = useRef(0);
   const animationRef = useRef<number>(0);
 
   useEffect(() => {
@@ -68,23 +61,23 @@ export default function HomePage() {
     return () => cancelAnimationFrame(animationRef.current);
   }, [isDragging, isHovering]);
 
-  const handleMouseDown = (e: any) => {
+  // TypeScript-safe event handlers
+  const handleMouseDown = (e: MouseEvent | TouchEvent) => {
     setIsDragging(true);
-    dragStartX.current = "touches" in e ? e.touches[0].clientX : e.clientX;
+    const clientX = "touches" in e ? e.touches[0].clientX : (e as MouseEvent).clientX;
+    dragStartX.current = clientX;
   };
 
-  const handleMouseMove = (e: any) => {
-  if (!isDragging) return;
-  const currentX = "touches" in e ? e.touches[0].clientX : e.clientX;
-  const delta = currentX - dragStartX.current;
-  setTranslateX((prev) => prev + delta);
-  dragStartX.current = currentX;
-};
-
+  const handleMouseMove = (e: MouseEvent | TouchEvent) => {
+    if (!isDragging) return;
+    const clientX = "touches" in e ? e.touches[0].clientX : (e as MouseEvent).clientX;
+    const delta = clientX - dragStartX.current;
+    setTranslateX((prev) => prev + delta);
+    dragStartX.current = clientX;
+  };
 
   const handleMouseUp = () => {
     setIsDragging(false);
-    prevTranslate.current = translateX;
   };
 
   return (
@@ -92,36 +85,40 @@ export default function HomePage() {
       <Navbar />
 
       {/* HERO SECTION */}
-      
       <section
-  style={{
-    padding: "60px 10px 20px",
-    textAlign: "center",
-    background: `linear-gradient(to bottom, ${COLORS.cream}, #fff)`,
-  }}
->
-
-      
+        style={{
+          padding: "40px 6px 20px",
+          textAlign: "center",
+          background: `linear-gradient(to bottom, ${COLORS.cream}, #fff)`,
+        }}
+      >
         <div style={{ maxWidth: "800px", margin: "0 auto" }}>
-          <span style={{ color: COLORS.gold }}>
-  Authentic Indian Heritage
-</span>
-
-          
-          <h1 style={{ color: COLORS.maroon }}>
-  Viraweaves
-</h1>
-
-          
-          <p style={{ fontSize: "1rem", color: "#555", maxWidth: "500px", margin: "0 auto" }}>
+          <span style={{ 
+            textTransform: "uppercase", 
+            letterSpacing: "3px", 
+            fontSize: "0.75rem", 
+            fontWeight: 600, 
+            color: COLORS.gold 
+          }}>
+            Authentic Indian Heritage
+          </span>
+          <h1 style={{ 
+            fontFamily: "serif", 
+            fontSize: "clamp(2.5rem, 8vw, 4rem)", 
+            margin: "15px 0", 
+            color: COLORS.maroon 
+          }}>
+            Viraweaves
+          </h1>
+          <p style={{ fontSize: "1.1rem", color: "#555", maxWidth: "600px", margin: "0 auto", lineHeight: "1.6" }}>
             Timeless hand-woven traditions, crafted for the modern woman.
           </p>
         </div>
       </section>
 
       {/* SECTION 1: Auto Scroll */}
-      <section style={{ textAlign: "center", paddingBottom: "20px" }}>
-        <h2 style={{ fontFamily: "serif", fontSize: "2rem", fontWeight: 700, marginBottom: "20px", color: "#333" }}>
+      <section style={{ textAlign: "center", paddingBottom: "40px" }}>
+        <h2 style={{ fontFamily: "serif", fontSize: "2.2rem", fontWeight: 700, marginBottom: "30px", color: "#333" }}>
           Latest Arrivals
         </h2>
         <div
@@ -142,17 +139,29 @@ export default function HomePage() {
             transition: isDragging ? "none" : "transform 0.1s linear",
           }}>
             {[...SAREE_IMAGES, ...SAREE_IMAGES].map((src, i) => (
-              <img key={i} src={src} alt="Saree" style={{ height: "280px", borderRadius: "15px", marginRight: "15px", boxShadow: "0 4px 12px rgba(0,0,0,0.1)", background: "white" }} />
+              <img 
+                key={i} 
+                src={src} 
+                alt="Saree" 
+                style={{ 
+                  height: "320px", 
+                  borderRadius: "12px", 
+                  marginRight: "20px", 
+                  boxShadow: "0 10px 20px rgba(0,0,0,0.05)", 
+                  background: "white",
+                  objectFit: "cover"
+                }} 
+              />
             ))}
           </div>
         </div>
       </section>
 
       {/* SECTION 2: Categories Grid */}
-      <section style={{ padding: "40px 20px", textAlign: "center" }}>
+      <section style={{ padding: "60px 20px", textAlign: "center" }}>
         <div style={{ 
           display: "grid", 
-          gridTemplateColumns: "repeat(auto-fit, minmax(150px, 1fr))", // Responsive by default
+          gridTemplateColumns: "repeat(auto-fit, minmax(160px, 1fr))",
           gap: "15px", 
           maxWidth: "1200px", 
           margin: "0 auto" 
@@ -163,9 +172,18 @@ export default function HomePage() {
               href={`/category/${normalize(cat)}`} 
               className="cat-link"
               style={{
-                padding: "12px 8px", background: COLORS.maroon, color: "#fff", borderRadius: "10px",
-                textDecoration: "none", fontWeight: "bold", fontSize: "0.75rem", display: "flex",
-                alignItems: "center", justifyContent: "center", transition: "0.2s"
+                padding: "15px 10px", 
+                background: COLORS.maroon, 
+                color: "#fff", 
+                borderRadius: "8px",
+                textDecoration: "none", 
+                fontWeight: "bold", 
+                fontSize: "0.8rem", 
+                display: "flex",
+                alignItems: "center", 
+                justifyContent: "center", 
+                transition: "all 0.3s ease",
+                boxShadow: "0 4px 6px rgba(0,0,0,0.1)"
               }}
             >
               {cat.toUpperCase()}
@@ -174,19 +192,26 @@ export default function HomePage() {
         </div>
       </section>
 
-      {/* SECTION 3: Quick Links (Price Filters) */}
-      <section style={{ margin: "40px auto", maxWidth: "1100px", padding: "0 20px" }}>
-        <h2 style={{ textAlign: "center", fontSize: "2rem", fontFamily: "serif", marginBottom: "30px" }}>Quick Links</h2>
+      {/* SECTION 3: Quick Links */}
+      <section style={{ margin: "60px auto", maxWidth: "1100px", padding: "0 20px" }}>
+        <h2 style={{ textAlign: "center", fontSize: "2.2rem", fontFamily: "serif", marginBottom: "40px" }}>Quick Links</h2>
         <div style={{ display: "flex", flexWrap: "wrap", gap: "15px", justifyContent: "center" }}>
           {QUICK_FILTERS.map((item) => (
             <Link
               key={item.label}
               href={`/category/${item.cat}${item.params}`}
               style={{
-                flex: "1 1 calc(20% - 15px)", minWidth: "140px", padding: "18px 10px",
-                borderRadius: "12px", background: COLORS.cream, textAlign: "center",
-                fontWeight: 700, textDecoration: "none", color: COLORS.maroon, border: `1px solid ${COLORS.gold}`
-
+                flex: "1 1 calc(20% - 15px)", 
+                minWidth: "150px", 
+                padding: "20px 10px",
+                borderRadius: "12px", 
+                background: "#fff", 
+                textAlign: "center",
+                fontWeight: 700, 
+                textDecoration: "none", 
+                color: COLORS.maroon, 
+                border: `1px solid ${COLORS.gold}`,
+                transition: "all 0.2s ease"
               }}
             >
               {item.label.toUpperCase()}
@@ -196,13 +221,13 @@ export default function HomePage() {
       </section>
 
       {/* SECTION 4: Coming Soon */}
-      <section style={{ textAlign: "center", padding: "60px 20px", background: "rgba(255,255,255,0.3)" }}>
-        <h2 style={{ fontSize: "1.8rem", color: "#333" }}>Coming Soon</h2>
-        <p style={{ fontStyle: "italic", color: "#555" }}>Special Bridal Collections & Silk Weaves Launching Soon</p>
+      <section style={{ textAlign: "center", padding: "80px 20px", background: "rgba(255,255,255,0.5)" }}>
+        <h2 style={{ fontSize: "2rem", color: COLORS.maroon, fontFamily: "serif" }}>Coming Soon</h2>
+        <p style={{ fontStyle: "italic", color: "#555", marginTop: "10px" }}>Special Bridal Collections & Silk Weaves Launching Soon</p>
       </section>
 
       <style jsx global>{`
-        .cat-link:hover { background: #b03d5d !important; transform: translateY(-2px); }
+        .cat-link:hover { background: ${COLORS.gold} !important; color: ${COLORS.maroon} !important; transform: translateY(-3px); }
       `}</style>
     </div>
   );

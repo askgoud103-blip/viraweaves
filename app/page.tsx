@@ -5,6 +5,7 @@ import Navbar from "./components/Navbar";
 import Link from "next/link";
 import { normalize } from "@/lib/utils";
 import { COLORS } from "@/lib/colors";
+import products from "@/data/products.json";
 
 // Centralized Data Arrays
 const CATEGORIES = [
@@ -14,6 +15,7 @@ const CATEGORIES = [
 ];
 
 const QUICK_FILTERS = [
+
   { label: "Below Rs.2K", cat: "jamdhani", params: "?maxPrice=2000" },
   { label: "Below Rs.5K", cat: "banarasi", params: "?maxPrice=5000" },
   { label: "Rs.10K – 15K", cat: "kanchi-pattu", params: "?minPrice=10000&maxPrice=15000" },
@@ -25,11 +27,7 @@ const QUICK_FILTERS = [
   { label: "Designer", cat: "designer-sarees", params: "" },
 ];
 
-const SAREE_IMAGES = [
-  "/dir.jpg", "/dir9.jpg", "/dir20.jpg", "/dir10.jpg",
-  "/dir21.jpg", "/dir11.jpg", "/dir22.jpg", "/dir12.jpg",
-  "/dir23.jpg", "/dir13.jpg", "/dir24.jpg", "/dir14.jpg",
-];
+const ALL_IMAGES = products.flatMap(p => p.images);
 
 export default function HomePage() {
   const [isHovering, setIsHovering] = useState(false);
@@ -138,7 +136,7 @@ export default function HomePage() {
             transform: `translateX(${translateX}px)`,
             transition: isDragging ? "none" : "transform 0.1s linear",
           }}>
-            {[...SAREE_IMAGES, ...SAREE_IMAGES].map((src, i) => (
+            {[...ALL_IMAGES, ...ALL_IMAGES].map((src, i) => (
               <img 
                 key={i} 
                 src={src} 

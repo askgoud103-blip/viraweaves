@@ -7,7 +7,7 @@
     "description": "A timeless classic featuring heavy gold zari work on pure silk fabric.",
     "fabric": "Silk",
     "weave": "Handloom",
-    "images": ["/dir.jpg", "/dir9.jpg"],
+    "images": ["/images/banarasi/dir.jpg"],
     "occasion": "Wedding"
   },
   {
@@ -18,7 +18,7 @@
     "description": "Rich Kanchipuram silk with a traditional temple border design.",
     "fabric": "Pure Silk",
     "weave": "Handloom",
-    "images": ["/dir20.jpg", "/dir10.jpg"],
+    "images": ["/images/kanchi/dir20.jpg"],
     "occasion": "Bridal"
   },
   {
@@ -29,7 +29,7 @@
     "description": "Trending lightweight shimmer fabric for modern cocktail parties.",
     "fabric": "JimmiChoo Shimmer",
     "weave": "Machine",
-    "images": ["/dir21.jpg", "/dir11.jpg"],
+    "images": ["/images/jimmi/dir21.jpg"],
     "occasion": "Party Wear"
   },
   {
@@ -40,7 +40,7 @@
     "description": "Soft, flowing georgette with vibrant floral digital prints.",
     "fabric": "Pure Georgette",
     "weave": "Digital Print",
-    "images": ["/dir22.jpg", "/dir12.jpg"],
+    "images": ["/images/georgette/dir22.jpg"],
     "occasion": "Casual"
   },
   {
@@ -51,7 +51,7 @@
     "description": "Intricate stone work and sequins on a modern drape.",
     "fabric": "Viscos",
     "weave": "Designer",
-    "images": ["/dir23.jpg", "/dir13.jpg"],
+    "images": ["/images/designer/dir23.jpg"],
     "occasion": "Evening Wear"
   },
   {
@@ -62,7 +62,7 @@
     "description": "Breathable fabric with minimal patterns, perfect for professional settings.",
     "fabric": "Cotton-Polly",
     "weave": "Machine",
-    "images": ["/dir24.jpg", "/dir14.jpg"],
+    "images": ["/images/office/dir24.jpg"],
     "occasion": "Office"
   },
   {
@@ -73,7 +73,7 @@
     "description": "Authentic Handloom Pochampally featuring geometric Ikat patterns and a silk finish.",
     "fabric": "Silk Cotton",
     "weave": "Ikat Handloom",
-    "images": ["/dir.jpg", "/dir20.jpg"],
+    "images": ["/images/banarasi/dir.jpg"],
     "occasion": "Festive"
   },
   {
@@ -84,7 +84,7 @@
     "description": "The perfect blend of cotton body and silk border, typical of the Gadwal heritage.",
     "fabric": "Sico",
     "weave": "Handloom",
-    "images": ["/dir9.jpg", "/dir21.jpg"],
+    "images": ["/images/gadwal/dir9.jpg"],
     "occasion": "Religious"
   },
   {
@@ -95,7 +95,7 @@
     "description": "Lightweight cotton saree with the signature Narayanpet temple border.",
     "fabric": "Pure Cotton",
     "weave": "Handloom",
-    "images": ["/dir10.jpg", "/dir22.jpg"],
+    "images": ["/images/narayanpet/dir10.jpg"],
     "occasion": "OfficeWear"
   },
   {
@@ -106,7 +106,7 @@
     "description": "Known for its fine weaving and soft texture, this Venkatagiri saree defines elegance.",
     "fabric": "Silk",
     "weave": "Handloom",
-    "images": ["/dir11.jpg", "/dir23.jpg"],
+    "images": ["/images/venkatagiri/dir11.jpg"],
     "occasion": "Wedding"
   },
   {
@@ -117,7 +117,7 @@
     "description": "A breezy Kotha saree with light zari work, perfect for summer celebrations.",
     "fabric": "Kotha Silk",
     "weave": "Handloom",
-    "images": ["/dir12.jpg", "/dir24.jpg"],
+    "images": ["/images/kotha/dir12.jpg"],
     "occasion": "Party Wear"
   },
   {
@@ -128,7 +128,7 @@
     "description": "Delicate muslin Jamdhani with hand-woven floral buttas.",
     "fabric": "Muslin Cotton",
     "weave": "Handloom",
-    "images": ["/dir13.jpg", "/dir14.jpg"],
+    "images": ["/images/jamdhani/dir13.jpg"],
     "occasion": "Casual"
   }
 ]

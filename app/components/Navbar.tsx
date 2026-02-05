@@ -111,13 +111,15 @@ export default function Navbar() {
           top: 0,
           right: open ? 0 : "-250px",
           height: "100vh",
-          width: "200px",
+          width: "220px",
           backgroundColor: COLORS.maroon,
-          padding: "40px 20px",
+          padding: "60px 20px 20px", // top padding for contact visibility
           transition: "0.3s",
           boxShadow: "-5px 0 15px rgba(0,0,0,0.3)",
           borderLeft: `3px solid ${COLORS.gold}`,
           zIndex: 60,
+          display: "flex",
+          flexDirection: "column",
         }}
       >
         <button
@@ -133,7 +135,8 @@ export default function Navbar() {
           ×
         </button>
 
-        {hiddenLinks.map((item) => (
+        {/* All links for mobile */}
+        {[...mainLinks, ...hiddenLinks].map((item) => (
           <Link
             key={item.name}
             href={item.href}
@@ -143,7 +146,8 @@ export default function Navbar() {
               marginBottom: "20px",
               color: COLORS.cream,
               textDecoration: "none",
-              fontSize: "1.1rem",
+              fontSize: "1rem",
+              wordBreak: "break-word",
             }}
           >
             {item.name}
@@ -153,8 +157,8 @@ export default function Navbar() {
 
       <style>{`
         @media (max-width: 768px) {
-          .desktopMenu { display:none }
-          .mobileHamburger { display:block }
+          .desktopMenu { display:none !important; }
+          .mobileHamburger { display:block !important; }
         }
       `}</style>
     </nav>

@@ -116,10 +116,17 @@ export default function HomePage() {
       </section>
 
      {/* SECTION 1: Auto Scroll */}
-<section style={{ textAlign: "center", paddingBottom: "40px" }}>
-  <h2 style={{ fontFamily: "serif", fontSize: "2.2rem", fontWeight: 700, marginBottom: "30px", color: "#333" }}>
-    Latest Arrivals
-  </h2>
+<section style={{ textAlign: "center", paddingBottom: "5px" }}>
+ <h2 style={{ 
+  fontFamily: "serif", 
+  fontSize: "2.2rem", 
+  fontWeight: 700, 
+  marginBottom: "30px", 
+  color: COLORS.maroon // changed from #333 to brand maroon
+}}>
+  Latest Arrivals
+</h2>
+
 
   <div
     ref={containerRef}
@@ -176,68 +183,138 @@ export default function HomePage() {
 </section>
 
 
-      {/* SECTION 2: Categories Grid */}
-      <section style={{ padding: "60px 20px", textAlign: "center" }}>
-        <div style={{ 
-          display: "grid", 
-          gridTemplateColumns: "repeat(auto-fit, minmax(160px, 1fr))",
-          gap: "15px", 
-          maxWidth: "1200px", 
-          margin: "0 auto" 
-        }}>
-          {CATEGORIES.map((cat) => (
-            <Link 
-              key={cat} 
-              href={`/category/${normalize(cat)}`} 
-              className="cat-link"
-              style={{
-                padding: "15px 10px", 
-                background: COLORS.maroon, 
-                color: "#fff", 
-                borderRadius: "8px",
-                textDecoration: "none", 
-                fontWeight: "bold", 
-                fontSize: "0.8rem", 
-                display: "flex",
-                alignItems: "center", 
-                justifyContent: "center", 
-                transition: "all 0.3s ease",
-                boxShadow: "0 4px 6px rgba(0,0,0,0.1)"
-              }}
-            >
-              {cat.toUpperCase()}
-            </Link>
-          ))}
-        </div>
-      </section>
+  {/* -------------------- SECTION 2: Categories Grid -------------------- */}
+<section style={{ padding: "20px 20px 30px", textAlign: "center" }}>
+  
+  {/* Heading */}
+  <h2 style={{ 
+    fontFamily: "serif", 
+    fontSize: "2rem", 
+    fontWeight: 700, 
+    marginBottom: "10px", 
+    color: COLORS.maroon 
+  }}>
+    Categories for Special Women
+  </h2>
+  
+  {/* Subtitle */}
+  <p style={{ 
+    fontSize: "1rem", 
+    color: "#555", 
+    marginBottom: "30px" 
+  }}>
+    Explore our exclusive collection tailored for elegance and style
+  </p>
 
-      {/* SECTION 3: Quick Links */}
-      <section style={{ margin: "60px auto", maxWidth: "1100px", padding: "0 20px" }}>
-        <h2 style={{ textAlign: "center", fontSize: "2.2rem", fontFamily: "serif", marginBottom: "40px" }}>Quick Links</h2>
-        <div style={{ display: "flex", flexWrap: "wrap", gap: "15px", justifyContent: "center" }}>
-          {QUICK_FILTERS.map((item) => (
-            <Link
-              key={item.label}
-              href={`/category/${item.cat}${item.params}`}
-              style={{
-                flex: "1 1 calc(20% - 15px)", 
-                minWidth: "150px", 
-                padding: "20px 10px",
-                borderRadius: "12px", 
-                background: "#fff", 
-                textAlign: "center",
-                fontWeight: 700, 
-                textDecoration: "none", 
-                color: COLORS.maroon, 
-                border: `1px solid ${COLORS.gold}`,
-                transition: "all 0.2s ease"
-              }}
-            >
-              {item.label.toUpperCase()}
-            </Link>
-          ))}
-        </div>
-      </section>
+  {/* Categories Grid */}
+  <div style={{ 
+    display: "grid", 
+    gridTemplateColumns: "repeat(auto-fit, minmax(160px, 1fr))",
+    gap: "15px", 
+    maxWidth: "1200px", 
+    margin: "0 auto" 
+  }}>
+    {[
+      ...CATEGORIES,
+      "Quick-Pick",
+      "Unique-One",
+      "Must-Wear", // Extra buttons for even layout
+    ].map((cat) => (
+      <Link 
+        key={cat} 
+        href={`/category/${normalize(cat)}`} 
+        className="cat-link"
+        style={{
+          padding: "15px 10px", 
+          background: COLORS.maroon, 
+          color: "#fff", 
+          borderRadius: "8px",
+          textDecoration: "none", 
+          fontWeight: "bold", 
+          fontSize: "0.8rem", 
+          display: "flex",
+          alignItems: "center", 
+          justifyContent: "center", 
+          transition: "all 0.3s ease",
+          boxShadow: "0 4px 6px rgba(0,0,0,0.1)"
+        }}
+      >
+        {cat.toUpperCase()}
+      </Link>
+    ))}
+  </div>
+</section>
+
+<style jsx global>{`
+  .cat-link:hover { 
+    background: ${COLORS.gold} !important; 
+    color: ${COLORS.maroon} !important; 
+    transform: translateY(-3px); 
+  }
+`}</style>
+
+
+
+
+    {/* -------------------- SECTION 3: Quick Links -------------------- */}
+<section style={{ margin: "60px auto", maxWidth: "1100px", padding: "0 20px" }}>
+  <h2 
+    style={{ 
+      textAlign: "center", 
+      fontSize: "2.2rem", 
+      fontFamily: "serif", 
+      marginBottom: "40px",
+      color: COLORS.maroon
+    }}
+  >
+    Quick Links
+  </h2>
+
+  <div 
+    style={{ 
+      display: "flex", 
+      flexWrap: "wrap", 
+      gap: "15px", 
+      justifyContent: "center" 
+    }}
+  >
+    {QUICK_FILTERS.map((item) => (
+      <Link key={item.label} href={`/category/${item.cat}${item.params}`}>
+        <button
+          style={{
+            flex: "1 1 calc(20% - 15px)",
+            minWidth: "150px",
+            padding: "18px 10px",
+            borderRadius: "12px",
+            backgroundColor: COLORS.maroon,
+            textAlign: "center",
+            fontWeight: 700,
+            textDecoration: "none",
+            color: COLORS.cream,
+            border: `2px solid ${COLORS.gold}`,
+            transition: "all 0.3s ease",
+            cursor: "pointer",
+            boxShadow: "0 4px 8px rgba(0,0,0,0.1)",
+          }}
+          onMouseEnter={(e) => {
+            (e.currentTarget as HTMLButtonElement).style.backgroundColor = COLORS.gold;
+            (e.currentTarget as HTMLButtonElement).style.color = COLORS.maroon;
+            (e.currentTarget as HTMLButtonElement).style.transform = "translateY(-3px)";
+          }}
+          onMouseLeave={(e) => {
+            (e.currentTarget as HTMLButtonElement).style.backgroundColor = COLORS.maroon;
+            (e.currentTarget as HTMLButtonElement).style.color = COLORS.cream;
+            (e.currentTarget as HTMLButtonElement).style.transform = "translateY(0)";
+          }}
+        >
+          {item.label.toUpperCase()}
+        </button>
+      </Link>
+    ))}
+  </div>
+</section>
+
+
 
       {/* SECTION 4: Coming Soon */}
       <section style={{ textAlign: "center", padding: "80px 20px", background: "rgba(255,255,255,0.5)" }}>

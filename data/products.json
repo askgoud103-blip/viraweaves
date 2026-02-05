@@ -3,7 +3,7 @@
     "id": "vw-101",
     "title": "Scarlet Red Banarasi Silk",
     "category": "Banarasi",
-    "price": 5500,
+    "price": 50000,
     "description": "A timeless classic featuring heavy gold zari work on pure silk fabric.",
     "fabric": "Silk",
     "weave": "Handloom",
@@ -14,7 +14,7 @@
     "id": "vw-102",
     "title": "Temple Border Kanchi Pattu",
     "category": "Kanchi Pattu",
-    "price": 12500,
+    "price": 36000,
     "description": "Rich Kanchipuram silk with a traditional temple border design.",
     "fabric": "Pure Silk",
     "weave": "Handloom",
@@ -131,4 +131,29 @@
     "images": ["/images/jamdhani/dir13.jpg"],
     "occasion": "Casual"
   }
+  
+  ,
+{
+  "id": "vw-307",
+  "title": "Pastel Jamdhani Muslin",
+  "category": "Jamdhani",
+  "price": 3200,
+  "description": "Soft pastel Jamdhani with traditional buttas.",
+  "fabric": "Muslin Cotton",
+  "weave": "Handloom",
+  "images": ["/images/jamdhani/dir14.jpg"],
+  "occasion": "Daily Wear"
+},
+{
+  "id": "vw-308",
+  "title": "Sky Blue Jamdhani",
+  "category": "Jamdhani",
+  "price": 3500,
+  "description": "Elegant sky blue Jamdhani with fine zari.",
+  "fabric": "Muslin Cotton",
+  "weave": "Handloom",
+  "images": ["/images/jamdhani/dir15.jpg"],
+  "occasion": "Festive"
+}
+
 ]

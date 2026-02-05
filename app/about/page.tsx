@@ -1,6 +1,7 @@
 "use client";
 
 import Navbar from "../components/Navbar";
+import { COLORS } from "@/lib/colors";
 
 export default function AboutPage() {
   return (
@@ -8,7 +9,7 @@ export default function AboutPage() {
       style={{
         width: "100%",
         minHeight: "100vh",
-        backgroundColor: "#ffc0cb",
+        backgroundColor: COLORS.cream,
       }}
     >
       {/* Navbar */}
@@ -22,15 +23,15 @@ export default function AboutPage() {
           justifyContent: "center",
           alignItems: "center",
           textAlign: "center",
-          minHeight: "calc(100vh - 80px)", // adjust if navbar height differs
-          padding: "20px",
+          minHeight: "calc(100vh - 70px)",
+          padding: "40px 20px",
           boxSizing: "border-box",
         }}
       >
         <h1
           style={{
-            fontSize: "3rem",
-            color: "#000",
+            fontSize: "2.4rem",
+            color: COLORS.maroon,
             marginBottom: "20px",
           }}
         >
@@ -39,9 +40,9 @@ export default function AboutPage() {
 
         <p
           style={{
-            fontSize: "1.2rem",
-            color: "#000",
-            maxWidth: "800px",
+            fontSize: "1.1rem",
+            color: "#333",
+            maxWidth: "820px",
             lineHeight: "1.8",
           }}
         >

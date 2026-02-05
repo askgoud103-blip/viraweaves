@@ -7,6 +7,7 @@ import { normalize } from "@/lib/utils";
 import { COLORS } from "@/lib/colors";
 import products from "@/data/products.json";
 
+
 // Centralized Data Arrays
 const CATEGORIES = [
   "Jamdhani", "Banarasi", "Kanchi Pattu", "Narayanpet", "Pochampally", 
@@ -114,46 +115,66 @@ export default function HomePage() {
         </div>
       </section>
 
-      {/* SECTION 1: Auto Scroll */}
-      <section style={{ textAlign: "center", paddingBottom: "40px" }}>
-        <h2 style={{ fontFamily: "serif", fontSize: "2.2rem", fontWeight: 700, marginBottom: "30px", color: "#333" }}>
-          Latest Arrivals
-        </h2>
-        <div
-          ref={containerRef}
-          style={{ overflow: "hidden", cursor: isDragging ? "grabbing" : "grab" }}
-          onMouseDown={handleMouseDown}
-          onMouseMove={handleMouseMove}
-          onMouseUp={handleMouseUp}
-          onMouseEnter={() => setIsHovering(true)}
-          onMouseLeave={() => { setIsHovering(false); handleMouseUp(); }}
-          onTouchStart={handleMouseDown}
-          onTouchMove={handleMouseMove}
-          onTouchEnd={handleMouseUp}
-        >
-          <div style={{
-            display: "flex",
-            transform: `translateX(${translateX}px)`,
-            transition: isDragging ? "none" : "transform 0.1s linear",
-          }}>
-            {[...ALL_IMAGES, ...ALL_IMAGES].map((src, i) => (
-              <img 
-                key={i} 
-                src={src} 
-                alt="Saree" 
-                style={{ 
-                  height: "320px", 
-                  borderRadius: "12px", 
-                  marginRight: "20px", 
-                  boxShadow: "0 10px 20px rgba(0,0,0,0.05)", 
-                  background: "white",
-                  objectFit: "cover"
-                }} 
-              />
-            ))}
-          </div>
-        </div>
-      </section>
+     {/* SECTION 1: Auto Scroll */}
+<section style={{ textAlign: "center", paddingBottom: "40px" }}>
+  <h2 style={{ fontFamily: "serif", fontSize: "2.2rem", fontWeight: 700, marginBottom: "30px", color: "#333" }}>
+    Latest Arrivals
+  </h2>
+
+  <div
+    ref={containerRef}
+    style={{ overflow: "hidden", cursor: isDragging ? "grabbing" : "grab" }}
+    onMouseDown={handleMouseDown}
+    onMouseMove={handleMouseMove}
+    onMouseUp={handleMouseUp}
+    onMouseEnter={() => setIsHovering(true)}
+    onMouseLeave={() => { setIsHovering(false); handleMouseUp(); }}
+    onTouchStart={handleMouseDown}
+    onTouchMove={handleMouseMove}
+    onTouchEnd={handleMouseUp}
+  >
+    <div
+      style={{
+        display: "flex",
+        transform: `translateX(${translateX}px)`,
+        transition: isDragging ? "none" : "transform 0.1s linear",
+      }}
+    >
+      {[...ALL_IMAGES, ...ALL_IMAGES].map((src, i) => {
+        // Find the product this image belongs to
+        const product = products.find((p) => p.images.includes(src));
+        if (!product || !src) return null; // skip invalid images
+
+        return (
+          <Link
+            key={i}
+            href={`/product/${normalize(product.category)}/${product.id}`}
+            onClick={(e) => {
+              // Prevent click if dragging
+              if (isDragging) e.preventDefault();
+            }}
+            style={{ display: "block" }}
+          >
+            <img
+              src={src}
+              alt={product.title || "Saree"}
+              style={{
+                height: "320px",
+                borderRadius: "12px",
+                marginRight: "20px",
+                boxShadow: "0 10px 20px rgba(0,0,0,0.05)",
+                background: "white",
+                objectFit: "cover",
+                cursor: "pointer",
+              }}
+            />
+          </Link>
+        );
+      })}
+    </div>
+  </div>
+</section>
+
 
       {/* SECTION 2: Categories Grid */}
       <section style={{ padding: "60px 20px", textAlign: "center" }}>

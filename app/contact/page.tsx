@@ -1,6 +1,7 @@
 "use client";
 
 import Navbar from "../components/Navbar";
+import { COLORS } from "@/lib/colors";
 
 export default function ContactPage() {
   const contactInfo = [
@@ -34,8 +35,7 @@ export default function ContactPage() {
   ];
 
   return (
-    <div style={{ width: "100vw", minHeight: "100vh", backgroundColor: "#ffc0cb" }}>
-      {/* Navbar */}
+    <div style={{ width: "100%", minHeight: "100vh", backgroundColor: COLORS.cream }}>
       <Navbar />
 
       <div
@@ -45,85 +45,67 @@ export default function ContactPage() {
           justifyContent: "center",
           alignItems: "center",
           textAlign: "center",
-          minHeight: "calc(100vh - 80px)",
-          padding: "20px",
-          boxSizing: "border-box",
+          minHeight: "calc(100vh - 70px)",
+          padding: "40px 20px",
           gap: "30px",
         }}
       >
-        {/* Page Title */}
-        <h1
-          style={{
-            fontSize: "3rem",
-            color: "black",
-            marginBottom: "20px",
-            textShadow: "2px 2px 6px rgba(0,0,0,0.3)",
-          }}
-        >
+        <h1 style={{ fontSize: "2.4rem", color: COLORS.maroon }}>
           Contact Vira~Weaves
         </h1>
 
-        {/* Intro Text */}
-        <p style={{ fontSize: "1.5rem", color: "black", maxWidth: "800px" }}>
+        <p style={{ fontSize: "1.1rem", color: "#333", maxWidth: "800px" }}>
           We’d love to hear from you! For inquiries, collaborations, or support, reach out to us
           through email or social media. Your feedback is valuable and helps us bring the best
           handwoven sarees to you.
         </p>
 
-        {/* Horizontal Scrollable Contact Cards */}
         <div
           style={{
             display: "flex",
-            flexDirection: "row",
             gap: "20px",
             overflowX: "auto",
-            padding: "10px 0",
             width: "100%",
             maxWidth: "1000px",
+            paddingBottom: "10px",
           }}
         >
           {contactInfo.map((info, idx) => (
             <div
               key={idx}
               style={{
-                background: "linear-gradient(135deg, #fff0f5, #ffc0cb)",
-                borderRadius: "15px",
-                padding: "20px",
-                boxShadow: "0 8px 20px rgba(0,0,0,0.3)",
+                background: "linear-gradient(135deg, #fff7ec, #f5e3c3)",
+                borderRadius: "12px",
+                padding: "22px",
+                border: `1px solid ${COLORS.gold}`,
                 minWidth: "250px",
-                maxWidth: "300px",
                 textAlign: "center",
                 flexShrink: 0,
-                transition: "transform 0.3s, box-shadow 0.3s",
+                boxShadow: "0 6px 14px rgba(0,0,0,0.08)",
+                transition: "all 0.3s ease",
                 cursor: "pointer",
               }}
               onMouseEnter={(e) => {
                 e.currentTarget.style.transform = "scale(1.05)";
-                e.currentTarget.style.boxShadow = "0 12px 25px rgba(0,0,0,0.4)";
+                e.currentTarget.style.boxShadow = "0 10px 22px rgba(0,0,0,0.15)";
               }}
               onMouseLeave={(e) => {
                 e.currentTarget.style.transform = "scale(1)";
-                e.currentTarget.style.boxShadow = "0 8px 20px rgba(0,0,0,0.3)";
+                e.currentTarget.style.boxShadow = "0 6px 14px rgba(0,0,0,0.08)";
               }}
             >
               <h2
                 style={{
-                  fontSize: "1.3rem",
-                  fontWeight: "600",
+                  fontSize: "1.2rem",
+                  fontWeight: 600,
+                  color: COLORS.maroon,
                   marginBottom: "10px",
                 }}
               >
                 {info.title}
               </h2>
 
-              <p
-                style={{
-                  whiteSpace: "pre-line",
-                  fontSize: "1.1rem",
-                  color: "black",
-                  margin: 0,
-                }}
-              >
+              <p style={{ fontSize: "1rem", color: COLORS.maroon, margin: 0 }}>
                 {info.value}
               </p>
             </div>

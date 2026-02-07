@@ -6,8 +6,6 @@ import Link from "next/link";
 import { normalize } from "@/lib/utils";
 import { COLORS } from "@/lib/colors";
 import products from "@/data/products.json";
-import Footer from "./components/Footer";
-
 
 
 // Centralized Data Arrays

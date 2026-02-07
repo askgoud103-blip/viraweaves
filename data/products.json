@@ -88,6 +88,84 @@
     "occasion": "Religious"
   },
   {
+    "id": "vw-gadwal2",
+    "title": "Traditional Gadwal Sico",
+    "category": "Gadwal",
+    "price": 4000,
+    "description": "The perfect blend of cotton body and silk border, typical of the Gadwal heritage.",
+    "fabric": "Sico",
+    "weave": "Handloom",
+    "images": ["/images/gadwal/gadwal2.jpg"],
+    "occasion": "Religious"
+  },
+  {
+    "id": "vw-gadwal3",
+    "title": "Traditional Gadwal Sico",
+    "category": "Gadwal",
+    "price": 9000,
+    "description": "The perfect blend of cotton body and silk border, typical of the Gadwal heritage.",
+    "fabric": "Sico",
+    "weave": "Handloom",
+    "images": ["/images/gadwal/g3.jpg"],
+    "occasion": "Religious"
+  },
+  {
+    "id": "vw-gadwal4",
+    "title": "Traditional Gadwal Sico",
+    "category": "Gadwal",
+    "price": 10500,
+    "description": "The perfect blend of cotton body and silk border, typical of the Gadwal heritage.",
+    "fabric": "Sico",
+    "weave": "Handloom",
+    "images": ["/images/gadwal/g4.jpg"],
+    "occasion": "Religious"
+  },
+  {
+    "id": "vw-gadwal5",
+    "title": "Traditional Gadwal Sico",
+    "category": "Gadwal",
+    "price": 15500,
+    "description": "The perfect blend of cotton body and silk border, typical of the Gadwal heritage.",
+    "fabric": "Sico",
+    "weave": "Handloom",
+    "images": ["/images/gadwal/g5.jpg"],
+    "occasion": "Religious"
+  },
+  {
+    "id": "vw-gadwal6",
+    "title": "Traditional Gadwal Sico",
+    "category": "Gadwal",
+    "price": 26000,
+    "description": "The perfect blend of cotton body and silk border, typical of the Gadwal heritage.",
+    "fabric": "Sico",
+    "weave": "Handloom",
+    "images": ["/images/gadwal/g6.jpg"],
+    "occasion": "Religious"
+  },
+  {
+    "id": "vw-gadwal7",
+    "title": "Traditional Gadwal Sico",
+    "category": "Gadwal",
+    "price": 36000,
+    "description": "The perfect blend of cotton body and silk border, typical of the Gadwal heritage.",
+    "fabric": "Sico",
+    "weave": "Handloom",
+    "images": ["/images/gadwal/g7.jpg"],
+    "occasion": "Religious"
+  },
+  {
+    "id": "vw-gadwal8",
+    "title": "Traditional Gadwal Sico",
+    "category": "Gadwal",
+    "price": 46000,
+    "description": "The perfect blend of cotton body and silk border, typical of the Gadwal heritage.",
+    "fabric": "Sico",
+    "weave": "Handloom",
+    "images": ["/images/gadwal/g8.jpg"],
+    "occasion": "Religious"
+  },
+  
+  {
     "id": "vw-303",
     "title": "Handcrafted Narayanpet Cotton",
     "category": "Narayanpet",
@@ -109,17 +187,120 @@
     "images": ["/images/venkatagiri/dir11.jpg"],
     "occasion": "Wedding"
   },
-  {
-    "id": "vw-305",
-    "title": "Translucent Kotha Silk",
-    "category": "Kotha",
-    "price": 3800,
-    "description": "A breezy Kotha saree with light zari work, perfect for summer celebrations.",
-    "fabric": "Kotha Silk",
-    "weave": "Handloom",
-    "images": ["/images/kotha/dir12.jpg"],
-    "occasion": "Party Wear"
-  },
+  
+{
+  "id": "vw-kotha-1",
+  "title": "Soft Peach Kotha Silk",
+  "category": "Kotha",
+  "price": 1900,
+  "description": "Lightweight handloom Kotha silk with elegant drape.",
+  "fabric": "Kotha Silk",
+  "weave": "Handloom",
+  "images": ["/images/kotha/k1.jpg"],
+  "occasion": "Party Wear"
+},
+{
+  "id": "vw-kotha-2",
+  "title": "Ivory White Kotha Silk",
+  "category": "Kotha",
+  "price": 14000,
+  "description": "Graceful ivory Kotha silk with subtle zari highlights.",
+  "fabric": "Kotha Silk",
+  "weave": "Handloom",
+  "images": ["/images/kotha/k2.jpg"],
+  "occasion": "Festive"
+},
+{
+  "id": "vw-kotha-3",
+  "title": "Sky Blue Kotha Silk",
+  "category": "Kotha",
+  "price": 4000,
+  "description": "Soft sky blue Kotha silk perfect for summer gatherings.",
+  "fabric": "Kotha Silk",
+  "weave": "Handloom",
+  "images": ["/images/kotha/k3.jpg"],
+  "occasion": "Casual"
+},
+{
+  "id": "vw-kotha-4",
+  "title": "Rose Pink Kotha Silk",
+  "category": "Kotha",
+  "price": 26000,
+  "description": "Rose pink Kotha silk with airy texture and gentle shine.",
+  "fabric": "Kotha Silk",
+  "weave": "Handloom",
+  "images": ["/images/kotha/k4.jpg"],
+  "occasion": "Party Wear"
+},
+{
+  "id": "vw-kotha-5",
+  "title": "Mint Green Kotha Silk",
+  "category": "Kotha",
+  "price": 40000,
+  "description": "Refreshing mint green handloom Kotha silk.",
+  "fabric": "Kotha Silk",
+  "weave": "Handloom",
+  "images": ["/images/kotha/k5.jpg"],
+  "occasion": "Festive"
+},
+{
+  "id": "vw-kotha-6",
+  "title": "Lavender Kotha Silk",
+  "category": "Kotha",
+  "price": 48000,
+  "description": "Elegant lavender shade in pure Kotha silk weave.",
+  "fabric": "Kotha Silk",
+  "weave": "Handloom",
+  "images": ["/images/kotha/k6.jpg"],
+  "occasion": "Evening"
+},
+{
+  "id": "vw-kotha-7",
+  "title": "Sunset Orange Kotha Silk",
+  "category": "Kotha",
+  "price": 4500,
+  "description": "Warm sunset orange Kotha silk for festive moments.",
+  "fabric": "Kotha Silk",
+  "weave": "Handloom",
+  "images": ["/images/kotha/k7.jpg"],
+  "occasion": "Wedding"
+},
+{
+  "id": "vw-kotha-8",
+  "title": "Steel Grey Kotha Silk",
+  "category": "Kotha",
+  "price": 4600,
+  "description": "Modern steel grey Kotha silk with soft sheen.",
+  "fabric": "Kotha Silk",
+  "weave": "Handloom",
+  "images": ["/images/kotha/k8.jpg"],
+  "occasion": "Formal"
+},
+{
+  "id": "vw-kotha-9",
+  "title": "Champagne Beige Kotha Silk",
+  "category": "Kotha",
+  "price": 4700,
+  "description": "Champagne beige Kotha silk with minimal zari.",
+  "fabric": "Kotha Silk",
+  "weave": "Handloom",
+  "images": ["/images/kotha/k9.jpg"],
+  "occasion": "Party Wear"
+},
+{
+  "id": "vw-kotha-10",
+  "title": "Classic White Kotha Silk",
+  "category": "Kotha",
+  "price": 4800,
+  "description": "Classic white breathable Kotha silk for elegant looks.",
+  "fabric": "Kotha Silk",
+  "weave": "Handloom",
+  "images": ["/images/kotha/k10.jpg"],
+  "occasion": "Traditional"
+},
+ 
+
+
   {
     "id": "vw-306",
     "title": "Floral White Jamdhani",

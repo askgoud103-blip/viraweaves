@@ -3,6 +3,8 @@
 import { useState, useEffect, useRef } from "react";
 import Link from "next/link";
 import { COLORS } from "@/lib/colors";
+import Image from "next/image";
+
 
 export default function Navbar() {
   const [open, setOpen] = useState(false);
@@ -54,18 +56,22 @@ export default function Navbar() {
         }}
       >
         {/* Logo */}
-        <Link
-          href="/"
-          style={{
-            fontSize: "1.4rem",
-            fontWeight: 700,
-            letterSpacing: "1px",
-            color: COLORS.cream,
-            textDecoration: "none",
-          }}
-        >
-          Viraweaves
-        </Link>
+       <Link href="/" style={{ display: "flex", alignItems: "center" }}>
+  <Image
+  src="/logo.png"
+  alt="Viraweaves Logo"
+  width={42}
+  height={42}
+  className="logoHover"
+  style={{
+    borderRadius: "50%",
+    objectFit: "contain",
+    cursor: "pointer",
+  }}
+/>
+
+</Link>
+
 
         {/* Desktop Menu */}
         <div className="desktopMenu" style={{ display: "flex", gap: "28px" }}>

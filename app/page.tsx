@@ -6,6 +6,8 @@ import Link from "next/link";
 import { normalize } from "@/lib/utils";
 import { COLORS } from "@/lib/colors";
 import products from "@/data/products.json";
+import Footer from "./components/Footer";
+
 
 
 // Centralized Data Arrays
@@ -321,6 +323,8 @@ export default function HomePage() {
         <h2 style={{ fontSize: "2rem", color: COLORS.maroon, fontFamily: "serif" }}>Coming Soon</h2>
         <p style={{ fontStyle: "italic", color: "#555", marginTop: "10px" }}>Special Bridal Collections & Silk Weaves Launching Soon</p>
       </section>
+      
+      
 
       <style jsx global>{`
         .cat-link:hover { background: ${COLORS.gold} !important; color: ${COLORS.maroon} !important; transform: translateY(-3px); }

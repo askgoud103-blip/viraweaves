@@ -17,15 +17,12 @@ const CATEGORIES = [
 
 const QUICK_FILTERS = [
 
-  { label: "Below Rs.2K", cat: "jamdhani", params: "?maxPrice=2000" },
-  { label: "Below Rs.5K", cat: "banarasi", params: "?maxPrice=5000" },
-  { label: "Rs.10K – 15K", cat: "kanchi-pattu", params: "?minPrice=10000&maxPrice=15000" },
-  { label: "Rs.15K – 30K", cat: "jamdhani", params: "?minPrice=15000&maxPrice=30000" },
-  { label: "Above Rs.45K", cat: "kanchi-pattu", params: "?minPrice=45000" },
-  { label: "New Arrivals", cat: "pochampally", params: "" },
-  { label: "Trending", cat: "narayanpet", params: "" },
-  { label: "Popular", cat: "gadwal", params: "" },
-  { label: "Designer", cat: "designer-sarees", params: "" },
+  { label: "Below ₹2K", params: "?maxPrice=2000" },
+  { label: "Below ₹5K", params: "?maxPrice=5000" },
+  { label: "₹10K – ₹15K", params: "?minPrice=10000&maxPrice=15000" },
+  { label: "₹15K – ₹30K", params: "?minPrice=15000&maxPrice=30000" },
+  { label: "₹30K – ₹45K", params: "?minPrice=30000&maxPrice=45000" },
+  { label: "Above ₹45K", params: "?minPrice=45000" },
 ];
 
 const ALL_IMAGES = products.flatMap(p => p.images);
@@ -216,9 +213,9 @@ export default function HomePage() {
   }}>
     {[
       ...CATEGORIES,
-      "Quick-Pick",
-      "Unique-One",
-      "Must-Wear", // Extra buttons for even layout
+      "Pre-Wed Spl",
+      "Bridal Spl",
+      "Bridal Sisters", // Extra buttons for even layout
     ].map((cat) => (
       <Link 
         key={cat} 
@@ -279,7 +276,7 @@ export default function HomePage() {
     }}
   >
     {QUICK_FILTERS.map((item) => (
-      <Link key={item.label} href={`/category/${item.cat}${item.params}`}>
+      <Link key={item.label} href={`/category/all${item.params}`}>
         <button
           style={{
             flex: "1 1 calc(20% - 15px)",

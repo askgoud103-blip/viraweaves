@@ -23,7 +23,6 @@ export default function CategoryPage() {
   const searchParams = useSearchParams();
   const router = useRouter();
 
-  // Data safety check
   const allProducts = Array.isArray(productsData)
     ? productsData
     : (productsData as any).default || [];
@@ -47,7 +46,6 @@ export default function CategoryPage() {
     const itemDesc = item?.description?.toLowerCase() || "";
     const searchTarget = slug.toLowerCase();
 
-    // SMART MATCHING LOGIC
     let isMatch = isAll || 
                  itemCategory.includes(searchTarget) || 
                  itemFabric.includes(searchTarget) ||
@@ -55,7 +53,6 @@ export default function CategoryPage() {
                  itemTitle.includes(searchTarget) ||
                  itemDesc.includes(searchTarget);
 
-    // Fallback for "Fancy"
     if (searchTarget === "fancy") {
       if (itemOccasion.includes("party") || itemCategory.includes("designer") || itemTitle.includes("shimmer")) {
         isMatch = true;
@@ -73,7 +70,6 @@ export default function CategoryPage() {
     <div style={{ minHeight: "100vh", backgroundColor: "#fffafb", paddingBottom: "80px" }}>
       <Navbar />
 
-      {/* --- HERO HEADER --- */}
       <section style={{ 
         padding: "160px 20px 40px", 
         textAlign: "center", 
@@ -93,33 +89,17 @@ export default function CategoryPage() {
           {filteredItems.length} {filteredItems.length === 1 ? "EXQUISITE WEAVE" : "EXQUISITE WEAVES"} DISCOVERED
         </p>
 
-        <Link href="/" style={{ 
-          color: "#888", 
-          textDecoration: "none", 
-          fontSize: "0.9rem",
-          borderBottom: "1px solid #ddd",
-          paddingBottom: "2px"
-        }}>
+        <Link href="/" style={{ color: "#888", textDecoration: "none", fontSize: "0.9rem", borderBottom: "1px solid #ddd" }}>
           ← RETURN TO HOME
         </Link>
       </section>
 
-      {/* --- FILTER BAR --- */}
+      {/* FILTER BAR */}
       <div style={{ 
-        maxWidth: "1200px", 
-        margin: "0 auto 40px", 
-        padding: "20px",
-        display: "flex",
-        justifyContent: "center",
-        alignItems: "center",
-        gap: "15px",
-        flexWrap: "wrap",
-        position: "sticky",
-        top: "70px",
-        zIndex: 10,
-        backgroundColor: "rgba(255, 250, 251, 0.8)",
-        backdropFilter: "blur(10px)",
-        borderRadius: "0 0 20px 20px"
+        maxWidth: "1200px", margin: "0 auto 40px", padding: "20px",
+        display: "flex", justifyContent: "center", alignItems: "center", gap: "15px", flexWrap: "wrap",
+        position: "sticky", top: "70px", zIndex: 10,
+        backgroundColor: "rgba(255, 250, 251, 0.8)", backdropFilter: "blur(10px)", borderRadius: "0 0 20px 20px"
       }}>
         <label style={{ fontSize: "0.9rem", fontWeight: "bold", color: "#555" }}>Filter By Price:</label>
         <select
@@ -134,135 +114,40 @@ export default function CategoryPage() {
             }
             router.push(`/category/${slug}?${params.toString()}`);
           }}
-          style={{ 
-            padding: "10px 15px", 
-            borderRadius: "10px", 
-            border: "1px solid #d14d72",
-            outline: "none",
-            cursor: "pointer",
-            background: "white"
-          }}
+          style={{ padding: "10px 15px", borderRadius: "10px", border: "1px solid #d14d72", background: "white" }}
         >
-          {PRICE_RANGES.map(p => (
-            <option key={p.value} value={p.value}>{p.label}</option>
-          ))}
+          {PRICE_RANGES.map(p => <option key={p.value} value={p.value}>{p.label}</option>)}
         </select>
 
         <button
           onClick={() => router.push(`/category/${slug}`)}
-          style={{
-            padding: "10px 20px",
-            borderRadius: "10px",
-            background: "#d14d72",
-            color: "white",
-            border: "none",
-            fontWeight: "bold",
-            cursor: "pointer",
-            boxShadow: "0 4px 10px rgba(209, 77, 114, 0.2)"
-          }}
+          style={{ padding: "10px 20px", borderRadius: "10px", background: "#d14d72", color: "white", border: "none", fontWeight: "bold", cursor: "pointer" }}
         >
           Clear Filters
         </button>
       </div>
 
-      {/* --- PRODUCT GRID --- */}
       <section style={{ maxWidth: "1200px", margin: "0 auto", padding: "0 20px" }}>
         {filteredItems.length === 0 ? (
-          <div style={{ 
-            textAlign: "center", 
-            padding: "80px 20px", 
-            background: "#fff", 
-            borderRadius: "30px",
-            boxShadow: "0 10px 30px rgba(0,0,0,0.03)" 
-          }}>
-            <h2 style={{ fontFamily: "serif", color: "#555" }}>Our looms are still working on this...</h2>
-            <p style={{ color: "#888", marginBottom: "20px" }}>Try adjusting your price range or browse another category.</p>
-            <Link href="/category/all" style={{ color: "#d14d72", fontWeight: "bold", textDecoration: "none" }}>
-              EXPLORE ALL SAREES →
-            </Link>
+          <div style={{ textAlign: "center", padding: "80px 20px", background: "#fff", borderRadius: "30px" }}>
+            <h2>No sarees found in this range.</h2>
+            <Link href="/category/all">Explore All</Link>
           </div>
         ) : (
-          <div style={{ 
-            display: "grid", 
-            gridTemplateColumns: "repeat(auto-fill, minmax(280px, 1fr))", 
-            gap: "35px" 
-          }}>
+          <div style={{ display: "grid", gridTemplateColumns: "repeat(auto-fill, minmax(280px, 1fr))", gap: "35px" }}>
             {filteredItems.map((item: any) => (
-              <div 
-                key={item.id} 
-                className="product-card"
-                style={{ 
-                  background: "#fff", 
-                  borderRadius: "24px", 
-                  overflow: "hidden",
-                  boxShadow: "0 10px 25px rgba(0,0,0,0.04)",
-                  transition: "transform 0.3s ease"
-                }}
-              >
+              <div key={item.id} style={{ background: "#fff", borderRadius: "24px", overflow: "hidden", boxShadow: "0 10px 25px rgba(0,0,0,0.04)" }}>
                 <Link href={`/product/${normalize(item.category)}/${item.id}`}>
                   <div style={{ overflow: "hidden", height: "420px" }}>
-                    <img 
-                      src={item.images?.[0]} 
-                      alt={item.title}
-                      style={{ 
-                        width: "100%", 
-                        height: "100%", 
-                        objectFit: "cover",
-                        transition: "transform 0.5s ease" 
-                      }}
-                      className="product-img"
-                    />
+                    <img src={item.images?.[0]} alt={item.title} style={{ width: "100%", height: "100%", objectFit: "cover" }} />
                   </div>
                 </Link>
-
                 <div style={{ padding: "20px", textAlign: "center" }}>
-                  <h3 style={{ 
-                    fontFamily: "serif", 
-                    fontSize: "1.2rem", 
-                    color: "#333", 
-                    marginBottom: "8px",
-                    height: "1.4em",
-                    overflow: "hidden"
-                  }}>{item.title}</h3>
-
-                  <p style={{ color: "#d14d72", fontWeight: 800, fontSize: "1.5rem", marginBottom: "20px" }}>
-                    {formatPrice(item.price)}
-                  </p>
-
+                  <h3 style={{ fontFamily: "serif", fontSize: "1.2rem", color: "#333", marginBottom: "8px" }}>{item.title}</h3>
+                  <p style={{ color: "#d14d72", fontWeight: 800, fontSize: "1.5rem", marginBottom: "20px" }}>{formatPrice(item.price)}</p>
                   <div style={{ display: "flex", flexDirection: "column", gap: "10px" }}>
-                    <Link
-                      href={`/product/${normalize(item.category)}/${item.id}`}
-                      style={{ 
-                        background: "#fff0f3", 
-                        color: "#d14d72", 
-                        padding: "12px", 
-                        borderRadius: "12px",
-                        fontWeight: "bold",
-                        textDecoration: "none",
-                        fontSize: "0.9rem",
-                        transition: "0.3s"
-                      }}
-                    >
-                      VIEW DETAILS
-                    </Link>
-
-                    <a
-                      href={getWhatsAppLink(item.title, item.price)}
-                      target="_blank"
-                      rel="noopener noreferrer"
-                      style={{ 
-                        background: "#25D366", 
-                        color: "#fff", 
-                        padding: "12px", 
-                        borderRadius: "12px",
-                        fontWeight: "bold",
-                        textDecoration: "none",
-                        fontSize: "0.9rem",
-                        boxShadow: "0 4px 10px rgba(37, 211, 102, 0.2)"
-                      }}
-                    >
-                      ORDER ON WHATSAPP
-                    </a>
+                    <Link href={`/product/${normalize(item.category)}/${item.id}`} style={{ background: "#fff0f3", color: "#d14d72", padding: "12px", borderRadius: "12px", fontWeight: "bold", textDecoration: "none" }}>VIEW DETAILS</Link>
+                    <a href={getWhatsAppLink(item.title, item.price)} target="_blank" rel="noopener noreferrer" style={{ background: "#25D366", color: "#fff", padding: "12px", borderRadius: "12px", fontWeight: "bold", textDecoration: "none" }}>ORDER ON WHATSAPP</a>
                   </div>
                 </div>
               </div>
@@ -270,15 +155,6 @@ export default function CategoryPage() {
           </div>
         )}
       </section>
-
-      <style jsx global>{`
-        .product-card:hover {
-          transform: translateY(-10px);
-        }
-        .product-card:hover .product-img {
-          transform: scale(1.08);
-        }
-      `}</style>
     </div>
   );
 }

@@ -121,10 +121,10 @@ export default function AboutPage() {
                  color: COLORS.maroon, 
                  margin: 0 
                }}>
-                 [Her Name Here]
+                 [Saritha,Jhansi,Manisha]
                </p>
                <p style={{ color: COLORS.gold, fontWeight: "600", fontSize: "0.85rem", letterSpacing: "1px" }}>
-                 FOUNDER & VISIONARY
+                 FOUNDERS & VISIONARIES
                </p>
             </div>
           </div>

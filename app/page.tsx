@@ -6,6 +6,8 @@ import Link from "next/link";
 import { normalize } from "@/lib/utils";
 import { COLORS } from "@/lib/colors";
 import products from "@/data/products.json";
+import Reviews from "@/app/components/Reviews";
+
 
 // Centralized Data Arrays
 const CATEGORIES = [
@@ -87,6 +89,8 @@ export default function HomePage() {
   return (
     <div style={{ width: "100%", minHeight: "100vh", backgroundColor: COLORS.cream, overflowX: "hidden" }}>
       <Navbar />
+      <Reviews />
+
 
       {/* HERO SECTION */}
       <section

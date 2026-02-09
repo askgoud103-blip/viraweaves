@@ -14,7 +14,7 @@ export default function Reviews() {
           color: COLORS.maroon, 
           marginBottom: "40px" 
         }}>
-          What Our Weavers Say
+          What Our Customers Say
         </h2>
         
         <div style={{ 

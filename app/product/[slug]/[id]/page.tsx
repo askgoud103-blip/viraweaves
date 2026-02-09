@@ -64,11 +64,21 @@ export default function SareeDetailPage() {
   }, [validImages.length]);
 
   const handleWhatsAppInquiry = () => {
-    if (!product) return;
-    const phoneNumber = "917093430194"; 
-    const message = `Hi Viraweaves! 🌸\n\nI'm interested in the "${product.title}".\nPrice: ${formatPrice(product.price)}\n\nLink: ${currentUrl}`;
-    window.open(`https://wa.me/${phoneNumber}?text=${encodeURIComponent(message)}`, "_blank");
-  };
+  if (!product) return;
+
+  // 1. Clean number: NO plus, NO slashes, JUST digits.
+  const phoneNumber = "917093430194"; 
+
+  // 2. Draft the message
+  const message = `Hi Viraweaves! 🌸\n\nI'm interested in: ${product.title}\nPrice: ${formatPrice(product.price)}\nID: ${product.id}\n\nLink: ${window.location.href}`;
+
+  // 3. Construct the clean link
+  const whatsappUrl = `https://wa.me/${phoneNumber}?text=${encodeURIComponent(message)}`;
+
+  // 4. Navigate
+  window.location.href = whatsappUrl;
+};
+
 
   if (!product) {
     return (

@@ -52,7 +52,8 @@ function CategoryContent() {
 
   const getWhatsAppLink = (product: any) => {
     const message = `Hi Viraweaves, I'm interested in the ${product.title} (${product.id}) from the ${product.category} collection. Price: ${formatPrice(product.price)}.`;
-    return `https://wa.me/91XXXXXXXXXX?text=${encodeURIComponent(message)}`; // Replace with actual number
+    return `https://api.whatsapp.com/send?phone=917093430194&text=${encodeURIComponent(message)}`;
+
   };
 
   return (

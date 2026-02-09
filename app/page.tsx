@@ -89,7 +89,7 @@ export default function HomePage() {
   return (
     <div style={{ width: "100%", minHeight: "100vh", backgroundColor: COLORS.cream, overflowX: "hidden" }}>
       <Navbar />
-      <Reviews />
+     
 
 
       {/* HERO SECTION */}
@@ -267,6 +267,7 @@ export default function HomePage() {
           Special Bridal Collections & Silk Weaves Launching Soon
         </p>
       </section>
+       <Reviews />
 
       {/* Global CSS for Hovers */}
       <style jsx global>{`

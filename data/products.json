@@ -32,6 +32,19 @@
     "images": ["/images/jimmi/dir21.jpg"],
     "occasion": "Party Wear"
   },
+  
+{
+  "id": "vira-saree-001",
+  "name": "Pure Handloom Silk Saree",
+  "category": "JimmiChoo",
+  "price": 4500,
+  "weave": "Machine",
+  "images": [
+    "/images/jimmi/jc1.jpg"
+  ],
+  "description": "Elegant handcrafted silk saree from Vira~Weaves, perfect for festive and wedding wear."
+},
+
   {
     "id": "vw-104",
     "title": "Pure Georgette Floral Bliss",

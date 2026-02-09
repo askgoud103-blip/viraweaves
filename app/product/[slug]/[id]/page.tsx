@@ -1,281 +1,189 @@
-// app/product/[slug]/[id]/page.tsx
 "use client";
 
-import { useParams } from "next/navigation";
-import { useState, useEffect, useCallback } from "react";
+import { useParams, useRouter } from "next/navigation";
+import { useState, useEffect, useCallback, useMemo } from "react";
 import Link from "next/link";
 import Navbar from "@/app/components/Navbar";
 import products from "@/data/products.json";
 import { normalize, formatPrice } from "@/lib/utils";
+import { COLORS } from "@/lib/colors";
 
 export default function SareeDetailPage() {
   const params = useParams();
-  const categorySlug = params?.slug;
-  const productId = params?.id;
+  const router = useRouter();
+  
+  const productId = params?.id ? String(params.id) : "";
 
-  // --- Diagnostic Logs ---
-  useEffect(() => {
-    console.log("🔍 Viraweaves Diagnosis:");
-    console.log("Current URL Category Slug:", categorySlug);
-    console.log("Current URL Product ID:", productId);
-  }, [categorySlug, productId]);
+  // 1. Memoize the product lookup
+  const product = useMemo(() => {
+    return products.find((p) => String(p.id) === productId);
+  }, [productId]);
 
-  // 1. Find current product
-  const product = products.find((p) => String(p.id) === String(productId));
-
-  // 2. Gallery State
-  const [activeImage, setActiveImage] = useState<string | null>(
-    product?.images?.find(Boolean) || null
+  // 2. Memoize valid images to prevent unnecessary array re-creation
+  const validImages = useMemo(
+    () => product?.images?.filter(Boolean) || [],
+    [product]
   );
+
+  const [activeImage, setActiveImage] = useState<string | null>(null);
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [modalIndex, setModalIndex] = useState(0);
+  const [currentUrl, setCurrentUrl] = useState("");
 
-  // Set initial image once product is found
+  // Sync active image when product loads
   useEffect(() => {
-    if (product?.images?.length) {
-      const firstImage = product.images.find(Boolean);
-      setActiveImage(firstImage || null);
+    if (validImages.length > 0) {
+      setActiveImage(validImages[0]);
     }
-  }, [product]);
+    if (typeof window !== "undefined") {
+      setCurrentUrl(window.location.href);
+    }
+  }, [validImages]);
 
-  // 3. Related Products
-  const relatedProducts = products
-    .filter(
-      (p) => normalize(p.category) === categorySlug && String(p.id) !== String(productId)
-    )
-    .slice(0, 4);
+  // 3. Related Products Logic
+  const relatedProducts = useMemo(() => {
+    if (!product) return [];
+    return products
+      .filter(
+        (p) => 
+          normalize(p.category) === normalize(product.category) && 
+          String(p.id) !== productId
+      )
+      .slice(0, 4);
+  }, [product, productId]);
 
-  // Modal navigation
+  // Modal navigation (Dependencies now stable thanks to useMemo)
   const nextImage = useCallback(() => {
-    if (product && product.images.filter(Boolean).length > 0) {
-      setModalIndex((prev) => (prev + 1) % product.images.filter(Boolean).length);
-    }
-  }, [product]);
+    if (validImages.length === 0) return;
+    setModalIndex((prev) => (prev + 1) % validImages.length);
+  }, [validImages.length]);
 
   const prevImage = useCallback(() => {
-    if (product && product.images.filter(Boolean).length > 0) {
-      setModalIndex(
-        (prev) => (prev - 1 + product.images.filter(Boolean).length) % product.images.filter(Boolean).length
-      );
-    }
-  }, [product]);
+    if (validImages.length === 0) return;
+    setModalIndex((prev) => (prev - 1 + validImages.length) % validImages.length);
+  }, [validImages.length]);
 
-  // WhatsApp Inquiry
   const handleWhatsAppInquiry = () => {
     if (!product) return;
-    const phoneNumber = "7093430194";
-    const currentUrl = typeof window !== "undefined" ? window.location.href : "";
+    const phoneNumber = "917093430194"; 
     const message = `Hi Viraweaves! 🌸\n\nI'm interested in the "${product.title}".\nPrice: ${formatPrice(product.price)}\n\nLink: ${currentUrl}`;
     window.open(`https://wa.me/${phoneNumber}?text=${encodeURIComponent(message)}`, "_blank");
   };
 
-  // Product not found
   if (!product) {
     return (
       <div style={{ minHeight: "100vh", backgroundColor: "#fff" }}>
         <Navbar />
         <div style={{ textAlign: "center", padding: "160px 20px" }}>
-          <h2 style={{ fontFamily: "serif", fontSize: "2rem", color: "#333" }}>
-            Product Not Found
-          </h2>
-          <p style={{ color: "#777", marginBottom: "20px" }}>
-            The ID "{productId}" doesn't exist in your JSON.
-          </p>
-          <Link href="/" style={{ color: "#d14d72", fontWeight: 700 }}>
-            ← Back to Collection
-          </Link>
+          <h2 style={{ fontFamily: "serif", fontSize: "2rem", color: COLORS.maroon }}>Product Not Found</h2>
+          <Link href="/" style={{ color: COLORS.maroon, fontWeight: 700 }}>← Back to Home</Link>
         </div>
       </div>
     );
   }
 
-  // Filter valid images once
-  const validImages = product.images.filter(Boolean);
-
   return (
-    <div style={{ minHeight: "100vh", backgroundColor: "#fff", paddingBottom: "120px" }}>
+    <div style={{ minHeight: "100vh", backgroundColor: COLORS.cream || "#fff", paddingBottom: "120px" }}>
       <Navbar />
 
       <main style={{ maxWidth: "1200px", margin: "0 auto", padding: "140px 20px 60px" }}>
-        
-        {/* BREADCRUMB */}
         <div style={{ marginBottom: "30px" }}>
-          <Link
-            href={`/category/${categorySlug}`}
-            style={{
-              color: "#d14d72",
-              textDecoration: "none",
-              fontWeight: 600,
-              fontSize: "0.9rem",
-            }}
+          <button
+            onClick={() => router.back()}
+            style={{ background: "none", border: "none", color: COLORS.maroon, fontWeight: 600, fontSize: "0.9rem", cursor: "pointer" }}
           >
-            ← BACK TO {String(categorySlug).toUpperCase().replace(/-/g, " ")}
-          </Link>
+            ← BACK TO COLLECTION
+          </button>
         </div>
 
         <div style={{ display: "grid", gridTemplateColumns: "repeat(auto-fit, minmax(320px, 1fr))", gap: "60px", marginBottom: "80px" }}>
           
-          {/* LEFT: IMAGE GALLERY */}
+          {/* GALLERY */}
           <div style={{ display: "flex", flexDirection: "column", gap: "20px" }}>
-            
-            {/* MAIN IMAGE */}
             {activeImage && (
               <div
-                style={{
-                  width: "100%",
-                  borderRadius: "24px",
-                  overflow: "hidden",
-                  boxShadow: "0 20px 50px rgba(0,0,0,0.1)",
-                  cursor: "zoom-in",
-                }}
+                style={{ width: "100%", borderRadius: "24px", overflow: "hidden", boxShadow: "0 20px 50px rgba(0,0,0,0.1)", cursor: "zoom-in" }}
                 onClick={() => {
                   setModalIndex(validImages.indexOf(activeImage));
                   setIsModalOpen(true);
                 }}
               >
-                <img
-                  src={activeImage}
-                  alt={product.title || "Saree"}
-                  style={{ width: "100%", display: "block", objectFit: "cover" }}
-                />
+                <img src={activeImage} alt={product.title} style={{ width: "100%", display: "block", objectFit: "cover", aspectRatio: "3/4" }} />
               </div>
             )}
 
-            {/* THUMBNAILS */}
-            <div style={{ display: "flex", gap: "10px", overflowX: "auto", paddingBottom: "10px" }}>
+            <div style={{ display: "flex", gap: "12px", overflowX: "auto", paddingBottom: "10px" }}>
               {validImages.map((img, idx) => (
                 <button
-                  key={idx}
+                  key={`${product.id}-thumb-${idx}`}
                   onClick={() => setActiveImage(img)}
                   style={{
-                    width: "80px",
-                    height: "100px",
-                    borderRadius: "12px",
-                    flexShrink: 0,
-                    border: activeImage === img ? "2px solid #d14d72" : "2px solid #eee",
-                    padding: 0,
-                    cursor: "pointer",
-                    overflow: "hidden",
-                    transition: "0.2s",
+                    width: "80px", height: "100px", borderRadius: "12px", flexShrink: 0,
+                    border: activeImage === img ? `2px solid ${COLORS.maroon}` : "2px solid #eee",
+                    cursor: "pointer", overflow: "hidden"
                   }}
                 >
-                  <img
-                    src={img}
-                    alt={`Thumbnail ${idx + 1}`}
-                    style={{ width: "100%", height: "100%", objectFit: "cover" }}
-                  />
+                  <img src={img} alt="Thumbnail" style={{ width: "100%", height: "100%", objectFit: "cover" }} />
                 </button>
               ))}
             </div>
           </div>
 
-          {/* RIGHT: PRODUCT INFO */}
+          {/* DETAILS */}
           <div>
-            <span
-              style={{
-                color: "#d14d72",
-                fontWeight: 700,
-                letterSpacing: "2px",
-                fontSize: "0.8rem",
-                textTransform: "uppercase",
-              }}
-            >
+            <span style={{ color: COLORS.gold, fontWeight: 700, letterSpacing: "2px", fontSize: "0.85rem", textTransform: "uppercase" }}>
               {product.fabric} • {product.category}
             </span>
-            <h1
-              style={{
-                fontFamily: "serif",
-                fontSize: "clamp(2rem, 5vw, 3rem)",
-                margin: "15px 0",
-                color: "#222",
-              }}
-            >
-              {product.title}
-            </h1>
-            <p style={{ fontSize: "2.5rem", color: "#d14d72", fontWeight: 700, marginBottom: "20px" }}>
-              {formatPrice(product.price)}
-            </p>
+            <h1 style={{ fontFamily: "serif", fontSize: "2.8rem", margin: "15px 0", color: COLORS.maroon }}>{product.title}</h1>
+            <p style={{ fontSize: "2.2rem", color: "#333", fontWeight: 700, marginBottom: "20px" }}>{formatPrice(product.price)}</p>
+            <p style={{ lineHeight: "1.8", color: "#555", marginBottom: "30px" }}>{product.description}</p>
 
-            <div style={{ borderTop: "1px solid #eee", paddingTop: "20px", marginBottom: "30px" }}>
-              <p style={{ lineHeight: "1.8", color: "#444", fontSize: "1.1rem" }}>{product.description}</p>
-            </div>
-
-            {/* QUICK SPECS TABLE */}
-            <div style={{ background: "#f9f9f9", padding: "20px", borderRadius: "16px", marginBottom: "30px" }}>
-              <div style={{ display: "grid", gridTemplateColumns: "1fr 1fr", gap: "10px", fontSize: "0.9rem" }}>
-                <div style={{ color: "#666" }}>Weave Type:</div>
-                <div style={{ fontWeight: 600 }}>{product.weave || "Handloom"}</div>
-                <div style={{ color: "#666" }}>Occasion:</div>
-                <div style={{ fontWeight: 600 }}>{product.occasion || "Festive"}</div>
-                <div style={{ color: "#666" }}>Wash Care:</div>
-                <div style={{ fontWeight: 600 }}>Dry Clean Only</div>
+            <div style={{ background: "#fdfdfd", padding: "24px", borderRadius: "16px", marginBottom: "30px", border: "1px solid #f0f0f0" }}>
+              <div style={{ display: "grid", gridTemplateColumns: "100px 1fr", gap: "10px", fontSize: "0.95rem" }}>
+                <span style={{ color: "#888" }}>Weave:</span> <strong>{product.weave}</strong>
+                <span style={{ color: "#888" }}>Occasion:</span> <strong>{product.occasion}</strong>
+                <span style={{ color: "#888" }}>Care:</span> <strong>Dry Clean Only</strong>
               </div>
             </div>
 
-            <button
-              onClick={handleWhatsAppInquiry}
-              className="whatsapp-btn"
-              style={{
-                width: "100%",
-                padding: "22px",
-                borderRadius: "16px",
-                background: "#25D366",
-                color: "#fff",
-                border: "none",
-                fontWeight: 700,
-                fontSize: "1.2rem",
-                cursor: "pointer",
-              }}
-            >
+            <button onClick={handleWhatsAppInquiry} className="whatsapp-btn" style={{ width: "100%", padding: "20px", borderRadius: "16px", background: "#25D366", color: "#fff", border: "none", fontWeight: 700, fontSize: "1.1rem", cursor: "pointer" }}>
               Order via WhatsApp
             </button>
           </div>
         </div>
 
-        {/* RELATED PRODUCTS */}
+        {/* RELATED SECTION */}
         {relatedProducts.length > 0 && (
           <section style={{ borderTop: "1px solid #eee", paddingTop: "60px" }}>
-            <h2 style={{ fontFamily: "serif", fontSize: "2.2rem", marginBottom: "40px", textAlign: "center" }}>
-              You May Also Like
-            </h2>
-            <div style={{ display: "grid", gridTemplateColumns: "repeat(auto-fill, minmax(250px, 1fr))", gap: "30px" }}>
-              {relatedProducts.map((rp) => {
-                const rpImage = rp.images.find(Boolean);
-                if (!rpImage) return null;
-
-                return (
-                  <Link key={rp.id} href={`/product/${normalize(rp.category)}/${rp.id}`} style={{ textDecoration: "none" }}>
-                    <div className="product-card">
-                      <img src={rpImage} alt={rp.title} style={{ width: "100%", height: "320px", objectFit: "cover", borderRadius: "16px" }} />
-                      <div style={{ padding: "15px", textAlign: "center" }}>
-                        <h4 style={{ margin: "5px 0", color: "#333" }}>{rp.title}</h4>
-                        <p style={{ color: "#d14d72", fontWeight: 700 }}>{formatPrice(rp.price)}</p>
-                      </div>
-                    </div>
-                  </Link>
-                );
-              })}
+            <h2 style={{ fontFamily: "serif", fontSize: "2rem", marginBottom: "40px", textAlign: "center", color: COLORS.maroon }}>More Like This</h2>
+            <div style={{ display: "grid", gridTemplateColumns: "repeat(auto-fill, minmax(240px, 1fr))", gap: "30px" }}>
+              {relatedProducts.map((rp) => (
+                <Link key={rp.id} href={`/product/${normalize(rp.category)}/${rp.id}`} style={{ textDecoration: "none" }}>
+                  <img src={rp.images[0]} style={{ width: "100%", height: "340px", objectFit: "cover", borderRadius: "16px" }} alt="" />
+                  <div style={{ textAlign: "center", padding: "10px" }}>
+                    <h4 style={{ color: "#333", margin: "5px 0" }}>{rp.title}</h4>
+                    <p style={{ color: COLORS.gold, fontWeight: 700 }}>{formatPrice(rp.price)}</p>
+                  </div>
+                </Link>
+              ))}
             </div>
           </section>
         )}
       </main>
 
-      {/* MODAL / LIGHTBOX */}
-      {isModalOpen && validImages.length > 0 && (
+      {/* LIGHTBOX */}
+      {isModalOpen && (
         <div style={{ position: "fixed", inset: 0, backgroundColor: "rgba(0,0,0,0.9)", display: "flex", justifyContent: "center", alignItems: "center", zIndex: 2000 }}>
-          <button onClick={() => setIsModalOpen(false)} style={{ position: "absolute", top: "20px", right: "20px", fontSize: "2.5rem", color: "#fff", background: "none", border: "none", cursor: "pointer" }}>×</button>
-          <button onClick={prevImage} style={{ position: "absolute", left: "20px", fontSize: "3rem", color: "#fff", background: "none", border: "none", cursor: "pointer" }}>‹</button>
-          <img src={validImages[modalIndex]} alt="Large view" style={{ maxHeight: "85vh", maxWidth: "90vw", objectFit: "contain", borderRadius: "8px" }} />
-          <button onClick={nextImage} style={{ position: "absolute", right: "20px", fontSize: "3rem", color: "#fff", background: "none", border: "none", cursor: "pointer" }}>›</button>
+          <button onClick={() => setIsModalOpen(false)} style={{ position: "absolute", top: "20px", right: "20px", color: "#fff", fontSize: "2rem", background: "none", border: "none" }}>×</button>
+          <button onClick={prevImage} style={{ position: "absolute", left: "20px", color: "#fff", fontSize: "3rem", background: "none", border: "none" }}>‹</button>
+          <img src={validImages[modalIndex]} alt="Zoom" style={{ maxHeight: "85vh", maxWidth: "90vw", objectFit: "contain" }} />
+          <button onClick={nextImage} style={{ position: "absolute", right: "20px", color: "#fff", fontSize: "3rem", background: "none", border: "none" }}>›</button>
         </div>
       )}
 
       <style jsx global>{`
-        .whatsapp-btn:hover { background: #1eb954 !important; transform: scale(1.02); transition: 0.3s; }
-        .product-card { transition: transform 0.3s ease; }
-        .product-card:hover { transform: translateY(-8px); }
+        .whatsapp-btn:hover { background: #1eb954 !important; }
       `}</style>
     </div>
   );
 }
-

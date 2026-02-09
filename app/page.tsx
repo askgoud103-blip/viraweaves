@@ -1,12 +1,11 @@
 "use client";
 
-import { useRef, useEffect, useState, MouseEvent, TouchEvent } from "react";
+import { useRef, useEffect, useState, MouseEvent, TouchEvent, useMemo } from "react";
 import Navbar from "./components/Navbar";
 import Link from "next/link";
 import { normalize } from "@/lib/utils";
 import { COLORS } from "@/lib/colors";
 import products from "@/data/products.json";
-
 
 // Centralized Data Arrays
 const CATEGORIES = [
@@ -16,7 +15,6 @@ const CATEGORIES = [
 ];
 
 const QUICK_FILTERS = [
-
   { label: "Below ₹2K", params: "?maxPrice=2000" },
   { label: "Below ₹5K", params: "?maxPrice=5000" },
   { label: "₹10K – ₹15K", params: "?minPrice=10000&maxPrice=15000" },
@@ -24,8 +22,6 @@ const QUICK_FILTERS = [
   { label: "₹30K – ₹45K", params: "?minPrice=30000&maxPrice=45000" },
   { label: "Above ₹45K", params: "?minPrice=45000" },
 ];
-
-const ALL_IMAGES = products.flatMap(p => p.images);
 
 export default function HomePage() {
   const [isHovering, setIsHovering] = useState(false);
@@ -35,6 +31,19 @@ export default function HomePage() {
   const containerRef = useRef<HTMLDivElement>(null);
   const dragStartX = useRef(0);
   const animationRef = useRef<number>(0);
+
+  // Optimization: Flatten images once so we don't use .find() in the render loop
+  const scrollData = useMemo(() => {
+    const flattened = products.flatMap(p => 
+      p.images.map(img => ({
+        src: img,
+        id: p.id,
+        category: p.category,
+        title: p.title
+      }))
+    );
+    return [...flattened, ...flattened]; // Duplicate for infinite scroll
+  }, []);
 
   useEffect(() => {
     const speed = 0.5;
@@ -46,7 +55,7 @@ export default function HomePage() {
         setTranslateX((prev) => {
           let next = prev - speed;
           const total = container.scrollWidth / 2;
-          if (Math.abs(next) >= total) next += total;
+          if (Math.abs(next) >= total) next = 0; // Reset smoothly
           return next;
         });
       }
@@ -57,7 +66,6 @@ export default function HomePage() {
     return () => cancelAnimationFrame(animationRef.current);
   }, [isDragging, isHovering]);
 
-  // TypeScript-safe event handlers
   const handleMouseDown = (e: MouseEvent | TouchEvent) => {
     setIsDragging(true);
     const clientX = "touches" in e ? e.touches[0].clientX : (e as MouseEvent).clientX;
@@ -83,7 +91,7 @@ export default function HomePage() {
       {/* HERO SECTION */}
       <section
         style={{
-          padding: "40px 6px 20px",
+          padding: "40px 6px 40px",
           textAlign: "center",
           background: `linear-gradient(to bottom, ${COLORS.cream}, #fff)`,
         }}
@@ -112,217 +120,157 @@ export default function HomePage() {
         </div>
       </section>
 
-     {/* SECTION 1: Auto Scroll */}
-<section style={{ textAlign: "center", paddingBottom: "5px" }}>
- <h2 style={{ 
-  fontFamily: "serif", 
-  fontSize: "2.2rem", 
-  fontWeight: 700, 
-  marginBottom: "30px", 
-  color: COLORS.maroon // changed from #333 to brand maroon
-}}>
-  Latest Arrivals
-</h2>
+      {/* SECTION 1: Auto Scroll */}
+      <section style={{ textAlign: "center", paddingBottom: "40px" }}>
+        <h2 style={{ 
+          fontFamily: "serif", 
+          fontSize: "2.2rem", 
+          fontWeight: 700, 
+          marginBottom: "30px", 
+          color: COLORS.maroon 
+        }}>
+          Latest Arrivals
+        </h2>
 
-
-  <div
-    ref={containerRef}
-    style={{ overflow: "hidden", cursor: isDragging ? "grabbing" : "grab" }}
-    onMouseDown={handleMouseDown}
-    onMouseMove={handleMouseMove}
-    onMouseUp={handleMouseUp}
-    onMouseEnter={() => setIsHovering(true)}
-    onMouseLeave={() => { setIsHovering(false); handleMouseUp(); }}
-    onTouchStart={handleMouseDown}
-    onTouchMove={handleMouseMove}
-    onTouchEnd={handleMouseUp}
-  >
-    <div
-      style={{
-        display: "flex",
-        transform: `translateX(${translateX}px)`,
-        transition: isDragging ? "none" : "transform 0.1s linear",
-      }}
-    >
-      {[...ALL_IMAGES, ...ALL_IMAGES].map((src, i) => {
-        // Find the product this image belongs to
-        const product = products.find((p) => p.images.includes(src));
-        if (!product || !src) return null; // skip invalid images
-
-        return (
-          <Link
-            key={i}
-            href={`/product/${normalize(product.category)}/${product.id}`}
-            onClick={(e) => {
-              // Prevent click if dragging
-              if (isDragging) e.preventDefault();
-            }}
-            style={{ display: "block" }}
-          >
-            <img
-              src={src}
-              alt={product.title || "Saree"}
-              style={{
-                height: "320px",
-                borderRadius: "12px",
-                marginRight: "20px",
-                boxShadow: "0 10px 20px rgba(0,0,0,0.05)",
-                background: "white",
-                objectFit: "cover",
-                cursor: "pointer",
-              }}
-            />
-          </Link>
-        );
-      })}
-    </div>
-  </div>
-</section>
-
-
-  {/* -------------------- SECTION 2: Categories Grid -------------------- */}
-<section style={{ padding: "20px 20px 30px", textAlign: "center" }}>
-  
-  {/* Heading */}
-  <h2 style={{ 
-    fontFamily: "serif", 
-    fontSize: "2rem", 
-    fontWeight: 700, 
-    marginBottom: "10px", 
-    color: COLORS.maroon 
-  }}>
-    Categories for Special Women
-  </h2>
-  
-  {/* Subtitle */}
-  <p style={{ 
-    fontSize: "1rem", 
-    color: "#555", 
-    marginBottom: "30px" 
-  }}>
-    Explore our exclusive collection tailored for elegance and style
-  </p>
-
-  {/* Categories Grid */}
-  <div style={{ 
-    display: "grid", 
-    gridTemplateColumns: "repeat(auto-fit, minmax(160px, 1fr))",
-    gap: "15px", 
-    maxWidth: "1200px", 
-    margin: "0 auto" 
-  }}>
-    {[
-      ...CATEGORIES,
-      "Pre-Wed Spl",
-      "Bridal Spl",
-      "Bridal Sisters", // Extra buttons for even layout
-    ].map((cat) => (
-      <Link 
-        key={cat} 
-        href={`/category/${normalize(cat)}`} 
-        className="cat-link"
-        style={{
-          padding: "15px 10px", 
-          background: COLORS.maroon, 
-          color: "#fff", 
-          borderRadius: "8px",
-          textDecoration: "none", 
-          fontWeight: "bold", 
-          fontSize: "0.8rem", 
-          display: "flex",
-          alignItems: "center", 
-          justifyContent: "center", 
-          transition: "all 0.3s ease",
-          boxShadow: "0 4px 6px rgba(0,0,0,0.1)"
-        }}
-      >
-        {cat.toUpperCase()}
-      </Link>
-    ))}
-  </div>
-</section>
-
-<style jsx global>{`
-  .cat-link:hover { 
-    background: ${COLORS.gold} !important; 
-    color: ${COLORS.maroon} !important; 
-    transform: translateY(-3px); 
-  }
-`}</style>
-
-
-
-
-    {/* -------------------- SECTION 3: Quick Links -------------------- */}
-<section style={{ margin: "60px auto", maxWidth: "1100px", padding: "0 20px" }}>
-  <h2 
-    style={{ 
-      textAlign: "center", 
-      fontSize: "2.2rem", 
-      fontFamily: "serif", 
-      marginBottom: "40px",
-      color: COLORS.maroon
-    }}
-  >
-    Quick Links
-  </h2>
-
-  <div 
-    style={{ 
-      display: "flex", 
-      flexWrap: "wrap", 
-      gap: "15px", 
-      justifyContent: "center" 
-    }}
-  >
-    {QUICK_FILTERS.map((item) => (
-      <Link key={item.label} href={`/category/all${item.params}`}>
-        <button
-          style={{
-            flex: "1 1 calc(20% - 15px)",
-            minWidth: "150px",
-            padding: "18px 10px",
-            borderRadius: "12px",
-            backgroundColor: COLORS.maroon,
-            textAlign: "center",
-            fontWeight: 700,
-            textDecoration: "none",
-            color: COLORS.cream,
-            border: `2px solid ${COLORS.gold}`,
-            transition: "all 0.3s ease",
-            cursor: "pointer",
-            boxShadow: "0 4px 8px rgba(0,0,0,0.1)",
+        <div
+          ref={containerRef}
+          style={{ 
+            overflow: "hidden", 
+            cursor: isDragging ? "grabbing" : "grab",
+            touchAction: "pan-y" // Allows vertical scrolling on mobile while touching the slider
           }}
-          onMouseEnter={(e) => {
-            (e.currentTarget as HTMLButtonElement).style.backgroundColor = COLORS.gold;
-            (e.currentTarget as HTMLButtonElement).style.color = COLORS.maroon;
-            (e.currentTarget as HTMLButtonElement).style.transform = "translateY(-3px)";
-          }}
-          onMouseLeave={(e) => {
-            (e.currentTarget as HTMLButtonElement).style.backgroundColor = COLORS.maroon;
-            (e.currentTarget as HTMLButtonElement).style.color = COLORS.cream;
-            (e.currentTarget as HTMLButtonElement).style.transform = "translateY(0)";
-          }}
+          onMouseDown={handleMouseDown}
+          onMouseMove={handleMouseMove}
+          onMouseUp={handleMouseUp}
+          onMouseEnter={() => setIsHovering(true)}
+          onMouseLeave={() => { setIsHovering(false); handleMouseUp(); }}
+          onTouchStart={handleMouseDown}
+          onTouchMove={handleMouseMove}
+          onTouchEnd={handleMouseUp}
         >
-          {item.label.toUpperCase()}
-        </button>
-      </Link>
-    ))}
-  </div>
-</section>
+          <div
+            style={{
+              display: "flex",
+              transform: `translateX(${translateX}px)`,
+              transition: isDragging ? "none" : "transform 0.1s linear",
+            }}
+          >
+            {scrollData.map((item, i) => (
+              <Link
+                key={`${item.id}-${i}`}
+                href={`/product/${normalize(item.category)}/${item.id}`}
+                onClick={(e) => { if (isDragging) e.preventDefault(); }}
+                style={{ display: "block", flexShrink: 0 }}
+              >
+                <img
+                  src={item.src}
+                  alt={item.title || "Saree"}
+                  style={{
+                    height: "320px",
+                    width: "auto",
+                    borderRadius: "12px",
+                    marginRight: "20px",
+                    boxShadow: "0 10px 20px rgba(0,0,0,0.05)",
+                    background: "white",
+                    objectFit: "cover",
+                  }}
+                />
+              </Link>
+            ))}
+          </div>
+        </div>
+      </section>
 
+      {/* SECTION 2: Categories Grid */}
+      <section style={{ padding: "40px 20px", textAlign: "center" }}>
+        <h2 style={{ fontFamily: "serif", fontSize: "2rem", fontWeight: 700, marginBottom: "10px", color: COLORS.maroon }}>
+          Categories for Special Women
+        </h2>
+        <p style={{ fontSize: "1rem", color: "#555", marginBottom: "30px" }}>
+          Explore our exclusive collection tailored for elegance and style
+        </p>
 
+        <div style={{ 
+          display: "grid", 
+          gridTemplateColumns: "repeat(auto-fit, minmax(160px, 1fr))",
+          gap: "15px", 
+          maxWidth: "1200px", 
+          margin: "0 auto" 
+        }}>
+          {[...CATEGORIES, "Pre-Wed Spl", "Bridal Spl", "Bridal Sisters"].map((cat) => (
+            <Link 
+              key={cat} 
+              href={`/category/${normalize(cat)}`} 
+              className="cat-link"
+              style={{
+                padding: "15px 10px", 
+                background: COLORS.maroon, 
+                color: "#fff", 
+                borderRadius: "8px",
+                textDecoration: "none", 
+                fontWeight: "bold", 
+                fontSize: "0.8rem", 
+                display: "flex",
+                alignItems: "center", 
+                justifyContent: "center", 
+                transition: "all 0.3s ease",
+                boxShadow: "0 4px 6px rgba(0,0,0,0.1)"
+              }}
+            >
+              {cat.toUpperCase()}
+            </Link>
+          ))}
+        </div>
+      </section>
+
+      {/* SECTION 3: Quick Links */}
+      <section style={{ margin: "60px auto", maxWidth: "1100px", padding: "0 20px" }}>
+        <h2 style={{ textAlign: "center", fontSize: "2.2rem", fontFamily: "serif", marginBottom: "40px", color: COLORS.maroon }}>
+          Quick Links
+        </h2>
+
+        <div style={{ display: "flex", flexWrap: "wrap", gap: "15px", justifyContent: "center" }}>
+          {QUICK_FILTERS.map((item) => (
+            <Link 
+              key={item.label} 
+              href={`/category/all${item.params}`}
+              className="quick-link"
+              style={{
+                flex: "1 1 calc(20% - 15px)",
+                minWidth: "150px",
+                padding: "18px 10px",
+                borderRadius: "12px",
+                backgroundColor: COLORS.maroon,
+                textAlign: "center",
+                fontWeight: 700,
+                textDecoration: "none",
+                color: COLORS.cream,
+                border: `2px solid ${COLORS.gold}`,
+                transition: "all 0.3s ease",
+                boxShadow: "0 4px 8px rgba(0,0,0,0.1)",
+              }}
+            >
+              {item.label.toUpperCase()}
+            </Link>
+          ))}
+        </div>
+      </section>
 
       {/* SECTION 4: Coming Soon */}
       <section style={{ textAlign: "center", padding: "80px 20px", background: "rgba(255,255,255,0.5)" }}>
         <h2 style={{ fontSize: "2rem", color: COLORS.maroon, fontFamily: "serif" }}>Coming Soon</h2>
-        <p style={{ fontStyle: "italic", color: "#555", marginTop: "10px" }}>Special Bridal Collections & Silk Weaves Launching Soon</p>
+        <p style={{ fontStyle: "italic", color: "#555", marginTop: "10px" }}>
+          Special Bridal Collections & Silk Weaves Launching Soon
+        </p>
       </section>
-      
-      
 
+      {/* Global CSS for Hovers */}
       <style jsx global>{`
-        .cat-link:hover { background: ${COLORS.gold} !important; color: ${COLORS.maroon} !important; transform: translateY(-3px); }
+        .cat-link:hover, .quick-link:hover { 
+          background-color: ${COLORS.gold} !important; 
+          color: ${COLORS.maroon} !important; 
+          transform: translateY(-3px); 
+        }
       `}</style>
     </div>
   );

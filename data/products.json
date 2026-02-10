@@ -33,17 +33,7 @@
     "occasion": "Teacher Wear"
   },
   
-{
-  "id": "vira-saree-001",
-  "name": "Pure Handloom Silk Saree",
-  "category": "JimmiChoo",
-  "price": 4500,
-  "weave": "Machine",
-  "images": [
-    "/images/jimmi/jc1.jpg"
-  ],
-  "description": "Elegant handcrafted silk saree from Vira~Weaves, perfect for festive and wedding wear."
-},
+
 
   {
     "id": "ofw3",
@@ -121,6 +111,17 @@
   "weave": "Machine",
   "images": ["/images/fancy/f3.jpg"],
   "occasion": "Special day"
+},
+{
+  "id": "vira-saree-001",
+  "name": "Pure Handloom Silk Saree",
+  "category": "JimmiChoo",
+  "price": 4500,
+  "weave": "Machine",
+  "images": [
+    "/images/jimmi/jc1.jpg"
+  ],
+  "description": "Elegant handcrafted silk saree from Vira~Weaves, perfect for festive and wedding wear."
 },
 
   {

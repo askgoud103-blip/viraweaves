@@ -11,26 +11,26 @@
     "occasion": "Wedding"
   },
   {
-    "id": "vw-102",
-    "title": "Temple Border Kanchi Pattu",
-    "category": "Kanchi Pattu",
-    "price": 36000,
+    "id": "ofw1",
+    "title": "OfficeWear",
+    "category": "OFFICEWEAR",
+    "price": 1500,
     "description": "Rich Kanchipuram silk with a traditional temple border design.",
-    "fabric": "Pure Silk",
+    "fabric": "Cotton",
     "weave": "Handloom",
-    "images": ["/images/kanchi/dir20.jpg"],
-    "occasion": "Bridal"
+    "images": ["/images/office/ofw1.jpg"],
+    "occasion": "Office Wear"
   },
   {
-    "id": "vw-103",
-    "title": "Shimmer Emerald JimmiChoo",
-    "category": "JimmiChoo",
-    "price": 3200,
-    "description": "Trending lightweight shimmer fabric for modern cocktail parties.",
-    "fabric": "JimmiChoo Shimmer",
-    "weave": "Machine",
-    "images": ["/images/jimmi/dir21.jpg"],
-    "occasion": "Party Wear"
+    "id": "ofw2",
+    "title": "OfficeWear",
+    "category": "OFFICEWEAR",
+    "price": 1500,
+    "description": "Regulars.",
+    "fabric": "Cotton",
+    "weave": "Handloom",
+    "images": ["/images/office/ofw2.jpg"],
+    "occasion": "Teacher Wear"
   },
   
 {
@@ -46,38 +46,134 @@
 },
 
   {
-    "id": "vw-104",
-    "title": "Pure Georgette Floral Bliss",
-    "category": "Pure Georgette",
-    "price": 4200,
-    "description": "Soft, flowing georgette with vibrant floral digital prints.",
-    "fabric": "Pure Georgette",
-    "weave": "Digital Print",
-    "images": ["/images/georgette/dir22.jpg"],
-    "occasion": "Casual"
+    "id": "ofw3",
+    "title": "Office Wear",
+    "category": "OFFICEWEAR",
+    "price": 1500,
+    "description": "Regulars.",
+    "fabric": "Cotton",
+    "weave": "Handloom",
+    "images": ["/images/office/ofw3.jpg"],
+    "occasion": "Office/Teacher Wear"
   },
   {
-    "id": "vw-105",
-    "title": "Boutique Designer Party Saree",
-    "category": "Designer Sarees",
-    "price": 8500,
-    "description": "Intricate stone work and sequins on a modern drape.",
-    "fabric": "Viscos",
-    "weave": "Designer",
-    "images": ["/images/designer/dir23.jpg"],
-    "occasion": "Evening Wear"
+    "id": "ofw4",
+    "title": "Office Wear",
+    "category": "OFFICEWEAR",
+    "price": 1500,
+    "description": "Regulars.",
+    "fabric": "Cotton",
+    "weave": "Handloom",
+    "images": ["/images/office/ofw4.jpg"],
+    "occasion": "Office/Teacher Wear"
   },
+  {
+  "id": "f4",
+  "title": "Fancy",
+  "category": "fancy",
+  "price": 2550,
+  "description": "brick base .",
+  "fabric": "Spl fabric",
+  "weave": "Machine",
+  "images": ["/images/fancy/f4.jpg"],
+  "occasion": "Special day"
+},
+  {
+  "id": "f5",
+  "title": "Fancy",
+  "category": "fancy",
+  "price": 2550,
+  "description": "brick base .",
+  "fabric": "Spl fabric",
+  "weave": "Machine",
+  "images": ["/images/fancy/f5.jpg"],
+  "occasion": "Special day"
+},
+  {
+  "id": "f1",
+  "title": "Fancy",
+  "category": "fancy",
+  "price": 3000,
+  "description": "Elegant Light green with silver border.",
+  "fabric": "spl fabric",
+  "weave": "Machine",
+  "images": ["/images/fancy/f1.jpg"],
+  "occasion": "Special day"
+},
+{
+  "id": "f2",
+  "title": "Fancy",
+  "category": "fancy",
+  "price": 2500,
+  "description": "Crystal Bright .",
+  "fabric": "Spl fabric",
+  "weave": "Machine",
+  "images": ["/images/fancy/f2.jpg"],
+  "occasion": "Special day"
+},
+{
+  "id": "f3",
+  "title": "Fancy",
+  "category": "fancy",
+  "price": 2500,
+  "description": "Crystal Bright .",
+  "fabric": "Spl fabric",
+  "weave": "Machine",
+  "images": ["/images/fancy/f3.jpg"],
+  "occasion": "Special day"
+},
+
+  {
+  "id": "f8",
+  "title": "Fancy",
+  "category": "fancy",
+  "price": 2750,
+  "description": "Nainital Night .",
+  "fabric": "Spl fabric",
+  "weave": "Machine",
+  "images": ["/images/fancy/f8.jpg"],
+  "occasion": "Special day"
+  },
+  
+  {
+  "id": "f7",
+  "title": "Fancy",
+  "category": "fancy",
+  "price": 2750,
+  "description": "Price Princess .",
+  "fabric": "Spl fabric",
+  "weave": "Machine",
+  "images": ["/images/fancy/f7.jpg"],
+  "occasion": "Special day"
+},
+  
+  {
+  "id": "f6",
+  "title": "Fancy",
+  "category": "fancy",
+  "price": 2750,
+  "description": "Nainital Night .",
+  "fabric": "Spl fabric",
+  "weave": "Machine",
+  "images": ["/images/fancy/f6.jpg"],
+  "occasion": "Special day"
+},
+
+  
+  
+  
   {
     "id": "vw-106",
-    "title": "Daily Chic Office Saree",
-    "category": "OfficeWear",
-    "price": 1850,
-    "description": "Breathable fabric with minimal patterns, perfect for professional settings.",
-    "fabric": "Cotton-Polly",
-    "weave": "Machine",
-    "images": ["/images/office/dir24.jpg"],
-    "occasion": "Office"
+    "title": "Boutique Designer Party Saree",
+    "category": "Office Wear",
+    "price": 8500,
+    "description": "Intricate stone work and sequins on a modern drape.",
+    "fabric": "cotton",
+    "weave": "Designer",
+    "images": ["/images/office/ofw5.jpg"],
+    "occasion": "Evening Wear"
   },
+  
   {
     "id": "vw-301",
     "title": "Classic Ikat Pochampally",
@@ -348,6 +444,18 @@
   "weave": "Handloom",
   "images": ["/images/jamdhani/dir15.jpg"],
   "occasion": "Festive"
+},
+
+{
+  "id": "f2",
+  "title": "Fancy",
+  "category": "fancy",
+  "price": 2000,
+  "description": "Elegant Fancy with border.",
+  "fabric": "Spl fabric",
+  "weave": "Machine",
+  "images": ["/images/fancy/f2.jpg"],
+  "occasion": "Special day"
 }
 
 ]

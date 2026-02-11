@@ -3,7 +3,7 @@
     "id": "vw-101",
     "title": "Scarlet Red Banarasi Silk",
     "category": "Banarasi",
-    "price": 50000,
+    
     "description": "A timeless classic featuring heavy gold zari work on pure silk fabric.",
     "fabric": "Silk",
     "weave": "Handloom",
@@ -14,7 +14,7 @@
     "id": "ofw1",
     "title": "OfficeWear",
     "category": "OFFICEWEAR",
-    "price": 1500,
+    
     "description": "Rich Kanchipuram silk with a traditional temple border design.",
     "fabric": "Cotton",
     "weave": "Handloom",
@@ -25,7 +25,7 @@
     "id": "ofw2",
     "title": "OfficeWear",
     "category": "OFFICEWEAR",
-    "price": 1500,
+    
     "description": "Regulars.",
     "fabric": "Cotton",
     "weave": "Handloom",
@@ -39,7 +39,7 @@
     "id": "ofw3",
     "title": "Office Wear",
     "category": "OFFICEWEAR",
-    "price": 1500,
+    
     "description": "Regulars.",
     "fabric": "Cotton",
     "weave": "Handloom",
@@ -50,7 +50,7 @@
     "id": "ofw4",
     "title": "Office Wear",
     "category": "OFFICEWEAR",
-    "price": 1500,
+   
     "description": "Regulars.",
     "fabric": "Cotton",
     "weave": "Handloom",
@@ -61,7 +61,7 @@
   "id": "f4",
   "title": "Fancy",
   "category": "fancy",
-  "price": 7000,
+ 
   "description": "Discount applicable .",
   "fabric": "Spl fabric",
   "weave": "Machine",
@@ -72,7 +72,7 @@
   "id": "f5",
   "title": "Fancy",
   "category": "fancy",
-  "price": 9000,
+  
   "description": "Discount applicable.",
   "fabric": "Spl fabric",
   "weave": "Machine",
@@ -83,7 +83,7 @@
   "id": "f1",
   "title": "Fancy",
   "category": "fancy",
-  "price": 9900,
+ 
   "description": "Elegant Light green with silver border.  Discount Applicable.",
   "fabric": "spl fabric",
   "weave": "Machine",
@@ -94,7 +94,7 @@
   "id": "f2",
   "title": "Fancy",
   "category": "fancy",
-  "price": 3800,
+  
   "description": "Discount Applicable .",
   "fabric": "Spl fabric",
   "weave": "Machine",
@@ -105,7 +105,7 @@
   "id": "f3",
   "title": "Fancy",
   "category": "fancy",
-  "price": 3650,
+  
   "description": "Crystal Bright .",
   "fabric": "Spl fabric",
   "weave": "Machine",
@@ -116,7 +116,7 @@
   "id": "jc1",
   "title": "Fancy",
   "category": "fancy",
-  "price": 3650,
+ 
   "description": "Discount Applicable .",
   "fabric": "Spl fabric",
   "weave": "Machine",
@@ -128,7 +128,7 @@
   "id": "f8",
   "title": "Fancy",
   "category": "fancy",
-  "price": 2780,
+  
   "description": "Discount Applicable .",
   "fabric": "Spl fabric",
   "weave": "Machine",
@@ -140,7 +140,7 @@
   "id": "f7",
   "title": "Fancy",
   "category": "fancy",
-  "price": 2480,
+  
   "description": "Price Princess .",
   "fabric": "Spl fabric",
   "weave": "Machine",
@@ -152,7 +152,7 @@
   "id": "f6",
   "title": "Fancy",
   "category": "fancy",
-  "price": 2480,
+ 
   "description": "Discount Applicable.",
   "fabric": "Spl fabric",
   "weave": "Machine",
@@ -164,7 +164,7 @@
   "id": "ch1",
   "title": "Chanderi",
   "category": "CHANDERI",
-  "price": 10000,
+ 
   "description": "Pure tissue Chanderi, rich sheen, Never fades, Not heavy .",
   "fabric": "Spl fabric",
   "weave": "Semi-Machine",
@@ -178,7 +178,7 @@
     "id": "vw-301",
     "title": "Classic Ikat Pochampally",
     "category": "Pochampally",
-    "price": 5800,
+    
     "description": "Authentic Handloom Pochampally featuring geometric Ikat patterns and a silk finish.",
     "fabric": "Silk Cotton",
     "weave": "Ikat Handloom",
@@ -189,7 +189,7 @@
     "id": "g2",
     "title": "Traditional Gadwal Sico",
     "category": "Gadwal",
-    "price": 2450,
+    
     "description": "Applicable.",
     "fabric": "Gadwal fabric",
     "weave": "Handloom",
@@ -202,7 +202,7 @@
     "id": "vw-gadwal3",
     "title": "Traditional Gadwal Sico",
     "category": "Gadwal",
-    "price": 2450,
+   
     "description": "Applicable.",
     "fabric": "Gadwal fabric",
     "weave": "Handloom",
@@ -212,7 +212,7 @@
   {
     "id": "vw-gadwal4",
     "title": "Traditional Gadwal Sico",
-    "price": 2450,
+   
     "description": "Applicable.",
     "fabric": "Gadwal fabric",
     "weave": "Handloom",
@@ -223,7 +223,7 @@
     "id": "vw-gadwal5",
     "title": "Traditional Gadwal Sico",
     "category": "Gadwal",
-    "price": 2450,
+   
     "description": "Applicable.",
     "fabric": "Gadwal fabric",
     "weave": "Handloom",
@@ -234,7 +234,7 @@
     "id": "vw-gadwal6",
     "title": "Traditional Gadwal Sico",
     "category": "Gadwal",
-    "price": 2450,
+    
     "description": "Applicable.",
     "fabric": "Gadwal fabric",
     "weave": "Handloom",
@@ -245,7 +245,7 @@
     "id": "vw-gadwal7",
     "title": "Traditional Gadwal Sico",
     "category": "Gadwal",
-    "price": 2450,
+    
     "description": "Applicable.",
     "fabric": "Gadwal fabric",
     "weave": "Handloom",
@@ -256,7 +256,7 @@
     "id": "vw-gadwal8",
     "title": "Traditional Gadwal Sico",
     "category": "Gadwal",
-    "price": 2450,
+   
     "description": "Discount Applicable.",
     "fabric": "Gadwal fabric",
     "weave": "Handloom",
@@ -268,7 +268,7 @@
     "id": "np1",
     "title": "Handcrafted Narayanpet Cotton",
     "category": "Narayanpet",
-    "price": 18000,
+    
     "description": "Discount applicable",
     "fabric": "Narayanpet",
     "weave": "semi Machine-Handloom",
@@ -279,7 +279,7 @@
     "id": "vw-304",
     "title": "Graceful Venkatagiri Pattu",
     "category": "Venkatagiri",
-    "price": 8200,
+    
     "description": "Discount Applicable.",
     "fabric": "Silk",
     "weave": "Handloom",
@@ -291,7 +291,7 @@
   "id": "vw-kotha-1",
   "title": "Kotha Silk",
   "category": "Kotha",
-  "price": 2300,
+  
   "description": "Discount applicable",
   "fabric": "Kotha Silk",
   "weave": "Handloom",
@@ -302,7 +302,7 @@
   "id": "vw-kotha-2",
   "title": "Kotha Silk",
   "category": "Kotha",
-  "price": 2300,
+  
   "description": "Discount applicable",
   "fabric": "Kotha Silk",
   "weave": "Handloom",
@@ -313,7 +313,7 @@
   "id": "vw-kotha-3",
   "title": "Kotha Silk",
   "category": "Kotha",
-  "price": 2300,
+  
   "description": "Discount applicable",
   "fabric": "Kotha Silk",
   "weave": "Handloom",
@@ -324,7 +324,7 @@
   "id": "vw-kotha-4",
   "title": "Kotha Silk",
   "category": "Kotha",
-  "price": 2300,
+  
   "description": "Discount applicable",
   "fabric": "Kotha Silk",
   "weave": "Handloom",
@@ -335,7 +335,7 @@
   "id": "vw-kotha-5",
   "title": "Kotha Silk",
   "category": "Kotha",
-  "price": 2300,
+ 
   "description": "Discount applicable",
   "fabric": "Kotha Silk",
   "weave": "Handloom",
@@ -346,7 +346,7 @@
   "id": "vw-kotha-6",
   "title": "Kotha Silk",
   "category": "Kotha",
-  "price": 2300,
+  
   "description": "Discount applicable",
   "fabric": "Kotha Silk",
   "weave": "Handloom",
@@ -357,7 +357,7 @@
   "id": "vw-kotha-7",
   "title": "Kotha Silk",
   "category": "Kotha",
-  "price": 2300,
+ 
   "description": "Discount applicable",
   "fabric": "Kotha Silk",
   "weave": "Handloom",
@@ -367,7 +367,7 @@
 {
   "title": "Kotha Silk",
   "category": "Kotha",
-  "price": 2300,
+  
   "description": "Discount applicable",
   "fabric": "Kotha Silk",
   "weave": "Handloom",
@@ -378,7 +378,7 @@
   "id": "vw-kotha-9",
   "title": "Kotha Silk",
   "category": "Kotha",
-  "price": 2300,
+  
   "description": "Discount applicable",
   "fabric": "Kotha Silk",
   "weave": "Handloom",
@@ -389,7 +389,7 @@
   "id": "vw-kotha-10",
   "title": "Kotha Silk",
   "category": "Kotha",
-  "price": 2300,
+  
   "description": "Discount applicable",
   "fabric": "Kotha Silk",
   "weave": "Handloom",
@@ -403,7 +403,7 @@
     "id": "vw-306",
     "title": "Floral White Jamdhani",
     "category": "Jamdhani",
-    "price": 2800,
+    
     "description": "Delicate muslin Jamdhani with hand-woven floral buttas.",
     "fabric": "Muslin Cotton",
     "weave": "Handloom",
@@ -416,7 +416,7 @@
   "id": "vw-307",
   "title": "Pastel Jamdhani Muslin",
   "category": "Jamdhani",
-  "price": 3200,
+  
   "description": "Soft pastel Jamdhani with traditional buttas.",
   "fabric": "Muslin Cotton",
   "weave": "Handloom",
@@ -427,7 +427,7 @@
   "id": "vw-308",
   "title": "Sky Blue Jamdhani",
   "category": "Jamdhani",
-  "price": 3500,
+   
   "description": "Elegant sky blue Jamdhani with fine zari.",
   "fabric": "Muslin Cotton",
   "weave": "Handloom",
@@ -439,7 +439,7 @@
   "id": "f2",
   "title": "Fancy",
   "category": "fancy",
-  "price": 2000,
+   
   "description": "Elegant Fancy with border.",
   "fabric": "Spl fabric",
   "weave": "Machine",

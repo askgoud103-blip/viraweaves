@@ -13,7 +13,7 @@ import Reviews from "@/app/components/Reviews";
 const CATEGORIES = [
   "Jamdhani", "Banarasi", "Kanchi Pattu", "Narayanpet", "Pochampally", 
   "Gadwal", "Venkatagiri", "Kotha", "Fancy", "Viscos", 
-  "Pure Georgette", "JimmiChoo", "Designer Sarees", "OfficeWear", "CasualWear"
+  "Pure Georgette", "JimmiChoo", "Designer Sarees", "OfficeWear", "CasualWear", "Chanderi"
 ];
 
 const QUICK_FILTERS = [
@@ -261,7 +261,7 @@ export default function HomePage() {
       </section>
 
       {/* SECTION 4: Coming Soon */}
-      <section style={{ textAlign: "center", padding: "80px 20px", background: "rgba(255,255,255,0.5)" }}>
+      <section style={{ textAlign: "center", padding: "8x 4px", background: "rgba(255,255,255,0.5)" }}>
         <h2 style={{ fontSize: "2rem", color: COLORS.maroon, fontFamily: "serif" }}>Coming Soon</h2>
         <p style={{ fontStyle: "italic", color: "#555", marginTop: "10px" }}>
           Special Bridal Collections & Silk Weaves Launching Soon

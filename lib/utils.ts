@@ -10,13 +10,10 @@ export const normalize = (value: string) => {
     .replace(/-+/g, "-");      // Double hyphens to single
 };
 
-export const formatPrice = (price?: number) => {
-  if (!price) return "Contact or Visit";
-
+export const formatPrice = (price: number) => {
   return price.toLocaleString("en-IN", {
     style: "currency",
     currency: "INR",
     maximumFractionDigits: 0,
   });
 };
-

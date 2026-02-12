@@ -8,7 +8,6 @@ import { COLORS } from "@/lib/colors";
 import products from "@/data/products.json";
 import Reviews from "@/app/components/Reviews";
 
-
 // Centralized Data Arrays
 const CATEGORIES = [
   "Jamdhani", "Banarasi", "Kanchi Pattu", "Narayanpet", "Pochampally", 
@@ -34,13 +33,13 @@ export default function HomePage() {
   const dragStartX = useRef(0);
   const animationRef = useRef<number>(0);
 
-  // Optimization: Flatten images once so we don't use .find() in the render loop
+  // Optimization: Flatten images once
   const scrollData = useMemo(() => {
     const flattened = products.flatMap(p => 
       p.images.map(img => ({
         src: img,
         id: p.id,
-        category: p.category,
+        category: p.category || "all", // Fixes the Type Error
         title: p.title
       }))
     );
@@ -89,8 +88,6 @@ export default function HomePage() {
   return (
     <div style={{ width: "100%", minHeight: "100vh", backgroundColor: COLORS.cream, overflowX: "hidden" }}>
       <Navbar />
-     
-
 
       {/* HERO SECTION */}
       <section
@@ -141,7 +138,7 @@ export default function HomePage() {
           style={{ 
             overflow: "hidden", 
             cursor: isDragging ? "grabbing" : "grab",
-            touchAction: "pan-y" // Allows vertical scrolling on mobile while touching the slider
+            touchAction: "pan-y" 
           }}
           onMouseDown={handleMouseDown}
           onMouseMove={handleMouseMove}
@@ -261,13 +258,14 @@ export default function HomePage() {
       </section>
 
       {/* SECTION 4: Coming Soon */}
-      <section style={{ textAlign: "center", padding: "8x 4px", background: "rgba(255,255,255,0.5)" }}>
+      <section style={{ textAlign: "center", padding: "40px 20px", background: "rgba(255,255,255,0.5)" }}>
         <h2 style={{ fontSize: "2rem", color: COLORS.maroon, fontFamily: "serif" }}>Coming Soon</h2>
         <p style={{ fontStyle: "italic", color: "#555", marginTop: "10px" }}>
           Special Bridal Collections & Silk Weaves Launching Soon
         </p>
       </section>
-       <Reviews />
+      
+      <Reviews />
 
       {/* Global CSS for Hovers */}
       <style jsx global>{`

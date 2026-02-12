@@ -1,7 +1,12 @@
 // lib/utils.ts
 
-export const normalize = (value: string) => {
-  if (!value) return "";
+/**
+ * Normalizes a string for use in URLs (slugs).
+ * Accepts string, undefined, or null to prevent TypeScript build errors.
+ */
+export const normalize = (value: string | undefined | null) => {
+  if (!value) return "all"; // Fallback if category is missing
+  
   return value
     .toLowerCase()
     .trim()
@@ -10,6 +15,9 @@ export const normalize = (value: string) => {
     .replace(/-+/g, "-");      // Double hyphens to single
 };
 
+/**
+ * Formats a number into Indian Rupee (INR) currency format.
+ */
 export const formatPrice = (price: number) => {
   return price.toLocaleString("en-IN", {
     style: "currency",

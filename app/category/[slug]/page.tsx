@@ -102,7 +102,7 @@ function CategoryContent() {
       }}>
         {filteredItems.map((product) => (
           <div key={product.id} className="product-card" style={{ background: "#fff", borderRadius: "12px", overflow: "hidden", boxShadow: "0 4px 15px rgba(0,0,0,0.05)" }}>
-            <Link href={`/product/${normalize(product.category)}/${product.id}`}>
+           <Link href={`/product/${normalize(product.category ?? "")}/${product.id}`}>
               <img 
                 src={product.images[0]} 
                 alt={product.title} 

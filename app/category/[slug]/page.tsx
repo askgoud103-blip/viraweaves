@@ -30,7 +30,9 @@ function CategoryContent() {
   // Filtering Logic
   const filteredItems = useMemo(() => {
     return productsData.filter((product) => {
-      const categoryMatch = slug === "all" || normalize(product.category) === slug;
+      const categoryMatch =
+  slug === "all" || normalize(product.category ?? "") === slug;
+
       
       const price = product.price;
       const min = minPriceParam ? parseInt(minPriceParam) : 0;

@@ -256,6 +256,8 @@ export default function HomePage() {
           ))}
         </div>
       </section>
+      
+      
 
       {/* SECTION 4: Coming Soon */}
       <section style={{ textAlign: "center", padding: "40px 20px", background: "rgba(255,255,255,0.5)" }}>

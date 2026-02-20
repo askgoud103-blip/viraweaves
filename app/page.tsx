@@ -257,70 +257,84 @@ export default function HomePage() {
         </div>
       </section>
       
-      {/* SECTION 4: BRAND & CUSTOMER VIDEOS */}
-      <section style={{ 
-        maxWidth: "1100px", 
-        margin: "40px auto 80px", 
-        padding: "0 20px" 
-      }}>
-        <h2 style={{ 
-          textAlign: "center", 
-          fontSize: "2.2rem", 
-          fontFamily: "serif", 
-          marginBottom: "40px", 
-          color: COLORS.maroon 
-        }}>
+     {/* SECTION 4: FEATURED VIDEOS */}
+      <section style={{ maxWidth: "1100px", margin: "40px auto 20px", padding: "0 20px" }}>
+        <h2 style={{ textAlign: "center", fontSize: "2.2rem", fontFamily: "serif", marginBottom: "40px", color: COLORS.maroon }}>
           Experience Viraweaves
         </h2>
-
-        <div style={{ 
-          display: "grid", 
-          gridTemplateColumns: "repeat(auto-fit, minmax(320px, 1fr))", 
-          gap: "40px" 
-        }}>
-          
-          {/* Column 1: Brand Story */}
+        <div style={{ display: "grid", gridTemplateColumns: "repeat(auto-fit, minmax(320px, 1fr))", gap: "40px" }}>
+          {/* Brand Video */}
           <div style={{ textAlign: "center" }}>
-            <h3 style={{ fontFamily: "serif", color: COLORS.maroon, marginBottom: "15px", fontSize: "1.4rem", fontWeight: 600 }}>
-              Our Brand Story
-            </h3>
-            <div style={{ 
-              position: "relative", paddingBottom: "56.25%", width: "100%", height: 0, 
-              overflow: "hidden", borderRadius: "16px", boxShadow: "0 15px 35px rgba(0,0,0,0.12)", backgroundColor: "#000" 
-            }}>
-              <video autoPlay muted loop playsInline controls preload="auto" style={{ position: "absolute", top: 0, left: 0, width: "100%", height: "100%", objectFit: "cover" }}>
+            <h3 style={{ fontFamily: "serif", color: COLORS.maroon, marginBottom: "15px", fontSize: "1.4rem" }}>Our Brand Story</h3>
+            <div style={{ position: "relative", paddingBottom: "56.25%", height: 0, overflow: "hidden", borderRadius: "16px", boxShadow: "0 15px 35px rgba(0,0,0,0.12)", backgroundColor: "#000" }}>
+              <video autoPlay muted loop playsInline controls style={{ position: "absolute", top: 0, left: 0, width: "100%", height: "100%", objectFit: "cover" }}>
                 <source src="/video/brand1.mp4" type="video/mp4" />
-                Your browser does not support the video tag.
               </video>
             </div>
-            <Link href="/video/brand-gallery" className="quick-link" style={{ display: "inline-block", marginTop: "20px", padding: "10px 20px", borderRadius: "8px", textDecoration: "none" }}>
-              VIEW MORE VIDEOS
-            </Link>
           </div>
-
-          {/* Column 2: Customer Love */}
+          {/* Customer Video */}
           <div style={{ textAlign: "center" }}>
-            <h3 style={{ fontFamily: "serif", color: COLORS.maroon, marginBottom: "15px", fontSize: "1.4rem", fontWeight: 600 }}>
-              Customer Love
-            </h3>
-            <div style={{ 
-              position: "relative", paddingBottom: "56.25%", width: "100%", height: 0, 
-              overflow: "hidden", borderRadius: "16px", boxShadow: "0 15px 35px rgba(0,0,0,0.12)", backgroundColor: "#000" 
-            }}>
-              <video controls playsInline preload="metadata" style={{ position: "absolute", top: 0, left: 0, width: "100%", height: "100%", objectFit: "cover" }}>
+            <h3 style={{ fontFamily: "serif", color: COLORS.maroon, marginBottom: "15px", fontSize: "1.4rem" }}>Customer Love</h3>
+            <div style={{ position: "relative", paddingBottom: "56.25%", height: 0, overflow: "hidden", borderRadius: "16px", boxShadow: "0 15px 35px rgba(0,0,0,0.12)", backgroundColor: "#000" }}>
+              <video controls playsInline style={{ position: "absolute", top: 0, left: 0, width: "100%", height: "100%", objectFit: "cover" }}>
                 <source src="/video/customer-review.mp4" type="video/mp4" />
-                Your browser does not support the video tag.
               </video>
             </div>
-            <Link href="/video/customer-gallery" className="quick-link" style={{ display: "inline-block", marginTop: "20px", padding: "10px 20px", borderRadius: "8px", textDecoration: "none" }}>
-              VIEW MORE VIDEOS
-            </Link>
           </div>
-
         </div>
       </section>
 
-         
+        {/* SECTION 5: VIEW MORE GALLERY LINKS (Centered to Videos) */}
+      <section style={{ 
+        maxWidth: "1100px", // Matches Section 4 maxWidth
+        margin: "0 auto 60px", 
+        padding: "0 20px" 
+      }}>
+        <div style={{ 
+          display: "grid", 
+          gridTemplateColumns: "repeat(auto-fit, minmax(320px, 1fr))", // Matches Section 4 Grid
+          gap: "40px" // Matches Section 4 Gap
+        }}>
+          {/* Button aligned to Brand Video */}
+          <div style={{ textAlign: "center" }}>
+            <Link 
+              href="/video/brand-gallery" 
+              className="quick-link" 
+              style={{ 
+                display: "inline-block", 
+                width: "100%", 
+                maxWidth: "280px", 
+                padding: "15px", 
+                borderRadius: "12px", 
+                textDecoration: "none" 
+              }}
+            >
+              EXPLORE BRAND VIDEOS
+            </Link>
+          </div>
+
+          {/* Button aligned to Customer Video */}
+          <div style={{ textAlign: "center" }}>
+            <Link 
+              href="/video/customer-gallery" 
+              className="quick-link" 
+              style={{ 
+                display: "inline-block", 
+                width: "100%", 
+                maxWidth: "280px", 
+                padding: "15px", 
+                borderRadius: "12px", 
+                textDecoration: "none" 
+              }}
+            >
+              EXPLORE CUSTOMER DIARIES
+            </Link>
+          </div>
+        </div>
+      </section>
+
+      {/* SECTION 6: REVIEWS */}
+     
       
       <Reviews />
 

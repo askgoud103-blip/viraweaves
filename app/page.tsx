@@ -257,15 +257,70 @@ export default function HomePage() {
         </div>
       </section>
       
-      
+      {/* SECTION 4: BRAND & CUSTOMER VIDEOS */}
+      <section style={{ 
+        maxWidth: "1100px", 
+        margin: "40px auto 80px", 
+        padding: "0 20px" 
+      }}>
+        <h2 style={{ 
+          textAlign: "center", 
+          fontSize: "2.2rem", 
+          fontFamily: "serif", 
+          marginBottom: "40px", 
+          color: COLORS.maroon 
+        }}>
+          Experience Viraweaves
+        </h2>
 
-      {/* SECTION 4: Coming Soon */}
-      <section style={{ textAlign: "center", padding: "40px 20px", background: "rgba(255,255,255,0.5)" }}>
-        <h2 style={{ fontSize: "2rem", color: COLORS.maroon, fontFamily: "serif" }}>Coming Soon</h2>
-        <p style={{ fontStyle: "italic", color: "#555", marginTop: "10px" }}>
-          Special Bridal Collections & Silk Weaves Launching Soon
-        </p>
+        <div style={{ 
+          display: "grid", 
+          gridTemplateColumns: "repeat(auto-fit, minmax(320px, 1fr))", 
+          gap: "40px" 
+        }}>
+          
+          {/* Column 1: Brand Story */}
+          <div style={{ textAlign: "center" }}>
+            <h3 style={{ fontFamily: "serif", color: COLORS.maroon, marginBottom: "15px", fontSize: "1.4rem", fontWeight: 600 }}>
+              Our Brand Story
+            </h3>
+            <div style={{ 
+              position: "relative", paddingBottom: "56.25%", width: "100%", height: 0, 
+              overflow: "hidden", borderRadius: "16px", boxShadow: "0 15px 35px rgba(0,0,0,0.12)", backgroundColor: "#000" 
+            }}>
+              <video autoPlay muted loop playsInline controls preload="auto" style={{ position: "absolute", top: 0, left: 0, width: "100%", height: "100%", objectFit: "cover" }}>
+                <source src="/video/brand1.mp4" type="video/mp4" />
+                Your browser does not support the video tag.
+              </video>
+            </div>
+            <Link href="/video/brand-gallery" className="quick-link" style={{ display: "inline-block", marginTop: "20px", padding: "10px 20px", borderRadius: "8px", textDecoration: "none" }}>
+              VIEW MORE VIDEOS
+            </Link>
+          </div>
+
+          {/* Column 2: Customer Love */}
+          <div style={{ textAlign: "center" }}>
+            <h3 style={{ fontFamily: "serif", color: COLORS.maroon, marginBottom: "15px", fontSize: "1.4rem", fontWeight: 600 }}>
+              Customer Love
+            </h3>
+            <div style={{ 
+              position: "relative", paddingBottom: "56.25%", width: "100%", height: 0, 
+              overflow: "hidden", borderRadius: "16px", boxShadow: "0 15px 35px rgba(0,0,0,0.12)", backgroundColor: "#000" 
+            }}>
+              <video controls playsInline preload="metadata" style={{ position: "absolute", top: 0, left: 0, width: "100%", height: "100%", objectFit: "cover" }}>
+                <source src="/video/customer-review.mp4" type="video/mp4" />
+                Your browser does not support the video tag.
+              </video>
+            </div>
+            <Link href="/video/customer-gallery" className="quick-link" style={{ display: "inline-block", marginTop: "20px", padding: "10px 20px", borderRadius: "8px", textDecoration: "none" }}>
+              VIEW MORE VIDEOS
+            </Link>
+          </div>
+
+        </div>
       </section>
+
+         
       
       <Reviews />
 

@@ -94,7 +94,7 @@ export default function HomePage() {
   style={{
     position: "relative",
     width: "100%",
-    height: "50vh", // Controlled height
+    height: "40vh", // Controlled height
     display: "flex",
     alignItems: "center",
     justifyContent: "center",
@@ -172,12 +172,12 @@ export default function HomePage() {
 {/* --- END OF HERO SECTION --- */}
 
       {/* SECTION 1: Auto Scroll */}
-      <section style={{ textAlign: "center", paddingBottom: "40px" }}>
+      <section style={{ textAlign: "center", padding: "30px 0 20px" }}>
         <h2 style={{ 
           fontFamily: "serif", 
           fontSize: "2.2rem", 
           fontWeight: 700, 
-          marginBottom: "30px", 
+          marginBottom: "20px", 
           color: COLORS.maroon 
         }}>
           Latest Arrivals
@@ -233,7 +233,7 @@ export default function HomePage() {
       </section>
 
       {/* SECTION 2: Categories Grid */}
-      <section style={{ padding: "40px 20px", textAlign: "center" }}>
+      <section style={{ padding: "20px 20px", textAlign: "center" }}>
         <h2 style={{ fontFamily: "serif", fontSize: "2rem", fontWeight: 700, marginBottom: "10px", color: COLORS.maroon }}>
           Categories for Special Women
         </h2>
@@ -275,8 +275,8 @@ export default function HomePage() {
       </section>
 
       {/* SECTION 3: Quick Links */}
-      <section style={{ margin: "60px auto", maxWidth: "1100px", padding: "0 20px" }}>
-        <h2 style={{ textAlign: "center", fontSize: "2.2rem", fontFamily: "serif", marginBottom: "40px", color: COLORS.maroon }}>
+      <section style={{ margin: "20px 20px", padding: "0 20px" }}>
+        <h2 style={{ textAlign: "center", fontSize: "2.2rem", fontFamily: "serif", marginBottom: "25px", color: COLORS.maroon }}>
           Quick Links
         </h2>
 
@@ -308,11 +308,8 @@ export default function HomePage() {
       </section>
       
      {/* COMBINED SECTION 4 & 5: VIDEOS & BUTTONS */}
-      <section style={{ 
-        maxWidth: "1100px", 
-        margin: "40px auto 80px", 
-        padding: "0 20px" 
-      }}>
+      <section style={{ maxWidth: "1100px", margin: "0 auto 40px", padding: "0 20px" }}>
+     
         <h2 style={{ 
           textAlign: "center", 
           fontSize: "2.2rem", 
@@ -330,6 +327,7 @@ export default function HomePage() {
         }}>
           
           {/* BRAND COLUMN */}
+          
           <div style={{ display: "flex", flexDirection: "column", alignItems: "center" }}>
             <h3 style={{ fontFamily: "serif", color: COLORS.maroon, marginBottom: "15px", fontSize: "1.4rem", fontWeight: 600 }}>
               Our Brand Story
@@ -381,7 +379,7 @@ export default function HomePage() {
       {/* SECTION 7: GRAND COLLECTION VIDEO */}
 <section style={{
   width: "100%",
-  margin: "100px 0", // More breathing room
+  margin: "20px 0 60px", // More breathing room
   position: "relative",
 }}>
   <div style={{

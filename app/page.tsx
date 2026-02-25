@@ -1,3 +1,5 @@
+
+
 "use client";
 
 import { useRef, useEffect, useState, MouseEvent, TouchEvent, useMemo } from "react";
@@ -84,6 +86,25 @@ export default function HomePage() {
   const handleMouseUp = () => {
     setIsDragging(false);
   };
+/* --- ADD STEP 1 HERE --- */
+  const [showBackToTop, setShowBackToTop] = useState(false);
+
+  useEffect(() => {
+    const handleScroll = () => {
+      if (window.scrollY > 400) {
+        setShowBackToTop(true);
+      } else {
+        setShowBackToTop(false);
+      }
+    };
+    window.addEventListener("scroll", handleScroll);
+    return () => window.removeEventListener("scroll", handleScroll);
+  }, []);
+
+  const scrollToTop = () => {
+    window.scrollTo({ top: 0, behavior: "smooth" });
+  };
+  /* --- END OF STEP 1 --- */
 
   return (
     <div style={{ width: "100%", minHeight: "100vh", backgroundColor: COLORS.cream, overflowX: "hidden" }}>
@@ -453,6 +474,33 @@ export default function HomePage() {
           transform: translateY(-3px); 
         }
       `}</style>
+      {/* --- ADD STEP 2 HERE --- */}
+      {showBackToTop && (
+        <button
+          onClick={scrollToTop}
+          style={{
+            position: "fixed",
+            bottom: "30px",
+            right: "30px",
+            width: "50px",
+            height: "50px",
+            backgroundColor: COLORS.maroon,
+            color: COLORS.gold,
+            border: `2px solid ${COLORS.gold}`,
+            borderRadius: "50%",
+            zIndex: 1000,
+            cursor: "pointer",
+            display: "flex",
+            alignItems: "center",
+            justifyContent: "center",
+            fontSize: "1.5rem",
+            boxShadow: "0 4px 15px rgba(0,0,0,0.3)"
+          }}
+        >
+          ↑
+        </button>
+      )}
+      
     </div>
   );
 }

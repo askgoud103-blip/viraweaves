@@ -214,18 +214,28 @@ export default function HomePage() {
                 style={{ display: "block", flexShrink: 0 }}
               >
                 <img
-                  src={item.src}
-                  alt={item.title || "Saree"}
-                  style={{
-                    height: "320px",
-                    width: "auto",
-                    borderRadius: "12px",
-                    marginRight: "20px",
-                    boxShadow: "0 10px 20px rgba(0,0,0,0.05)",
-                    background: "white",
-                    objectFit: "cover",
-                  }}
-                />
+  src={item.src}
+  alt={item.title || "Saree"}
+  style={{
+    height: "320px",
+    width: "auto",
+    borderRadius: "12px",
+    marginRight: "20px",
+    boxShadow: "0 10px 20px rgba(0,0,0,0.05)",
+    background: "white",
+    objectFit: "cover",
+    transition: "transform 0.3s ease, box-shadow 0.3s ease",
+    willChange: "transform",
+  }} // <--- The style object ends here
+  onMouseEnter={(e) => {
+    e.currentTarget.style.transform = "scale(1.05)";
+    e.currentTarget.style.boxShadow = "0 15px 30px rgba(0,0,0,0.2)";
+  }}
+  onMouseLeave={(e) => {
+    e.currentTarget.style.transform = "scale(1.0)";
+    e.currentTarget.style.boxShadow = "0 10px 20px rgba(0,0,0,0.05)";
+  }}
+/>
               </Link>
             ))}
           </div>

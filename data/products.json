@@ -11,52 +11,73 @@
     "occasion": "Wedding"
   },
   {
-    "id": "ofw1",
-    "title": "OfficeWear",
-    "category": "OFFICEWEAR",
-    "price": 1,
-    "description": "Rich Kanchipuram silk with a traditional temple border design.",
-    "fabric": "Cotton",
-    "weave": "Handloom",
-    "images": ["/images/office/ofw1.jpg"],
-    "occasion": "Office Wear"
+    "id": "bdl1",
+    "title": "Bridal",
+    "category": "BRIDAL SPL",
+    "price": 40000,
+    "description": "ELEGANT.",
+    "fabric": "Pattu",
+    "weave": "MLoom",
+    "images": ["/images/bridal/bdl1.jpeg"],
+    "occasion": "WEDDING"
+  },
+   {
+    "id": "D1",
+    "title": "Designer",
+    "category": "DESIGNER",
+    "price": 11000,
+    "description": "ELEGANT.",
+    "fabric": "Fancy",
+    "weave": "MLoom",
+    "images": ["/images/designer/d1.jpeg"],
+    "occasion": "SPL DAY"
   },
   {
-    "id": "ofw2",
-    "title": "OfficeWear",
-    "category": "OFFICEWEAR",
-    "price": 1,
-    "description": "Regulars.",
-    "fabric": "Cotton",
-    "weave": "Handloom",
-    "images": ["/images/office/ofw2.jpg"],
-    "occasion": "Teacher Wear"
+    "id": "bdl2",
+    "title": "Bridal",
+    "category": "BRIDAL SPL",
+    "price": 40000,
+    "description": "ELEGANT.",
+    "fabric": "Pattu",
+    "weave": "MLoom",
+    "images": ["/images/bridal/bdl2.jpeg"],
+    "occasion": "WEDDING"
+  },
+   {
+    "id": "D2",
+    "title": "Designer",
+    "category": "DESIGNER",
+    "price": 11000,
+    "description": "ELEGANT.",
+    "fabric": "Fancy",
+    "weave": "MLoom",
+    "images": ["/images/designer/d2.jpeg"],
+    "occasion": "EVENING BALL"
   },
   
-
-
-  {
-    "id": "ofw3",
-    "title": "Office Wear",
-    "category": "OFFICEWEAR",
-    "price": 1,
-    "description": "Regulars.",
-    "fabric": "Cotton",
-    "weave": "Handloom",
-    "images": ["/images/office/ofw3.jpg"],
-    "occasion": "Office/Teacher Wear"
+{
+    "id": "bdl3",
+    "title": "Bridal",
+    "category": "BRIDAL SPL",
+    "price": 40000,
+    "description": "ELEGANT.",
+    "fabric": "Pattu",
+    "weave": "MLoom",
+    "images": ["/images/bridal/bdl3.jpeg"],
+    "occasion": "WEDDING"
   },
   {
-    "id": "ofw4",
-    "title": "Office Wear",
-    "category": "OFFICEWEAR",
-    "price": 1,
-    "description": "Regulars.",
-    "fabric": "Cotton",
-    "weave": "Handloom",
-    "images": ["/images/office/ofw4.jpg"],
-    "occasion": "Office/Teacher Wear"
+    "id": "D3",
+    "title": "Designer",
+    "category": "DESIGNER",
+    "price": 11000,
+    "description": "ELEGANT.",
+    "fabric": "Fancy",
+    "weave": "MLoom",
+    "images": ["/images/designer/d3.jpeg"],
+    "occasion": "SPL DAY"
   },
+  
   {
   "id": "f4",
   "title": "Fancy",
@@ -79,86 +100,8 @@
   "images": ["/images/fancy/f5.jpg"],
   "occasion": "Special day"
 },
-  {
-  "id": "f1",
-  "title": "Fancy",
-  "category": "fancy",
-  "price": 1,
-  "description": "Elegant Light green with silver border.  Discount Applicable.",
-  "fabric": "spl fabric",
-  "weave": "Machine",
-  "images": ["/images/fancy/f1.jpg"],
-  "occasion": "Special day"
-},
-{
-  "id": "f2",
-  "title": "Fancy",
-  "category": "fancy",
-  "price": 1,
-  "description": "Discount Applicable .",
-  "fabric": "Spl fabric",
-  "weave": "Machine",
-  "images": ["/images/fancy/f2.jpg"],
-  "occasion": "Special day"
-},
-{
-  "id": "f3",
-  "title": "Fancy",
-  "category": "fancy",
-  "price": 1,
-  "description": "Crystal Bright .",
-  "fabric": "Spl fabric",
-  "weave": "Machine",
-  "images": ["/images/fancy/f3.jpg"],
-  "occasion": "Special day"
-},
-{
-  "id": "jc1",
-  "title": "Fancy",
-  "category": "fancy",
-  "price": 1,
-  "description": "Discount Applicable .",
-  "fabric": "Spl fabric",
-  "weave": "Machine",
-  "images": ["/images/fancy/jc1.jpg"],
-  "occasion": "Special day"
-},
-
-  {
-  "id": "f8",
-  "title": "Fancy",
-  "category": "fancy",
-  "price": 1,
-  "description": "Discount Applicable .",
-  "fabric": "Spl fabric",
-  "weave": "Machine",
-  "images": ["/images/fancy/f8.jpg"],
-  "occasion": "Special day"
-  },
-  
-  {
-  "id": "f7",
-  "title": "Fancy",
-  "category": "fancy",
-  "price": 1,
-  "description": "Price Princess .",
-  "fabric": "Spl fabric",
-  "weave": "Machine",
-  "images": ["/images/fancy/f7.jpg"],
-  "occasion": "Special day"
-},
-  
-  {
-  "id": "f6",
-  "title": "Fancy",
-  "category": "fancy",
-  "price": 1,
-  "description": "Discount Applicable.",
-  "fabric": "Spl fabric",
-  "weave": "Machine",
-  "images": ["/images/fancy/f6.jpg"],
-  "occasion": "Special day"
-},
+     
+ 
 
   {
   "id": "ch1",
@@ -173,85 +116,6 @@
 },  
   
   
-  
-  {
-    "id": "vw-301",
-    "title": "Classic Ikat Pochampally",
-    "category": "Pochampally",
-    "price": 1,
-    "description": "Authentic Handloom Pochampally featuring geometric Ikat patterns and a silk finish.",
-    "fabric": "Silk Cotton",
-    "weave": "Ikat Handloom",
-    "images": ["/images/banarasi/dir.jpg"],
-    "occasion": "Festive"
-  },
-  {
-    "id": "g2",
-    "title": "Traditional Gadwal Sico",
-    "category": "Gadwal",
-    "price": 1,
-    "description": "Applicable.",
-    "fabric": "Gadwal fabric",
-    "weave": "Handloom",
-    "images": ["/images/gadwal/g2.jpg"],
-    "occasion": "Religious"
-  },
- 
-  
-  {
-    "id": "vw-gadwal3",
-    "title": "Traditional Gadwal Sico",
-    "category": "Gadwal",
-    "price": 1,
-    "description": "Applicable.",
-    "fabric": "Gadwal fabric",
-    "weave": "Handloom",
-    "images": ["/images/gadwal/g3.jpg"],
-    "occasion": "Religious"
-  },
-  {
-    "id": "vw-gadwal4",
-    "title": "Traditional Gadwal Sico",
-    "price": 1,
-    "description": "Applicable.",
-    "fabric": "Gadwal fabric",
-    "weave": "Handloom",
-    "images": ["/images/gadwal/g4.jpg"],
-    "occasion": "Religious"
-  },
-  {
-    "id": "vw-gadwal5",
-    "title": "Traditional Gadwal Sico",
-    "category": "Gadwal",
-    "price": 1,
-    "description": "Applicable.",
-    "fabric": "Gadwal fabric",
-    "weave": "Handloom",
-    "images": ["/images/gadwal/g5.jpg"],
-    "occasion": "Religious"
-  },
-  {
-    "id": "vw-gadwal6",
-    "title": "Traditional Gadwal Sico",
-    "category": "Gadwal",
-    "price": 1,
-    "description": "Applicable.",
-    "fabric": "Gadwal fabric",
-    "weave": "Handloom",
-    "images": ["/images/gadwal/g6.jpg"],
-    "occasion": "Religious"
-  },
-  {
-    "id": "vw-gadwal7",
-    "title": "Traditional Gadwal Sico",
-    "category": "Gadwal",
-    "price": 1,
-    "description": "Applicable.",
-    "fabric": "Gadwal fabric",
-    "weave": "Handloom",
-    "images": ["/images/gadwal/g7.jpg"],
-    "occasion": "Religious"
-  },
   {
     "id": "vw-gadwal8",
     "title": "Traditional Gadwal Sico",

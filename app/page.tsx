@@ -89,37 +89,87 @@ export default function HomePage() {
     <div style={{ width: "100%", minHeight: "100vh", backgroundColor: COLORS.cream, overflowX: "hidden" }}>
       <Navbar />
 
-      {/* HERO SECTION */}
-      <section
-        style={{
-          padding: "40px 6px 40px",
-          textAlign: "center",
-          background: `linear-gradient(to bottom, ${COLORS.cream}, #fff)`,
-        }}
-      >
-        <div style={{ maxWidth: "800px", margin: "0 auto" }}>
-          <span style={{ 
-            textTransform: "uppercase", 
-            letterSpacing: "3px", 
-            fontSize: "0.75rem", 
-            fontWeight: 600, 
-            color: COLORS.gold 
-          }}>
-            Authentic Indian Heritage
-          </span>
-          <h1 style={{ 
-            fontFamily: "serif", 
-            fontSize: "clamp(2.5rem, 8vw, 4rem)", 
-            margin: "15px 0", 
-            color: COLORS.maroon 
-          }}>
-            Viraweaves
-          </h1>
-          <p style={{ fontSize: "1.1rem", color: "#555", maxWidth: "600px", margin: "0 auto", lineHeight: "1.6" }}>
-            Timeless hand-woven traditions, crafted for the modern woman.
-          </p>
-        </div>
-      </section>
+    {/* --- START OF HERO SECTION --- */}
+<section
+  style={{
+    position: "relative",
+    width: "100%",
+    height: "50vh", // Controlled height
+    display: "flex",
+    alignItems: "center",
+    justifyContent: "center",
+    textAlign: "center",
+    overflow: "hidden",
+    backgroundColor: COLORS.maroon, // Dark fallback
+  }}
+>
+  {/* 1. Background Video */}
+  <video
+    autoPlay
+    muted
+    loop
+    playsInline
+    style={{
+      position: "absolute",
+      top: "50%",
+      left: "50%",
+      transform: "translate(-50%, -50%)",
+      minWidth: "100%",
+      minHeight: "100%",
+      width: "auto",
+      height: "auto",
+      objectFit: "cover",
+      zIndex: 0,
+    }}
+  >
+    <source src="/video/hero-weave.mp4" type="video/mp4" />
+  </video>
+
+  {/* 2. Dark Overlay (Improves text readability) */}
+  <div 
+    style={{
+      position: "absolute",
+      top: 0,
+      left: 0,
+      width: "100%",
+      height: "100%",
+      background: "linear-gradient(to bottom, rgba(0,0,0,0.3), rgba(0,0,0,0.5))",
+      zIndex: 1
+    }}
+  />
+
+  {/* 3. Text Content */}
+  <div style={{ position: "relative", zIndex: 2, padding: "0 20px" }}>
+    <span style={{ 
+      textTransform: "uppercase", 
+      letterSpacing: "3px", 
+      fontSize: "0.8rem", 
+      fontWeight: 700, 
+      color: COLORS.gold 
+    }}>
+      Authentic Indian Heritage
+    </span>
+    <h1 style={{ 
+      fontFamily: "serif", 
+      fontSize: "clamp(2rem, 6vw, 3.5rem)", 
+      margin: "10px 0", 
+      color: "#fff",
+      textShadow: "2px 2px 4px rgba(0,0,0,0.3)" 
+    }}>
+      Viraweaves
+    </h1>
+    <p style={{ 
+      fontSize: "1.1rem", 
+      color: COLORS.cream, 
+      maxWidth: "500px", 
+      margin: "0 auto", 
+      fontWeight: 500 
+    }}>
+      Timeless hand-woven traditions.
+    </p>
+  </div>
+</section>
+{/* --- END OF HERO SECTION --- */}
 
       {/* SECTION 1: Auto Scroll */}
       <section style={{ textAlign: "center", paddingBottom: "40px" }}>
@@ -328,6 +378,62 @@ export default function HomePage() {
 
       {/* SECTION 6: REVIEWS */}
       <Reviews />
+      {/* SECTION 7: GRAND COLLECTION VIDEO */}
+<section style={{
+  width: "100%",
+  margin: "100px 0", // More breathing room
+  position: "relative",
+}}>
+  <div style={{
+    maxWidth: "1200px", // Matches your category grid width
+    margin: "0 auto",
+    padding: "0 20px",
+  }}>
+    <h2 style={{
+      fontFamily: "serif",
+      fontSize: "2.4rem",
+      marginBottom: "30px",
+      color: COLORS.maroon,
+      textAlign: "center"
+    }}>
+      The Grand Weave Collection
+    </h2>
+
+    <div style={{
+      position: "relative",
+      width: "100%",
+      height: "60vh",
+      overflow: "hidden",
+      borderRadius: "24px", // Rounded corners for a premium feel
+      boxShadow: "0 20px 40px rgba(0,0,0,0.15)"
+    }}>
+      <video
+        autoPlay
+        muted
+        loop
+        playsInline
+        poster="/video/grand-thumb.jpg"
+        style={{
+          width: "100%",
+          height: "100%",
+          objectFit: "cover"
+        }}
+      >
+        <source src="/video/grand-collection.mp4" type="video/mp4" />
+      </video>
+
+      {/* Soft Gradient Overlay */}
+      <div style={{
+        position: "absolute",
+        bottom: 0,
+        left: 0,
+        width: "100%",
+        height: "40%",
+        background: "linear-gradient(to top, rgba(0,0,0,0.4), transparent)"
+      }} />
+    </div>
+  </div>
+</section>
 
       
 

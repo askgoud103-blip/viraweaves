@@ -143,7 +143,7 @@ export default function HomePage() {
       zIndex: 0,
     }}
   >
-    <source src="/video/hero-weave.mp4" type="video/mp4" />
+    <source src="/video/vw.mp4" type="video/mp4" />
   </video>
 
   {/* 2. Dark Overlay (Improves text readability) */}
@@ -187,7 +187,15 @@ export default function HomePage() {
       fontWeight: 500 
     }}>
       Timeless hand-woven traditions.
-    </p>
+          </p>
+          
+          <p style={{ 
+      fontSize: "1.1rem", 
+      color: COLORS.cream, 
+      maxWidth: "500px", 
+      margin: "0 auto", 
+      fontWeight: 500 
+    }}> Premium Bridal & Designer Sarees Curated for Grand Occasions Across India </p>
   </div>
 </section>
 {/* --- END OF HERO SECTION --- */}
@@ -358,27 +366,26 @@ export default function HomePage() {
         }}>
           
           {/* BRAND COLUMN */}
-          
-          <div style={{ display: "flex", flexDirection: "column", alignItems: "center" }}>
-            <h3 style={{ fontFamily: "serif", color: COLORS.maroon, marginBottom: "15px", fontSize: "1.4rem", fontWeight: 600 }}>
-              Our Brand Story
-            </h3>
-            <div style={{ 
-              position: "relative", paddingBottom: "56.25%", width: "100%", height: 0, 
-              overflow: "hidden", borderRadius: "16px", boxShadow: "0 15px 35px rgba(0,0,0,0.12)", backgroundColor: "#000" 
-            }}>
-              <video autoPlay muted loop playsInline controls style={{ position: "absolute", top: 0, left: 0, width: "100%", height: "100%", objectFit: "cover" }}>
-                <source src="/video/brand1.mp4" type="video/mp4" />
-              </video>
-            </div>
-            {/* Button is now part of the Brand Column */}
-            <Link href="/video/brand-gallery" className="quick-link" style={{ 
-              marginTop: "25px", width: "100%", maxWidth: "280px", padding: "15px", 
-              borderRadius: "12px", textDecoration: "none", textAlign: "center" 
-            }}>
-              EXPLORE BRAND VIDEOS
-            </Link>
-          </div>
+<div style={{ display: "flex", flexDirection: "column", alignItems: "center" }}>
+  <h3 style={{ fontFamily: "serif", color: COLORS.maroon, marginBottom: "15px", fontSize: "1.4rem", fontWeight: 600 }}>
+    Our Brand Story
+  </h3>
+  <div style={{ 
+    position: "relative", paddingBottom: "56.25%", width: "100%", height: 0, 
+    overflow: "hidden", borderRadius: "16px", boxShadow: "0 15px 35px rgba(0,0,0,0.12)", backgroundColor: "#000" 
+  }}>
+    {/* REMOVED autoPlay, muted, loop */}
+    <video controls playsInline style={{ position: "absolute", top: 0, left: 0, width: "100%", height: "100%", objectFit: "cover" }}>
+      <source src="/video/brand1.mp4" type="video/mp4" />
+    </video>
+  </div>
+  <Link href="/video/brand-gallery" className="quick-link" style={{ 
+    marginTop: "25px", width: "100%", maxWidth: "280px", padding: "15px", 
+    borderRadius: "12px", textDecoration: "none", textAlign: "center" 
+  }}>
+    EXPLORE BRAND VIDEOS
+  </Link>
+</div>
 
           {/* CUSTOMER COLUMN */}
           <div style={{ display: "flex", flexDirection: "column", alignItems: "center" }}>
@@ -410,11 +417,11 @@ export default function HomePage() {
       {/* SECTION 7: GRAND COLLECTION VIDEO */}
 <section style={{
   width: "100%",
-  margin: "20px 0 60px", // More breathing room
+  margin: "20px 0 60px", 
   position: "relative",
 }}>
   <div style={{
-    maxWidth: "1200px", // Matches your category grid width
+    maxWidth: "1200px", 
     margin: "0 auto",
     padding: "0 20px",
   }}>
@@ -433,13 +440,12 @@ export default function HomePage() {
       width: "100%",
       height: "60vh",
       overflow: "hidden",
-      borderRadius: "24px", // Rounded corners for a premium feel
+      borderRadius: "24px", 
       boxShadow: "0 20px 40px rgba(0,0,0,0.15)"
     }}>
+      {/* REMOVED autoPlay, muted, loop AND ADDED controls */}
       <video
-        autoPlay
-        muted
-        loop
+        controls
         playsInline
         poster="/video/grand-thumb.jpg"
         style={{
@@ -451,15 +457,8 @@ export default function HomePage() {
         <source src="/video/grand-collection.mp4" type="video/mp4" />
       </video>
 
-      {/* Soft Gradient Overlay */}
-      <div style={{
-        position: "absolute",
-        bottom: 0,
-        left: 0,
-        width: "100%",
-        height: "40%",
-        background: "linear-gradient(to top, rgba(0,0,0,0.4), transparent)"
-      }} />
+      {/* Soft Gradient Overlay removed or kept based on preference; 
+          usually better to remove if user needs to see play buttons clearly */}
     </div>
   </div>
 </section>

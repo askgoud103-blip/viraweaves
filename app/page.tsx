@@ -346,71 +346,86 @@ export default function HomePage() {
         </div>
       </section>
       
-     {/* COMBINED SECTION 4 & 5: VIDEOS & BUTTONS */}
-      <section style={{ maxWidth: "1100px", margin: "0 auto 40px", padding: "0 20px" }}>
-     
-        <h2 style={{ 
-          textAlign: "center", 
-          fontSize: "2.2rem", 
-          fontFamily: "serif", 
-          marginBottom: "40px", 
-          color: COLORS.maroon 
-        }}>
-          Experience Viraweaves
-        </h2>
+     {/* SECTION 4 & 5: SHORTER TRIO GALLERY */}
+<section style={{ maxWidth: "1200px", margin: "0 auto 60px", padding: "0 20px" }}>
+  <h2 style={{ 
+    textAlign: "center", 
+    fontSize: "2.2rem", 
+    fontFamily: "serif", 
+    marginBottom: "30px", 
+    color: COLORS.maroon 
+  }}>
+    Experience Viraweaves
+  </h2>
 
-        <div style={{ 
-          display: "grid", 
-          gridTemplateColumns: "repeat(auto-fit, minmax(320px, 1fr))", 
-          gap: "40px" 
-        }}>
-          
-          {/* BRAND COLUMN */}
-<div style={{ display: "flex", flexDirection: "column", alignItems: "center" }}>
-  <h3 style={{ fontFamily: "serif", color: COLORS.maroon, marginBottom: "15px", fontSize: "1.4rem", fontWeight: 600 }}>
-    Our Brand Story
-  </h3>
   <div style={{ 
-    position: "relative", paddingBottom: "56.25%", width: "100%", height: 0, 
-    overflow: "hidden", borderRadius: "16px", boxShadow: "0 15px 35px rgba(0,0,0,0.12)", backgroundColor: "#000" 
+    display: "grid", 
+    gridTemplateColumns: "repeat(auto-fit, minmax(320px, 1fr))", 
+    gap: "25px" 
   }}>
-    {/* REMOVED autoPlay, muted, loop */}
-    <video controls playsInline style={{ position: "absolute", top: 0, left: 0, width: "100%", height: "100%", objectFit: "cover" }}>
-      <source src="/video/brand1.mp4" type="video/mp4" />
-    </video>
+    
+    {/* 1. BRAND STORY */}
+    <div style={{ display: "flex", flexDirection: "column", alignItems: "center" }}>
+      <h3 style={{ fontFamily: "serif", color: COLORS.maroon, marginBottom: "12px", fontSize: "1.2rem", fontWeight: 600 }}>
+        Our Heritage
+      </h3>
+      <div style={{ 
+        position: "relative", 
+        paddingBottom: "56.25%", // SHORTER: 16:9 Ratio
+        width: "100%", 
+        borderRadius: "16px", 
+        overflow: "hidden", 
+        boxShadow: "0 8px 20px rgba(0,0,0,0.1)",
+        backgroundColor: "#000"
+      }}>
+        <video controls playsInline style={{ position: "absolute", top: 0, left: 0, width: "100%", height: "100%", objectFit: "cover" }}>
+          <source src="/video/brand-story.mp4" type="video/mp4" />
+        </video>
+      </div>
+    </div>
+
+    {/* 2. CUSTOMER LOVE */}
+    <div style={{ display: "flex", flexDirection: "column", alignItems: "center" }}>
+      <h3 style={{ fontFamily: "serif", color: COLORS.maroon, marginBottom: "12px", fontSize: "1.2rem", fontWeight: 600 }}>
+        Customer Diaries
+      </h3>
+      <div style={{ 
+        position: "relative", 
+        paddingBottom: "56.25%", // SHORTER: 16:9 Ratio
+        width: "100%", 
+        borderRadius: "16px", 
+        overflow: "hidden", 
+        boxShadow: "0 8px 20px rgba(0,0,0,0.1)",
+        backgroundColor: "#000"
+      }}>
+        <video controls playsInline style={{ position: "absolute", top: 0, left: 0, width: "100%", height: "100%", objectFit: "cover" }}>
+          <source src="/video/customer-review.mp4" type="video/mp4" />
+        </video>
+      </div>
+    </div>
+
+    {/* 3. AMBASSADOR SPOTLIGHT */}
+    <div style={{ display: "flex", flexDirection: "column", alignItems: "center" }}>
+      <h3 style={{ fontFamily: "serif", color: COLORS.maroon, marginBottom: "12px", fontSize: "1.2rem", fontWeight: 600 }}>
+        Ambassador's Choice
+      </h3>
+      <div style={{ 
+        position: "relative", 
+        paddingBottom: "56.25%", // SHORTER: 16:9 Ratio
+        width: "100%", 
+        borderRadius: "16px", 
+        overflow: "hidden", 
+        boxShadow: "0 8px 20px rgba(0,0,0,0.1)",
+        backgroundColor: "#000"
+      }}>
+        <video controls playsInline style={{ position: "absolute", top: 0, left: 0, width: "100%", height: "100%", objectFit: "cover" }}>
+          <source src="/video/ambassador.mp4" type="video/mp4" />
+        </video>
+      </div>
+    </div>
+
   </div>
-  <Link href="/video/brand-gallery" className="quick-link" style={{ 
-    marginTop: "25px", width: "100%", maxWidth: "280px", padding: "15px", 
-    borderRadius: "12px", textDecoration: "none", textAlign: "center" 
-  }}>
-    EXPLORE BRAND VIDEOS
-  </Link>
-</div>
-
-          {/* CUSTOMER COLUMN */}
-          <div style={{ display: "flex", flexDirection: "column", alignItems: "center" }}>
-            <h3 style={{ fontFamily: "serif", color: COLORS.maroon, marginBottom: "15px", fontSize: "1.4rem", fontWeight: 600 }}>
-              Customer Love
-            </h3>
-            <div style={{ 
-              position: "relative", paddingBottom: "56.25%", width: "100%", height: 0, 
-              overflow: "hidden", borderRadius: "16px", boxShadow: "0 15px 35px rgba(0,0,0,0.12)", backgroundColor: "#000" 
-            }}>
-              <video controls playsInline style={{ position: "absolute", top: 0, left: 0, width: "100%", height: "100%", objectFit: "cover" }}>
-                <source src="/video/customer-review.mp4" type="video/mp4" />
-              </video>
-            </div>
-            {/* Button is now part of the Customer Column */}
-            <Link href="/video/customer-gallery" className="quick-link" style={{ 
-              marginTop: "25px", width: "100%", maxWidth: "280px", padding: "15px", 
-              borderRadius: "12px", textDecoration: "none", textAlign: "center" 
-            }}>
-              EXPLORE CUSTOMER DIARIES
-            </Link>
-          </div>
-
-        </div>
-      </section>
+</section>
 
       {/* SECTION 6: REVIEWS */}
       <Reviews />

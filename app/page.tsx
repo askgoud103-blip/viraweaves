@@ -469,7 +469,7 @@ export default function HomePage() {
           objectFit: "cover"
         }}
       >
-        <source src="/video/grand-collection.mp4" type="video/mp4" />
+        <source src="/video/grand1.mp4" type="video/mp4" />
       </video>
 
       {/* Soft Gradient Overlay removed or kept based on preference; 

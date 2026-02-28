@@ -379,7 +379,7 @@ export default function HomePage() {
         backgroundColor: "#000"
       }}>
         <video controls playsInline style={{ position: "absolute", top: 0, left: 0, width: "100%", height: "100%", objectFit: "cover" }}>
-          <source src="/video/brand3.mp4" type="video/mp4" />
+          <source src="/video/brand4.mp4" type="video/mp4" />
         </video>
       </div>
     </div>
@@ -399,7 +399,7 @@ export default function HomePage() {
         backgroundColor: "#000"
       }}>
         <video controls playsInline style={{ position: "absolute", top: 0, left: 0, width: "100%", height: "100%", objectFit: "cover" }}>
-          <source src="/video/customer-review.mp4" type="video/mp4" />
+          <source src="/video/cus1.mp4" type="video/mp4" />
         </video>
       </div>
     </div>
@@ -419,7 +419,7 @@ export default function HomePage() {
         backgroundColor: "#000"
       }}>
         <video controls playsInline style={{ position: "absolute", top: 0, left: 0, width: "100%", height: "100%", objectFit: "cover" }}>
-          <source src="/video/ambassador.mp4" type="video/mp4" />
+          <source src="/video/amb2.mp4" type="video/mp4" />
         </video>
       </div>
     </div>

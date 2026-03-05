@@ -1,7 +1,7 @@
 
 
 "use client";
-
+import Image from "next/image";
 import { useRef, useEffect, useState, MouseEvent, TouchEvent, useMemo } from "react";
 import Navbar from "./components/Navbar";
 import Link from "next/link";
@@ -196,6 +196,37 @@ export default function HomePage() {
       margin: "0 auto", 
       fontWeight: 500 
     }}> Premium Bridal & Designer Sarees Curated for Grand Occasions Across India </p>
+    <div style={{ marginTop: "25px", display: "flex", gap: "15px", justifyContent: "center", flexWrap: "wrap" }}>
+  <Link
+    href="/category/bridal-spl"
+    style={{
+      padding: "12px 24px",
+      backgroundColor: COLORS.gold,
+      color: COLORS.maroon,
+      fontWeight: 700,
+      borderRadius: "8px",
+      textDecoration: "none"
+    }}
+  >
+    Explore Bridal Collection
+  </Link>
+
+  <a
+  href="https://wa.me/917093430194?text=Hi%20Viraweaves,%20I%E2%80%99m%20interested%20in%20your%20Bridal%20Saree%20Collection.%20Could%20you%20please%20share%20availability%20and%20price%20details?"
+  target="_blank"
+  rel="noopener noreferrer"
+  style={{
+    padding: "12px 24px",
+    border: `2px solid ${COLORS.gold}`,
+    color: "#fff",
+    fontWeight: 700,
+    borderRadius: "8px",
+    textDecoration: "none"
+  }}
+>
+  Check Details on WhatsApp
+</a>
+</div>
   </div>
 </section>
 {/* --- END OF HERO SECTION --- */}

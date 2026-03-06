@@ -197,35 +197,88 @@ export default function HomePage() {
       fontWeight: 500 
     }}> Premium Bridal & Designer Sarees Curated for Grand Occasions Across India </p>
     <div style={{ marginTop: "25px", display: "flex", gap: "15px", justifyContent: "center", flexWrap: "wrap" }}>
+  {/* Explore Button */}
   <Link
     href="/category/bridal-spl"
     style={{
       padding: "12px 24px",
       backgroundColor: COLORS.gold,
+      border: `2px solid ${COLORS.gold}`,
       color: COLORS.maroon,
       fontWeight: 700,
       borderRadius: "8px",
-      textDecoration: "none"
+      textDecoration: "none",
+      transition: "all 0.3s ease",
+    }}
+    onMouseEnter={(e) => {
+      e.currentTarget.style.backgroundColor = COLORS.maroon;
+      e.currentTarget.style.color = COLORS.gold;
+    }}
+    onMouseLeave={(e) => {
+      e.currentTarget.style.backgroundColor = COLORS.gold;
+      e.currentTarget.style.color = COLORS.maroon;
     }}
   >
     Explore Bridal Collection
   </Link>
 
   <a
-  href="https://wa.me/917093430194?text=Hi%20Viraweaves,%20I%E2%80%99m%20interested%20in%20your%20Bridal%20Saree%20Collection.%20Could%20you%20please%20share%20availability%20and%20price%20details?"
+  href="https://wa.me/917093430194?text=Hi%20Viraweaves,..."
   target="_blank"
   rel="noopener noreferrer"
   style={{
     padding: "12px 24px",
+    backgroundColor: COLORS.gold,
     border: `2px solid ${COLORS.gold}`,
-    color: "#fff",
+    color: COLORS.maroon,
     fontWeight: 700,
     borderRadius: "8px",
-    textDecoration: "none"
+    textDecoration: "none",
+    transition: "all 0.3s ease",
+  }}
+  onMouseEnter={(e) => {
+    e.currentTarget.style.backgroundColor = COLORS.maroon;
+    e.currentTarget.style.color = COLORS.gold;
+  }}
+  onMouseLeave={(e) => {
+    e.currentTarget.style.backgroundColor = COLORS.gold;
+    e.currentTarget.style.color = COLORS.maroon;
   }}
 >
   Check Details on WhatsApp
 </a>
+{/* Instagram Button */}
+<a
+  href="https://www.instagram.com/vira_weaves_/" 
+  target="_blank"
+  rel="noopener noreferrer"
+  style={{
+    minWidth: "220px",
+    padding: "12px 24px",
+    backgroundColor: COLORS.gold,
+    border: `2px solid ${COLORS.gold}`,
+    color: COLORS.maroon,
+    fontWeight: 700,
+    borderRadius: "8px",
+    textDecoration: "none",
+    display: "flex",
+    alignItems: "center",
+    justifyContent: "center",
+    gap: "8px",
+    transition: "all 0.3s ease",
+  }}
+  onMouseEnter={(e) => {
+    e.currentTarget.style.backgroundColor = COLORS.maroon;
+    e.currentTarget.style.color = COLORS.gold;
+  }}
+  onMouseLeave={(e) => {
+    e.currentTarget.style.backgroundColor = COLORS.gold;
+    e.currentTarget.style.color = COLORS.maroon;
+  }}
+>
+  Instagram
+</a>
+
 </div>
   </div>
 </section>

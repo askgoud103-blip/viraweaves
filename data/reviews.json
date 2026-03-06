@@ -5,7 +5,7 @@
     "location": "Hyderabad",
     "rating": 5,
     "comment": "The Scarlet Red Banarasi I ordered is even more beautiful in person. The gold zari work is exquisite!",
-    "date": "2024-01-15"
+    "date": "2025-08-14"
   },
     {
     "id": 2,
@@ -13,8 +13,17 @@
     "location": "Bangalore",
     "rating": 5,
     "comment": "Fast delivery and the Gadwal Sico fabric is so soft. Perfect for office wear too.",
-    "date": "2024-02-02"
+    "date": "2025-08-15"
+  },
+  {
+    "id": 3,
+    "name": "Chaterji",
+    "location": "Calcutta",
+    "rating": 5,
+    "comment": "One who is looking for good quality fabric and style Jamdhani, this is the perfect place.",
+    "date": "2026-02-01"
   }
+  
   
   
 ]

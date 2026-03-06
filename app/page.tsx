@@ -371,7 +371,7 @@ export default function HomePage() {
           maxWidth: "1200px", 
           margin: "0 auto" 
         }}>
-          {[...CATEGORIES, "Pre-Wed Spl", "Bridal Spl", "Bridal Sisters"].map((cat) => (
+          {[...CATEGORIES, "Pre-Wed Spl", "Bridal Spl"].map((cat) => (
             <Link 
               key={cat} 
               href={`/category/${normalize(cat)}`} 
@@ -510,9 +510,11 @@ export default function HomePage() {
 
   </div>
 </section>
-
-      {/* SECTION 6: REVIEWS */}
-      <Reviews />
+{/* SECTION 6: REVIEWS */}
+<section style={{ backgroundColor: COLORS.cream, padding: "20px 0" }}>
+  <Reviews />
+</section>
+     
       {/* SECTION 7: GRAND COLLECTION VIDEO */}
 <section style={{
   width: "100%",
@@ -525,14 +527,26 @@ export default function HomePage() {
     padding: "0 20px",
   }}>
     <h2 style={{
-      fontFamily: "serif",
-      fontSize: "2.4rem",
-      marginBottom: "30px",
-      color: COLORS.maroon,
-      textAlign: "center"
-    }}>
-      The Grand Weave Collection
-    </h2>
+  fontFamily: "serif",
+  fontSize: "2.4rem",
+  marginBottom: "40px", // Increased to give the line room
+  color: COLORS.maroon,
+  textAlign: "center",
+  position: "relative",
+  paddingBottom: "15px"
+}}>
+  The Grand Weave Collection
+  <span style={{
+    position: "absolute",
+    bottom: 0,
+    left: "50%",
+    transform: "translateX(-50%)",
+    width: "450px",          // Matches the Reviews section length
+    height: "1.75px",
+    backgroundColor: COLORS.gold,
+    borderRadius: "2px"
+  }} />
+</h2>
 
     <div style={{
       position: "relative",
@@ -544,17 +558,18 @@ export default function HomePage() {
     }}>
       {/* REMOVED autoPlay, muted, loop AND ADDED controls */}
       <video
-        controls
-        playsInline
-        poster="/video/grand-thumb.jpg"
-        style={{
-          width: "100%",
-          height: "100%",
-          objectFit: "cover"
-        }}
-      >
-        <source src="/video/grand1.mp4" type="video/mp4" />
-      </video>
+  controls
+  playsInline
+  // Add a path to an image in your /public folder
+  poster="/images/bdl3.jpg" 
+  style={{
+    width: "100%",
+    height: "100%",
+    objectFit: "cover"
+  }}
+>
+  <source src="/video/grand1.mp4" type="video/mp4" />
+</video>
 
       {/* Soft Gradient Overlay removed or kept based on preference; 
           usually better to remove if user needs to see play buttons clearly */}

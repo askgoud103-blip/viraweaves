@@ -5,17 +5,29 @@ import { Star } from "lucide-react";
 
 export default function Reviews() {
   return (
-    <section style={{ padding: "80px 20px", backgroundColor: "#fff" }}>
+    <section style={{ padding: "40px 20px", backgroundColor: COLORS.cream }}>
       <div style={{ maxWidth: "1200px", margin: "0 auto" }}>
         <h2 style={{ 
-          fontFamily: "serif", 
-          fontSize: "2.5rem", 
-          textAlign: "center", 
-          color: COLORS.maroon, 
-          marginBottom: "40px" 
-        }}>
-          What Our Customers Say
-        </h2>
+  fontFamily: "serif", 
+  fontSize: "2.5rem", 
+  textAlign: "center", 
+  color: COLORS.maroon, 
+  marginBottom: "40px",
+  position: "relative",
+  paddingBottom: "15px" // Space for the line
+}}>
+  What Our Customers Say
+  <span style={{
+    position: "absolute",
+    bottom: 0,
+    left: "50%",
+    transform: "translateX(-50%)",
+    width: "400px", // Length of the underline
+    height: "1.75px", // Thickness
+    backgroundColor: COLORS.gold, // Gold underline
+    borderRadius: "2px"
+  }} />
+</h2>
         
         <div style={{ 
           display: "grid", 

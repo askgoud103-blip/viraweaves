@@ -1,6 +1,8 @@
 
 
 "use client";
+// Find this line at the top of your file and add Facebook
+import { Facebook, Instagram, Star, ShoppingBag, MessageCircle } from "lucide-react";
 import Image from "next/image";
 import { useRef, useEffect, useState, MouseEvent, TouchEvent, useMemo } from "react";
 import Navbar from "./components/Navbar";
@@ -278,7 +280,65 @@ export default function HomePage() {
 >
   Instagram
 </a>
-
+{/* 4. NEW: Reviews Button */}
+  <a
+    href="#reviews"
+    style={{
+      padding: "12px 24px",
+      backgroundColor: COLORS.gold,
+      border: `2px solid ${COLORS.gold}`,
+      color: COLORS.maroon,
+      fontWeight: 700,
+      borderRadius: "8px",
+      textDecoration: "none",
+      display: "flex",
+      alignItems: "center",
+      justifyContent: "center",
+      gap: "8px"
+    }}
+    onMouseEnter={(e) => {
+      e.currentTarget.style.backgroundColor = COLORS.maroon;
+      e.currentTarget.style.color = COLORS.gold;
+    }}
+    onMouseLeave={(e) => {
+      e.currentTarget.style.backgroundColor = COLORS.gold;
+      e.currentTarget.style.color = COLORS.maroon;
+    }}
+  >
+    5⭐ Customer Reviews
+  </a>
+{/* Facebook Button */}
+<a
+  href="https://www.facebook.com/profile.php?id=61570486516513"
+  target="_blank"
+  rel="noopener noreferrer"
+  style={{
+    padding: "12px 24px",
+    backgroundColor: COLORS.gold,
+    border: `2px solid ${COLORS.gold}`,
+    color: "#1877F2",
+    fontWeight: 700,
+    borderRadius: "8px",
+    textDecoration: "none",
+    display: "flex",
+    alignItems: "center",
+    justifyContent: "center",
+    gap: "8px",
+    transition: "all 0.3s ease",
+  }}
+  onMouseEnter={(e) => {
+    e.currentTarget.style.backgroundColor = COLORS.maroon;
+    e.currentTarget.style.color = COLORS.gold;
+  }}
+  onMouseLeave={(e) => {
+    // When mouse leaves: Go back to Gold background with Blue text
+    e.currentTarget.style.backgroundColor = COLORS.gold;
+    e.currentTarget.style.borderColor = COLORS.gold;
+    e.currentTarget.style.color = "#1877F2";
+  }}
+>
+  <Facebook size={20} /> Facebook
+</a>
 </div>
   </div>
 </section>
@@ -511,7 +571,14 @@ export default function HomePage() {
   </div>
 </section>
 {/* SECTION 6: REVIEWS */}
-<section style={{ backgroundColor: COLORS.cream, padding: "20px 0" }}>
+<section 
+  id="reviews" 
+  style={{ 
+    backgroundColor: COLORS.cream, 
+    padding: "20px 0",
+    scrollMarginTop: "100px" // This ensures the heading doesn't hide under the navbar
+  }}
+>
   <Reviews />
 </section>
      
@@ -561,7 +628,7 @@ export default function HomePage() {
   controls
   playsInline
   // Add a path to an image in your /public folder
-  poster="/images/bdl3.jpg" 
+  poster="/images/bdl3.jpeg" 
   style={{
     width: "100%",
     height: "100%",

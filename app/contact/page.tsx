@@ -5,7 +5,39 @@ import { COLORS } from "@/lib/colors";
 
 export default function ContactPage() {
   const contactInfo = [
-    { title: "Mobile & Whatsapp", value: "7093430194" },
+    { 
+      title: "Mobile & Whatsapp", 
+      value: (
+        <span style={{ lineHeight: "1.8", display: "block" }}>
+          <strong>Phone:</strong> 7093430194
+          <br />
+          
+          <strong>Instagram</strong>
+          <br />
+          <a 
+            href="https://www.instagram.com/vira_weaves_/" 
+            target="_blank" 
+            rel="noopener noreferrer"
+            style={{ textDecoration: "none", color: COLORS.maroon }}
+          >
+            https://www.instagram.com/vira_weaves_/
+          </a>
+          <br />
+          
+          <strong>Facebook</strong>
+          <br />
+          <a 
+            href="https://www.facebook.com/profile.php?id=61570486516513" 
+            target="_blank" 
+            rel="noopener noreferrer"
+            style={{ textDecoration: "none", color: COLORS.maroon }}
+          >
+            https://www.facebook.com/profile.php?id=61570486516513
+          </a>
+        </span>
+      )
+    },
+    
 
     {
       title: "Email",

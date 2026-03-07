@@ -10,14 +10,15 @@ export default function Navbar() {
   const [open, setOpen] = useState(false);
   const drawerRef = useRef<HTMLDivElement>(null);
 
-  const mainLinks = [
-    { name: "Home", href: "/" },
-    { name: "Collections", href: "/collections" },
-  ];
-  const hiddenLinks = [
-    { name: "About", href: "/about" },
-    { name: "Contact", href: "/contact" },
-  ];
+ const mainLinks = [
+  { name: "Home", href: "/" },
+  { name: "Collections", href: "/collections" },
+  { name: "Contact", href: "/contact" },
+];
+
+const hiddenLinks = [
+  { name: "About", href: "/about" },
+];
 
   // Close drawer if clicking outside
   useEffect(() => {
@@ -79,6 +80,7 @@ export default function Navbar() {
             <Link
               key={item.name}
               href={item.href}
+              prefetch={false} // Add this line to stop the lag
               style={{
                 color: COLORS.cream,
                 fontSize: "0.95rem",
@@ -146,6 +148,7 @@ export default function Navbar() {
           <Link
             key={item.name}
             href={item.href}
+            prefetch={false} // Add this line here too
             onClick={() => setOpen(false)}
             style={{
               display: "block",

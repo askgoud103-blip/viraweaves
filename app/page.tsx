@@ -117,29 +117,44 @@ export default function HomePage() {
   style={{
     position: "relative",
     width: "100%",
-    minHeight: "50vh",
+    minHeight: "35vh",
     display: "flex",
     alignItems: "center",
     justifyContent: "center",
     textAlign: "center",
     overflow: "hidden",
     backgroundColor: COLORS.maroon,
-    padding: "60px 20px",
+    padding: "50px 20px",
   }}
 >
-  {/* 1. Background Video & Overlay (Kept exactly the same) */}
-  <video autoPlay muted loop playsInline style={{ position: "absolute", top: "50%", left: "50%", transform: "translate(-50%, -50%)", minWidth: "100%", minHeight: "100%", objectFit: "cover", zIndex: 0 }}>
+  {/* 1. Background Video & Overlay */}
+  <video 
+    autoPlay 
+    muted 
+    loop 
+    playsInline 
+    style={{ 
+      position: "absolute", 
+      top: "50%", 
+      left: "50%", 
+      transform: "translate(-50%, -50%)", 
+      minWidth: "100%", 
+      minHeight: "100%", 
+      objectFit: "cover", 
+      zIndex: 0 
+    }}
+  >
     <source src="/video/vw.mp4" type="video/mp4" />
   </video>
-  <div style={{ position: "absolute", top: 0, left: 0, width: "100%", height: "100%", background: "linear-gradient(to bottom, rgba(0,0,0,0.4), rgba(0,0,0,0.6))", zIndex: 1 }} />
+  <div style={{ position: "absolute", top: 0, left: 0, width: "100%", height: "100%", background: "linear-gradient(to bottom, rgba(0,0,0,0.3), rgba(0,0,0,0.6))", zIndex: 1 }} />
 
   {/* 2. Content */}
   <div style={{ position: "relative", zIndex: 2, width: "100%", maxWidth: "900px" }}>
     <span style={{ textTransform: "uppercase", letterSpacing: "3px", fontSize: "0.8rem", fontWeight: 700, color: COLORS.gold }}>
       Authentic Indian Heritage
     </span>
-    <h1 style={{ fontFamily: "serif", fontSize: "clamp(2.2rem, 8vw, 3.5rem)", margin: "10px 0", color: "#fff", textShadow: "2px 2px 4px rgba(0,0,0,0.3)" }}>
-      Viraweaves
+    <h1 style={{ fontFamily: "serif", fontSize: "clamp(2.2rem, 8vw, 4rem)", margin: "10px 0", color: "#fff", textShadow: "2px 2px 4px rgba(0,0,0,0.3)" }}>
+      Vira Weaves
     </h1>
     <p style={{ fontSize: "1.1rem", color: COLORS.cream, margin: "0 auto", fontWeight: 500 }}>
       Timeless hand-woven traditions.
@@ -148,9 +163,9 @@ export default function HomePage() {
       Premium Bridal & Designer Sarees Curated for Grand Occasions Across India 
     </p>
 
-    {/* 3. Button Container - Everything is now in this one flexbox */}
-    <div style={{ 
-      marginTop: "30px", 
+    {/* 3. Button Container */}
+    <div className="hero-button-container" style={{ 
+      marginTop: "35px", 
       display: "flex", 
       gap: "15px", 
       justifyContent: "center", 
@@ -162,62 +177,73 @@ export default function HomePage() {
       <Link
         href="/category/bridal-spl"
         style={{ padding: "12px 24px", backgroundColor: COLORS.gold, border: `2px solid ${COLORS.gold}`, color: COLORS.maroon, fontWeight: 700, borderRadius: "8px", textDecoration: "none", transition: "0.3s ease" }}
-        onMouseEnter={(e) => { e.currentTarget.style.backgroundColor = COLORS.maroon; e.currentTarget.style.color = COLORS.gold; }}
+        onMouseEnter={(e) => { e.currentTarget.style.backgroundColor = "transparent"; e.currentTarget.style.color = COLORS.gold; }}
         onMouseLeave={(e) => { e.currentTarget.style.backgroundColor = COLORS.gold; e.currentTarget.style.color = COLORS.maroon; }}
       >
         Explore Bridal Collection
       </Link>
-       {/* Instagram Round Button (Adjacent to WhatsApp) */}
-      <a
-        href="https://www.instagram.com/vira_weaves_/"
-        target="_blank"
-        rel="noopener noreferrer"
-        style={{ width: "48px", height: "48px", display: "flex", alignItems: "center", justifyContent: "center", backgroundColor: COLORS.gold, border: `2px solid ${COLORS.gold}`, borderRadius: "50%", color: COLORS.maroon, transition: "0.3s ease" }}
-        onMouseEnter={(e) => { e.currentTarget.style.backgroundColor = COLORS.maroon; e.currentTarget.style.color = COLORS.gold; }}
-        onMouseLeave={(e) => { e.currentTarget.style.backgroundColor = COLORS.gold; e.currentTarget.style.color = COLORS.maroon; }}
-        aria-label="Instagram"
-      >
-        <Instagram size={24} />
-      </a>
 
-      {/* WhatsApp Button (Text + Icon) */}
+      {/* WhatsApp Button */}
       <a
-        href="https://wa.me/917093430194?text=Hi%20Viraweaves,..."
+        href="https://wa.me/917093430194?text=Hi%20Vira%20Weaves,..."
         target="_blank"
         rel="noopener noreferrer"
-        style={{ padding: "12px 24px", backgroundColor: COLORS.gold, border: `2px solid ${COLORS.gold}`, color: COLORS.maroon, fontWeight: 700, borderRadius: "8px", textDecoration: "none", display: "flex", alignItems: "center", gap: "10px", transition: "0.3s ease" }}
-        onMouseEnter={(e) => { e.currentTarget.style.backgroundColor = COLORS.maroon; e.currentTarget.style.color = COLORS.gold; }}
+        style={{
+          padding: "12px 24px",
+          backgroundColor: COLORS.gold,
+          border: `2px solid ${COLORS.gold}`,
+          color: COLORS.maroon,
+          fontWeight: 700,
+          borderRadius: "8px",
+          textDecoration: "none",
+          display: "flex",
+          alignItems: "center",
+          gap: "10px",
+          transition: "0.3s ease",
+        }}
+        onMouseEnter={(e) => { e.currentTarget.style.backgroundColor = "transparent"; e.currentTarget.style.color = COLORS.gold; }}
         onMouseLeave={(e) => { e.currentTarget.style.backgroundColor = COLORS.gold; e.currentTarget.style.color = COLORS.maroon; }}
       >
-        <MessageCircle size={20} fill="currentColor" />
+        <MessageCircle size={20} fill="#25D366" stroke="#25D366" /> 
         Check Details on WhatsApp
       </a>
 
-     
+      {/* Social Icons Group */}
+      <div style={{ display: "flex", gap: "12px" }}>
+        <a
+          href="https://www.instagram.com/vira_weaves_/"
+          target="_blank"
+          rel="noopener noreferrer"
+          style={{ width: "48px", height: "48px", display: "flex", alignItems: "center", justifyContent: "center", backgroundColor: COLORS.gold, border: `2px solid ${COLORS.gold}`, borderRadius: "50%", color: COLORS.maroon, transition: "0.3s ease" }}
+          onMouseEnter={(e) => { e.currentTarget.style.backgroundColor = "transparent"; e.currentTarget.style.color = COLORS.gold; }}
+          onMouseLeave={(e) => { e.currentTarget.style.backgroundColor = COLORS.gold; e.currentTarget.style.color = COLORS.maroon; }}
+          aria-label="Instagram"
+        >
+          <Instagram size={22} />
+        </a>
 
-      {/* Facebook Round Button (Adjacent to Instagram) */}
-      <a
-        href="https://www.facebook.com/profile.php?id=61570486516513"
-        target="_blank"
-        rel="noopener noreferrer"
-        style={{ width: "48px", height: "48px", display: "flex", alignItems: "center", justifyContent: "center", backgroundColor: COLORS.gold, border: `2px solid ${COLORS.gold}`, borderRadius: "50%", color: "#1877F2", transition: "0.3s ease" }}
-        onMouseEnter={(e) => { e.currentTarget.style.backgroundColor = COLORS.maroon; e.currentTarget.style.color = COLORS.gold; }}
-        onMouseLeave={(e) => { e.currentTarget.style.backgroundColor = COLORS.gold; e.currentTarget.style.color = "#1877F2"; }}
-        aria-label="Facebook"
-      >
-        <Facebook size={24} fill="currentColor" />
-      </a>
+        <a
+          href="https://www.facebook.com/profile.php?id=61570486516513"
+          target="_blank"
+          rel="noopener noreferrer"
+          style={{ width: "48px", height: "48px", display: "flex", alignItems: "center", justifyContent: "center", backgroundColor: COLORS.gold, border: `2px solid ${COLORS.gold}`, borderRadius: "50%", color: "#1877F2", transition: "0.3s ease" }}
+          onMouseEnter={(e) => { e.currentTarget.style.backgroundColor = "transparent"; e.currentTarget.style.color = COLORS.gold; }}
+          onMouseLeave={(e) => { e.currentTarget.style.backgroundColor = COLORS.gold; e.currentTarget.style.color = "#1877F2"; }}
+          aria-label="Facebook"
+        >
+          <Facebook size={22} fill="currentColor" />
+        </a>
+      </div>
 
       {/* Reviews Button */}
       <a
         href="#reviews"
         style={{ padding: "12px 24px", backgroundColor: COLORS.gold, border: `2px solid ${COLORS.gold}`, color: COLORS.maroon, fontWeight: 700, borderRadius: "8px", textDecoration: "none", transition: "0.3s ease" }}
-        onMouseEnter={(e) => { e.currentTarget.style.backgroundColor = COLORS.maroon; e.currentTarget.style.color = COLORS.gold; }}
+        onMouseEnter={(e) => { e.currentTarget.style.backgroundColor = "transparent"; e.currentTarget.style.color = COLORS.gold; }}
         onMouseLeave={(e) => { e.currentTarget.style.backgroundColor = COLORS.gold; e.currentTarget.style.color = COLORS.maroon; }}
       >
         5⭐ Customer Reviews
       </a>
-
     </div>
   </div>
 </section>
@@ -526,13 +552,39 @@ export default function HomePage() {
       
 
       {/* Global CSS for Hovers */}
-      <style jsx global>{`
-        .cat-link:hover, .quick-link:hover { 
-          background-color: ${COLORS.gold} !important; 
-          color: ${COLORS.maroon} !important; 
-          transform: translateY(-3px); 
-        }
-      `}</style>
+     {/* Global CSS for Hovers and Responsiveness */}
+<style jsx global>{`
+  /* Desktop & General Hover Effects */
+  .cat-link:hover, .quick-link:hover { 
+    background-color: ${COLORS.gold} !important; 
+    color: ${COLORS.maroon} !important; 
+    transform: translateY(-3px); 
+  }
+
+  /* Mobile Optimization for Hero Buttons */
+  @media (max-width: 768px) {
+    .hero-button-container {
+      flex-direction: column !important;
+      gap: 12px !important;
+      padding: 0 10px;
+    }
+    
+    .hero-button-container > a, 
+    .hero-button-container > Link,
+    .hero-button-container > div {
+      width: 100% !important;
+      max-width: 320px;
+      justify-content: center !important;
+    }
+
+    /* Ensure social icons stay side-by-side even on mobile */
+    .hero-button-container > div {
+      display: flex !important;
+      flex-direction: row !important;
+      justify-content: center !important;
+    }
+  }
+`}</style>
       {/* --- ADD STEP 2 HERE --- */}
       {showBackToTop && (
         <button

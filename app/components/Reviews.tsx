@@ -14,7 +14,7 @@ export default function Reviews() {
   color: COLORS.maroon, 
   marginBottom: "40px",
   position: "relative",
-  paddingBottom: "15px" // Space for the line
+  paddingBottom: "1px" // Space for the line
 }}>
   What Our Customers Say
   <span style={{

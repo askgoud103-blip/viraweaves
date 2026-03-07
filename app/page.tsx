@@ -106,13 +106,29 @@ export default function HomePage() {
   const scrollToTop = () => {
     window.scrollTo({ top: 0, behavior: "smooth" });
   };
-  /* --- END OF STEP 1 --- */
+ /* --- END OF STEP 1 --- */
 
-  return (
-    <div style={{ width: "100%", minHeight: "100vh", backgroundColor: COLORS.cream, overflowX: "hidden" }}>
-      <Navbar />
+    return (
+      <div style={{ width: "100%", minHeight: "100vh", backgroundColor: COLORS.cream }}>
+        
+        {/* BULLETPROOF FIXED NAVBAR */}
+        <div style={{ 
+          position: "fixed", 
+          top: 0, 
+          left: 0,
+          right: 0,
+          zIndex: 3000, // Very high to stay above everything
+          width: "100%",
+          backgroundColor: COLORS.cream,
+          boxShadow: "0 2px 10px rgba(0,0,0,0.1)"
+        }}>
+          <Navbar />
+        </div>
 
- {/* --- START OF HERO SECTION --- */}
+        {/* IMPORTANT: Spacer div so the Hero content doesn't hide behind the fixed navbar */}
+        <div style={{ height: "80px" }} /> 
+
+        {/* --- START OF HERO SECTION --- */}
 <section
   style={{
     position: "relative",
@@ -406,7 +422,7 @@ export default function HomePage() {
       </section>
       
      {/* SECTION 4 & 5: SHORTER TRIO GALLERY */}
-<section style={{ maxWidth: "1200px", margin: "0 auto 60px", padding: "0 20px" }}>
+<section style={{ maxWidth: "1200px", margin: "0 auto 20px", padding: "0 20px" }}>
   <h2 style={{ 
     textAlign: "center", 
     fontSize: "2.2rem", 
@@ -430,7 +446,7 @@ export default function HomePage() {
       </h3>
       <div style={{ 
         position: "relative", 
-        paddingBottom: "56.25%", // SHORTER: 16:9 Ratio
+        paddingBottom: "66.25%", // SHORTER: 16:9 Ratio
         width: "100%", 
         borderRadius: "16px", 
         overflow: "hidden", 
@@ -450,7 +466,7 @@ export default function HomePage() {
       </h3>
       <div style={{ 
         position: "relative", 
-        paddingBottom: "56.25%", // SHORTER: 16:9 Ratio
+        paddingBottom: "66.25%", // SHORTER: 16:9 Ratio
         width: "100%", 
         borderRadius: "16px", 
         overflow: "hidden", 
@@ -470,7 +486,7 @@ export default function HomePage() {
       </h3>
       <div style={{ 
         position: "relative", 
-        paddingBottom: "56.25%", // SHORTER: 16:9 Ratio
+        paddingBottom: "66.25%", // SHORTER: 16:9 Ratio
         width: "100%", 
         borderRadius: "16px", 
         overflow: "hidden", 
@@ -560,39 +576,58 @@ export default function HomePage() {
 </section>
 
    
-     {/* Global CSS for Hovers and Responsiveness */}
-<style jsx global>{`
-  /* Desktop & General Hover Effects */
-  .cat-link:hover, .quick-link:hover { 
-    background-color: ${COLORS.gold} !important; 
-    color: ${COLORS.maroon} !important; 
-    transform: translateY(-3px); 
-  }
+    {/* Global CSS for Hovers, Responsiveness, and Scrollbar */}
+      <style dangerouslySetInnerHTML={{ __html: `
+        /* 1. PRO Custom Scrollbar */
+        ::-webkit-scrollbar {
+          width: 8px;
+        }
+        ::-webkit-scrollbar-track {
+          background: ${COLORS.cream}; 
+        }
+        ::-webkit-scrollbar-thumb {
+          background: ${COLORS.maroon};
+          border-radius: 10px;
+          border: 2px solid ${COLORS.cream};
+        }
+        ::-webkit-scrollbar-thumb:hover {
+          background: ${COLORS.gold};
+        }
 
-  /* Mobile Optimization for Hero Buttons */
-  @media (max-width: 768px) {
-    .hero-button-container {
-      flex-direction: column !important;
-      gap: 12px !important;
-      padding: 0 10px;
-    }
-    
-    .hero-button-container > a, 
-    .hero-button-container > Link,
-    .hero-button-container > div {
-      width: 100% !important;
-      max-width: 320px;
-      justify-content: center !important;
-    }
+        /* 2. Smooth Scrolling */
+        html {
+          scroll-behavior: smooth;
+        }
 
-    /* Ensure social icons stay side-by-side even on mobile */
-    .hero-button-container > div {
-      display: flex !important;
-      flex-direction: row !important;
-      justify-content: center !important;
-    }
-  }
-`}</style>
+        /* 3. Hover Effects */
+        .cat-link:hover, .quick-link:hover { 
+          background-color: ${COLORS.gold} !important; 
+          color: ${COLORS.maroon} !important; 
+          transform: translateY(-3px); 
+        }
+
+        /* 4. Mobile Optimization */
+        @media (max-width: 768px) {
+          .hero-button-container {
+            flex-direction: column !important;
+            gap: 12px !important;
+            padding: 0 10px;
+          }
+          
+          .hero-button-container > a, 
+          .hero-button-container > div {
+            width: 100% !important;
+            max-width: 320px;
+            justify-content: center !important;
+          }
+
+          .hero-button-container > div {
+            display: flex !important;
+            flex-direction: row !important;
+            justify-content: center !important;
+          }
+        }
+      `}} />
       {/* --- ADD STEP 2 HERE --- */}
       {showBackToTop && (
         <button

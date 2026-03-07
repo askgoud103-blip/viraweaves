@@ -5,7 +5,7 @@ import { Star } from "lucide-react";
 
 export default function Reviews() {
   return (
-    <section style={{ padding: "40px 20px", backgroundColor: COLORS.cream }}>
+    <section style={{ padding: "5px 20px", backgroundColor: COLORS.cream }}>
       <div style={{ maxWidth: "1200px", margin: "0 auto" }}>
         <h2 style={{ 
   fontFamily: "serif", 
@@ -36,7 +36,7 @@ export default function Reviews() {
         }}>
           {reviewsData.map((review) => (
             <div key={review.id} style={{
-              padding: "30px",
+              padding: "5px",
               borderRadius: "20px",
               backgroundColor: COLORS.cream,
               border: `1px solid #eee`,

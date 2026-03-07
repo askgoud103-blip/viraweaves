@@ -162,6 +162,15 @@ export default function HomePage() {
     <p style={{ fontSize: "1.05rem", color: COLORS.cream, margin: "10px auto 0 auto", fontWeight: 500, lineHeight: "1.5" }}> 
       Premium Bridal & Designer Sarees Curated for Grand Occasions Across India 
     </p>
+    <p style={{ 
+  fontSize: "0.95rem",
+  color: COLORS.gold,
+  marginTop: "10px",
+  fontWeight: 600,
+  letterSpacing: "0.5px"
+}}>
+  Trusted by 10,000+ happy customers across India • 4.9★ Customer Rating
+</p>
 
     {/* 3. Button Container */}
     <div className="hero-button-container" style={{ 
@@ -182,6 +191,17 @@ export default function HomePage() {
       >
         Explore Bridal Collection
       </Link>
+      <a
+          href="https://www.instagram.com/vira_weaves_/"
+          target="_blank"
+          rel="noopener noreferrer"
+          style={{ width: "48px", height: "48px", display: "flex", alignItems: "center", justifyContent: "center", backgroundColor: COLORS.gold, border: `2px solid ${COLORS.gold}`, borderRadius: "50%", color: COLORS.maroon, transition: "0.3s ease" }}
+          onMouseEnter={(e) => { e.currentTarget.style.backgroundColor = "transparent"; e.currentTarget.style.color = COLORS.gold; }}
+          onMouseLeave={(e) => { e.currentTarget.style.backgroundColor = COLORS.gold; e.currentTarget.style.color = COLORS.maroon; }}
+          aria-label="Instagram"
+        >
+          <Instagram size={22} />
+        </a>
 
       {/* WhatsApp Button */}
       <a
@@ -205,22 +225,12 @@ export default function HomePage() {
         onMouseLeave={(e) => { e.currentTarget.style.backgroundColor = COLORS.gold; e.currentTarget.style.color = COLORS.maroon; }}
       >
         <MessageCircle size={20} fill="#25D366" stroke="#25D366" /> 
-        Check Details on WhatsApp
+        Details on WhatsApp
       </a>
 
       {/* Social Icons Group */}
       <div style={{ display: "flex", gap: "12px" }}>
-        <a
-          href="https://www.instagram.com/vira_weaves_/"
-          target="_blank"
-          rel="noopener noreferrer"
-          style={{ width: "48px", height: "48px", display: "flex", alignItems: "center", justifyContent: "center", backgroundColor: COLORS.gold, border: `2px solid ${COLORS.gold}`, borderRadius: "50%", color: COLORS.maroon, transition: "0.3s ease" }}
-          onMouseEnter={(e) => { e.currentTarget.style.backgroundColor = "transparent"; e.currentTarget.style.color = COLORS.gold; }}
-          onMouseLeave={(e) => { e.currentTarget.style.backgroundColor = COLORS.gold; e.currentTarget.style.color = COLORS.maroon; }}
-          aria-label="Instagram"
-        >
-          <Instagram size={22} />
-        </a>
+        
 
         <a
           href="https://www.facebook.com/profile.php?id=61570486516513"
@@ -242,7 +252,7 @@ export default function HomePage() {
         onMouseEnter={(e) => { e.currentTarget.style.backgroundColor = "transparent"; e.currentTarget.style.color = COLORS.gold; }}
         onMouseLeave={(e) => { e.currentTarget.style.backgroundColor = COLORS.gold; e.currentTarget.style.color = COLORS.maroon; }}
       >
-        5⭐ Customer Reviews
+        5⭐ Reviews
       </a>
     </div>
   </div>
@@ -401,7 +411,7 @@ export default function HomePage() {
     textAlign: "center", 
     fontSize: "2.2rem", 
     fontFamily: "serif", 
-    marginBottom: "30px", 
+    marginBottom: "10px", 
     color: COLORS.maroon 
   }}>
     Experience Viraweaves
@@ -549,9 +559,7 @@ export default function HomePage() {
   </div>
 </section>
 
-      
-
-      {/* Global CSS for Hovers */}
+   
      {/* Global CSS for Hovers and Responsiveness */}
 <style jsx global>{`
   /* Desktop & General Hover Effects */

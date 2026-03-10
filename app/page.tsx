@@ -160,7 +160,7 @@ export default function HomePage() {
       zIndex: 0 
     }}
   >
-    <source src="/video/vw.mp4" type="video/mp4" />
+    <source src="/video/pattu1.mp4" type="video/mp4" />
   </video>
   <div style={{ position: "absolute", top: 0, left: 0, width: "100%", height: "100%", background: "linear-gradient(to bottom, rgba(0,0,0,0.3), rgba(0,0,0,0.6))", zIndex: 1 }} />
 

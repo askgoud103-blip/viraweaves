@@ -2,7 +2,7 @@
 
 "use client";
 // Find this line at the top of your file and add Facebook
-import { Facebook, Instagram, Star, ShoppingBag, MessageCircle } from "lucide-react";
+import { Facebook, Instagram, Star, ShoppingBag, MessageCircle, ArrowUp } from "lucide-react";
 import Image from "next/image";
 import { useRef, useEffect, useState, MouseEvent, TouchEvent, useMemo } from "react";
 import Navbar from "./components/Navbar";
@@ -167,7 +167,7 @@ export default function HomePage() {
   {/* 2. Content */}
   <div style={{ position: "relative", zIndex: 2, width: "100%", maxWidth: "900px" }}>
     <span style={{ textTransform: "uppercase", letterSpacing: "3px", fontSize: "0.8rem", fontWeight: 700, color: COLORS.gold }}>
-      Authentic Indian Heritage
+      Authentic Indian Heritage and Culture
     </span>
     <h1 style={{ fontFamily: "serif", fontSize: "clamp(2.2rem, 8vw, 4rem)", margin: "10px 0", color: "#fff", textShadow: "2px 2px 4px rgba(0,0,0,0.3)" }}>
       Vira Weaves
